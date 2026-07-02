@@ -1,12 +1,12 @@
 import Header from "./components/Header/Header";
-import Hero from "./components/Hero/Hero";
 import Footer from "./components/Footer/Footer";
+import Discover from "./pages/Discover/Discover";
 
 function App() {
   return (
     <>
       <Header />
-      <Hero />
+      <Discover />
       <Footer />
     </>
   );

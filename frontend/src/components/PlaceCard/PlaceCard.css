@@ -1,0 +1,45 @@
+.place-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+}
+
+.place-card__image-placeholder {
+  height: 220px;
+  background: #dfe7df;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5f7d63;
+  font-weight: 600;
+}
+
+.place-card__content {
+  padding: 24px;
+}
+
+.place-card__title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.place-card__location {
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.place-card__category {
+  color: #5f7d63;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.place-card__button {
+  border: none;
+  background: #5f7d63;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+}
