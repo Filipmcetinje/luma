@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Header.css";
 
 function Header() {
@@ -6,21 +8,21 @@ function Header() {
       <h2 className="header__logo">Luma</h2>
 
       <nav className="header__nav">
-        <a className="header__link" href="/">
+        <Link className="header__link" to="/">
           Home
-        </a>
+        </Link>
 
-        <a className="header__link" href="/">
+        <Link className="header__link" to="/discover">
           Discover
-        </a>
+        </Link>
 
-        <a className="header__link" href="/">
+        <Link className="header__link" to="/trips">
           Trips
-        </a>
+        </Link>
 
-        <a className="header__link" href="/">
+        <Link className="header__link" to="/journal">
           Journal
-        </a>
+        </Link>
       </nav>
     </header>
   );
