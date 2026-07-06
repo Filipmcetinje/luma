@@ -27,12 +27,7 @@ function Discover() {
 
       <section className="discover__places">
         {filteredPlaces.map((place) => (
-          <PlaceCard
-            key={place.id}
-            title={place.title}
-            location={place.location}
-            category={place.category}
-          />
+          <PlaceCard key={place.id} place={place} />
         ))}
       </section>
     </main>
