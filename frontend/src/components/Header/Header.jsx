@@ -16,6 +16,10 @@ function Header() {
           Discover
         </Link>
 
+        <Link className="header__link" to="/favorites">
+          Favorites
+        </Link>
+
         <Link className="header__link" to="/trips">
           Trips
         </Link>

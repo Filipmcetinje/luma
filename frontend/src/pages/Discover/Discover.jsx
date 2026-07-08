@@ -5,7 +5,7 @@ import PlaceCard from "../../components/PlaceCard/PlaceCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import places from "../../data/places";
 
-function Discover() {
+function Discover({ favoritePlaceIds, onToggleFavorite }) {
   const [search, setSearch] = useState("");
 
   const filteredPlaces = places.filter((place) => {
@@ -27,7 +27,12 @@ function Discover() {
 
       <section className="discover__places">
         {filteredPlaces.map((place) => (
-          <PlaceCard key={place.id} place={place} />
+          <PlaceCard
+            key={place.id}
+            place={place}
+            isFavorite={favoritePlaceIds.includes(place.id)}
+            onToggleFavorite={onToggleFavorite}
+          />
         ))}
       </section>
     </main>
