@@ -46,7 +46,11 @@ function Discover({ favoritePlaceIds, onToggleFavorite }) {
       <div className="discover__filters">
         {categories.map((category) => (
           <button
-            className="discover__filter-button"
+            className={`discover__filter-button ${
+              selectedCategory === category
+                ? "discover__filter-button_active"
+                : ""
+            }`}
             key={category}
             type="button"
             onClick={() => setSelectedCategory(category)}
@@ -57,14 +61,20 @@ function Discover({ favoritePlaceIds, onToggleFavorite }) {
       </div>
 
       <section className="discover__places">
-        {filteredPlaces.map((place) => (
-          <PlaceCard
-            key={place.id}
-            place={place}
-            isFavorite={favoritePlaceIds.includes(place.id)}
-            onToggleFavorite={onToggleFavorite}
-          />
-        ))}
+        {filteredPlaces.length > 0 ? (
+          filteredPlaces.map((place) => (
+            <PlaceCard
+              key={place.id}
+              place={place}
+              isFavorite={favoritePlaceIds.includes(place.id)}
+              onToggleFavorite={onToggleFavorite}
+            />
+          ))
+        ) : (
+          <p className="discover__empty">
+            No places match your search and category.
+          </p>
+        )}
       </section>
     </main>
   );

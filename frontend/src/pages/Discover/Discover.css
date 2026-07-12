@@ -22,3 +22,7 @@
   gap: 28px;
   margin-top: 50px;
 }
+.discover__filter-button_active {
+  font-weight: 700;
+  border: 2px solid currentColor;
+}
