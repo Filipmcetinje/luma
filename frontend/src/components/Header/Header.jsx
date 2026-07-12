@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./Header.css";
 
-function Header() {
+function Header({ favoriteCount }) {
   return (
     <header className="header">
       <h2 className="header__logo">Luma</h2>
@@ -17,7 +17,7 @@ function Header() {
         </Link>
 
         <Link className="header__link" to="/favorites">
-          Favorites
+          Favorites ({favoriteCount})
         </Link>
 
         <Link className="header__link" to="/trips">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
@@ -12,7 +12,15 @@ import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
 
 function App() {
-  const [favoritePlaceIds, setFavoritePlaceIds] = useState([]);
+  const [favoritePlaceIds, setFavoritePlaceIds] = useState(() => {
+    const savedFavorites = localStorage.getItem("favoritePlaceIds");
+
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favoritePlaceIds", JSON.stringify(favoritePlaceIds));
+  }, [favoritePlaceIds]);
 
   function handleToggleFavorite(placeId) {
     if (favoritePlaceIds.includes(placeId)) {
@@ -27,7 +35,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header favoriteCount={favoritePlaceIds.length} />
 
       <Routes>
         <Route path="/" element={<Home />} />
