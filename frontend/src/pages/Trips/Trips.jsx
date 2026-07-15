@@ -29,6 +29,12 @@ function Trips() {
     setTripName("");
   }
 
+  function handleDeleteTrip(tripId) {
+    setTrips((currentTrips) =>
+      currentTrips.filter((trip) => trip.id !== tripId),
+    );
+  }
+
   return (
     <main className="trips">
       <h1 className="trips__title">Trip Planner</h1>
@@ -60,6 +66,14 @@ function Trips() {
         {trips.map((trip) => (
           <article className="trips__card" key={trip.id}>
             <h3 className="trips__card-title">{trip.name}</h3>
+
+            <button
+              className="trips__delete-button"
+              type="button"
+              onClick={() => handleDeleteTrip(trip.id)}
+            >
+              Delete
+            </button>
           </article>
         ))}
       </section>
