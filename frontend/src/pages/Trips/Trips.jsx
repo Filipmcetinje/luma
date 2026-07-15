@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Trips.css";
 
 function Trips() {
   const [tripName, setTripName] = useState("");
-  const [trips, setTrips] = useState([]);
+  const [trips, setTrips] = useState(() => {
+    const savedTrips = localStorage.getItem("trips");
+
+    return savedTrips ? JSON.parse(savedTrips) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("trips", JSON.stringify(trips));
+  }, [trips]);
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
