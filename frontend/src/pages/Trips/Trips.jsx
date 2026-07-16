@@ -1,20 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Trips.css";
 
-function Trips() {
+function Trips({ trips, onCreateTrip, onDeleteTrip }) {
   const [tripName, setTripName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
-  const [trips, setTrips] = useState(() => {
-    const savedTrips = localStorage.getItem("trips");
-
-    return savedTrips ? JSON.parse(savedTrips) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("trips", JSON.stringify(trips));
-  }, [trips]);
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
@@ -39,16 +29,10 @@ function Trips() {
       places: [],
     };
 
-    setTrips([...trips, newTrip]);
+    onCreateTrip(newTrip);
     setTripName("");
     setStartDate("");
     setEndDate("");
-  }
-
-  function handleDeleteTrip(tripId) {
-    setTrips((currentTrips) =>
-      currentTrips.filter((trip) => trip.id !== tripId),
-    );
   }
 
   return (
@@ -111,12 +95,13 @@ function Trips() {
               <p className="trips__card-dates">
                 {trip.startDate} – {trip.endDate}
               </p>
+              <p className="trips__card-count">{trip.places.length} places</p>
             </div>
 
             <button
               className="trips__delete-button"
               type="button"
-              onClick={() => handleDeleteTrip(trip.id)}
+              onClick={() => onDeleteTrip(trip.id)}
             >
               Delete
             </button>

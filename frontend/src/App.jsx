@@ -18,6 +18,16 @@ function App() {
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
+  const [trips, setTrips] = useState(() => {
+    const savedTrips = localStorage.getItem("trips");
+
+    return savedTrips ? JSON.parse(savedTrips) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("trips", JSON.stringify(trips));
+  }, [trips]);
+
   useEffect(() => {
     localStorage.setItem("favoritePlaceIds", JSON.stringify(favoritePlaceIds));
   }, [favoritePlaceIds]);
@@ -32,6 +42,16 @@ function App() {
   const favoritePlaces = places.filter((place) =>
     favoritePlaceIds.includes(place.id),
   );
+
+  function handleCreateTrip(newTrip) {
+    setTrips((currentTrips) => [...currentTrips, newTrip]);
+  }
+
+  function handleDeleteTrip(tripId) {
+    setTrips((currentTrips) =>
+      currentTrips.filter((trip) => trip.id !== tripId),
+    );
+  }
 
   return (
     <>
@@ -58,7 +78,16 @@ function App() {
             />
           }
         />
-        <Route path="/trips" element={<Trips />} />
+        <Route
+          path="/trips"
+          element={
+            <Trips
+              trips={trips}
+              onCreateTrip={handleCreateTrip}
+              onDeleteTrip={handleDeleteTrip}
+            />
+          }
+        />
         <Route path="/journal" element={<Journal />} />
         <Route path="/places/:placeId" element={<PlaceDetails />} />
       </Routes>
