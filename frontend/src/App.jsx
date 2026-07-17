@@ -53,6 +53,25 @@ function App() {
     );
   }
 
+  function handleAddPlaceToTrip(tripId, placeId) {
+    setTrips((currentTrips) =>
+      currentTrips.map((trip) => {
+        if (trip.id !== Number(tripId)) {
+          return trip;
+        }
+
+        if (trip.places.includes(placeId)) {
+          return trip;
+        }
+
+        return {
+          ...trip,
+          places: [...trip.places, placeId],
+        };
+      }),
+    );
+  }
+
   return (
     <>
       <Header favoriteCount={favoritePlaceIds.length} />
@@ -89,7 +108,15 @@ function App() {
           }
         />
         <Route path="/journal" element={<Journal />} />
-        <Route path="/places/:placeId" element={<PlaceDetails />} />
+        <Route
+          path="/places/:placeId"
+          element={
+            <PlaceDetails
+              trips={trips}
+              onAddPlaceToTrip={handleAddPlaceToTrip}
+            />
+          }
+        />
       </Routes>
 
       <Footer />
