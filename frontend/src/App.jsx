@@ -10,6 +10,7 @@ import Journal from "./pages/Journal/Journal";
 import PlaceDetails from "./pages/PlaceDetails/PlaceDetails";
 import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
+import TripDetails from "./pages/TripDetails/TripDetails";
 
 function App() {
   const [favoritePlaceIds, setFavoritePlaceIds] = useState(() => {
@@ -72,6 +73,21 @@ function App() {
     );
   }
 
+  function handleRemovePlaceFromTrip(tripId, placeId) {
+    setTrips((currentTrips) =>
+      currentTrips.map((trip) => {
+        if (trip.id !== tripId) {
+          return trip;
+        }
+
+        return {
+          ...trip,
+          places: trip.places.filter((id) => id !== placeId),
+        };
+      }),
+    );
+  }
+
   return (
     <>
       <Header favoriteCount={favoritePlaceIds.length} />
@@ -104,9 +120,11 @@ function App() {
               trips={trips}
               onCreateTrip={handleCreateTrip}
               onDeleteTrip={handleDeleteTrip}
+              onRemovePlaceFromTrip={handleRemovePlaceFromTrip}
             />
           }
         />
+        <Route path="/trips/:tripId" element={<TripDetails />} />
         <Route path="/journal" element={<Journal />} />
         <Route
           path="/places/:placeId"

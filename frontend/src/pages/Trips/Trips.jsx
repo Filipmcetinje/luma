@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Trips.css";
+import places from "../../data/places";
 
-function Trips({ trips, onCreateTrip, onDeleteTrip }) {
+function Trips({ trips, onCreateTrip, onDeleteTrip, onRemovePlaceFromTrip }) {
   const [tripName, setTripName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -87,26 +89,68 @@ function Trips({ trips, onCreateTrip, onDeleteTrip }) {
       <section className="trips__list">
         <h2 className="trips__list-title">Your Trips</h2>
 
-        {trips.map((trip) => (
-          <article className="trips__card" key={trip.id}>
-            <div className="trips__card-content">
-              <h3 className="trips__card-title">{trip.name}</h3>
+        {trips.map((trip) => {
+          const placeCount = trip.places.length;
 
-              <p className="trips__card-dates">
-                {trip.startDate} – {trip.endDate}
-              </p>
-              <p className="trips__card-count">{trip.places.length} places</p>
-            </div>
+          return (
+            <article className="trips__card" key={trip.id}>
+              <div className="trips__card-content">
+                <h3 className="trips__card-title">
+                  <Link className="trips__card-link" to={`/trips/${trip.id}`}>
+                    {trip.name}
+                  </Link>
+                </h3>
 
-            <button
-              className="trips__delete-button"
-              type="button"
-              onClick={() => onDeleteTrip(trip.id)}
-            >
-              Delete
-            </button>
-          </article>
-        ))}
+                <p className="trips__card-dates">
+                  {trip.startDate} – {trip.endDate}
+                </p>
+
+                <p className="trips__card-count">
+                  {placeCount} {placeCount === 1 ? "place" : "places"}
+                </p>
+
+                <ul className="trips__places-list">
+                  {trip.places.map((placeId) => {
+                    const place = places.find((place) => place.id === placeId);
+
+                    if (!place) {
+                      return null;
+                    }
+
+                    return (
+                      <li className="trips__place-item" key={placeId}>
+                        <Link
+                          className="trips__place-link"
+                          to={`/places/${place.id}`}
+                        >
+                          {place.title}
+                        </Link>
+
+                        <button
+                          className="trips__remove-place-button"
+                          type="button"
+                          onClick={() =>
+                            onRemovePlaceFromTrip(trip.id, placeId)
+                          }
+                        >
+                          Remove
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <button
+                className="trips__delete-button"
+                type="button"
+                onClick={() => onDeleteTrip(trip.id)}
+              >
+                Delete
+              </button>
+            </article>
+          );
+        })}
       </section>
     </main>
   );
