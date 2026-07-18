@@ -124,7 +124,16 @@ function App() {
             />
           }
         />
-        <Route path="/trips/:tripId" element={<TripDetails />} />
+        <Route
+          path="/trips/:tripId"
+          element={
+            <TripDetails
+              trips={trips}
+              favoritePlaceIds={favoritePlaceIds}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          }
+        />
         <Route path="/journal" element={<Journal />} />
         <Route
           path="/places/:placeId"

@@ -1,0 +1,8 @@
+.trip-details__place-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.trip-details__place-link:hover {
+  text-decoration: underline;
+}
