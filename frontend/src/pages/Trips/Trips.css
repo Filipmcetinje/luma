@@ -122,3 +122,12 @@
 .trips__card-link:hover {
   text-decoration: underline;
 }
+.trips__card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.trips__edit-button,
+.trips__delete-button {
+  cursor: pointer;
+}

@@ -3,10 +3,18 @@ import { Link } from "react-router-dom";
 import "./Trips.css";
 import places from "../../data/places";
 
-function Trips({ trips, onCreateTrip, onDeleteTrip, onRemovePlaceFromTrip }) {
+function Trips({
+  trips,
+  onCreateTrip,
+  onDeleteTrip,
+  onRemovePlaceFromTrip,
+  onUpdateTrip,
+}) {
   const [tripName, setTripName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [editingTripId, setEditingTripId] = useState(null);
+  const [editedTripName, setEditedTripName] = useState("");
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
@@ -35,6 +43,23 @@ function Trips({ trips, onCreateTrip, onDeleteTrip, onRemovePlaceFromTrip }) {
     setTripName("");
     setStartDate("");
     setEndDate("");
+  }
+
+  function handleEditClick(trip) {
+    setEditingTripId(trip.id);
+    setEditedTripName(trip.name);
+  }
+
+  function handleSaveClick(tripId) {
+    const trimmedName = editedTripName.trim();
+
+    if (!trimmedName) {
+      return;
+    }
+
+    onUpdateTrip(tripId, trimmedName);
+    setEditingTripId(null);
+    setEditedTripName("");
   }
 
   return (
@@ -95,11 +120,20 @@ function Trips({ trips, onCreateTrip, onDeleteTrip, onRemovePlaceFromTrip }) {
           return (
             <article className="trips__card" key={trip.id}>
               <div className="trips__card-content">
-                <h3 className="trips__card-title">
-                  <Link className="trips__card-link" to={`/trips/${trip.id}`}>
-                    {trip.name}
-                  </Link>
-                </h3>
+                {editingTripId === trip.id ? (
+                  <input
+                    className="trips__edit-input"
+                    type="text"
+                    value={editedTripName}
+                    onChange={(event) => setEditedTripName(event.target.value)}
+                  />
+                ) : (
+                  <h3 className="trips__card-title">
+                    <Link className="trips__card-link" to={`/trips/${trip.id}`}>
+                      {trip.name}
+                    </Link>
+                  </h3>
+                )}
 
                 <p className="trips__card-dates">
                   {trip.startDate} – {trip.endDate}
@@ -141,13 +175,48 @@ function Trips({ trips, onCreateTrip, onDeleteTrip, onRemovePlaceFromTrip }) {
                 </ul>
               </div>
 
-              <button
-                className="trips__delete-button"
-                type="button"
-                onClick={() => onDeleteTrip(trip.id)}
-              >
-                Delete
-              </button>
+              <div className="trips__card-actions">
+                {editingTripId === trip.id ? (
+                  <>
+                    <button
+                      className="trips__save-button"
+                      type="button"
+                      onClick={() => handleSaveClick(trip.id)}
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      className="trips__cancel-button"
+                      type="button"
+                      onClick={() => {
+                        setEditingTripId(null);
+                        setEditedTripName("");
+                      }}
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="trips__edit-button"
+                      type="button"
+                      onClick={() => handleEditClick(trip)}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      className="trips__delete-button"
+                      type="button"
+                      onClick={() => onDeleteTrip(trip.id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
             </article>
           );
         })}

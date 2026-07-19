@@ -88,6 +88,21 @@ function App() {
     );
   }
 
+  function handleUpdateTrip(tripId, newName) {
+    setTrips((currentTrips) =>
+      currentTrips.map((trip) => {
+        if (trip.id !== tripId) {
+          return trip;
+        }
+
+        return {
+          ...trip,
+          name: newName,
+        };
+      }),
+    );
+  }
+
   return (
     <>
       <Header favoriteCount={favoritePlaceIds.length} />
@@ -121,6 +136,7 @@ function App() {
               onCreateTrip={handleCreateTrip}
               onDeleteTrip={handleDeleteTrip}
               onRemovePlaceFromTrip={handleRemovePlaceFromTrip}
+              onUpdateTrip={handleUpdateTrip}
             />
           }
         />
