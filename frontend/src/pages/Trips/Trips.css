@@ -131,3 +131,18 @@
 .trips__delete-button {
   cursor: pointer;
 }
+.trips__edit-dates {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.trips__edit-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trips__edit-date-input {
+  font: inherit;
+}

@@ -15,6 +15,8 @@ function Trips({
   const [endDate, setEndDate] = useState("");
   const [editingTripId, setEditingTripId] = useState(null);
   const [editedTripName, setEditedTripName] = useState("");
+  const [editedStartDate, setEditedStartDate] = useState("");
+  const [editedEndDate, setEditedEndDate] = useState("");
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
@@ -48,18 +50,23 @@ function Trips({
   function handleEditClick(trip) {
     setEditingTripId(trip.id);
     setEditedTripName(trip.name);
+    setEditedStartDate(trip.startDate);
+    setEditedEndDate(trip.endDate);
   }
 
   function handleSaveClick(tripId) {
     const trimmedName = editedTripName.trim();
 
-    if (!trimmedName) {
+    if (!trimmedName || !editedStartDate || !editedEndDate) {
       return;
     }
 
-    onUpdateTrip(tripId, trimmedName);
+    onUpdateTrip(tripId, trimmedName, editedStartDate, editedEndDate);
+
     setEditingTripId(null);
     setEditedTripName("");
+    setEditedStartDate("");
+    setEditedEndDate("");
   }
 
   return (
@@ -135,9 +142,37 @@ function Trips({
                   </h3>
                 )}
 
-                <p className="trips__card-dates">
-                  {trip.startDate} – {trip.endDate}
-                </p>
+                {editingTripId === trip.id ? (
+                  <div className="trips__edit-dates">
+                    <label className="trips__edit-label">
+                      Start date
+                      <input
+                        className="trips__edit-date-input"
+                        type="date"
+                        value={editedStartDate}
+                        onChange={(event) =>
+                          setEditedStartDate(event.target.value)
+                        }
+                      />
+                    </label>
+
+                    <label className="trips__edit-label">
+                      End date
+                      <input
+                        className="trips__edit-date-input"
+                        type="date"
+                        value={editedEndDate}
+                        onChange={(event) =>
+                          setEditedEndDate(event.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+                ) : (
+                  <p className="trips__dates">
+                    {trip.startDate} - {trip.endDate}
+                  </p>
+                )}
 
                 <p className="trips__card-count">
                   {placeCount} {placeCount === 1 ? "place" : "places"}
@@ -192,6 +227,8 @@ function Trips({
                       onClick={() => {
                         setEditingTripId(null);
                         setEditedTripName("");
+                        setEditedStartDate("");
+                        setEditedEndDate("");
                       }}
                     >
                       Cancel
