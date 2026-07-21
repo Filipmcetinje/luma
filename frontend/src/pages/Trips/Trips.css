@@ -146,3 +146,7 @@
 .trips__edit-date-input {
   font: inherit;
 }
+.trips__form-error {
+  margin: 0;
+  font-size: 14px;
+}

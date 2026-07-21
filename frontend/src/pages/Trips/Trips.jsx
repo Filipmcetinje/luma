@@ -17,6 +17,8 @@ function Trips({
   const [editedTripName, setEditedTripName] = useState("");
   const [editedStartDate, setEditedStartDate] = useState("");
   const [editedEndDate, setEditedEndDate] = useState("");
+  const [formError, setFormError] = useState("");
+  const [editError, setEditError] = useState("");
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
@@ -32,6 +34,11 @@ function Trips({
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (endDate < startDate) {
+      setFormError("End date cannot be before start date.");
+      return;
+    }
+    setFormError("");
 
     const newTrip = {
       id: Date.now(),
@@ -52,14 +59,23 @@ function Trips({
     setEditedTripName(trip.name);
     setEditedStartDate(trip.startDate);
     setEditedEndDate(trip.endDate);
+    setEditError("");
   }
 
   function handleSaveClick(tripId) {
     const trimmedName = editedTripName.trim();
 
     if (!trimmedName || !editedStartDate || !editedEndDate) {
+      setEditError("Please complete all trip fields.");
       return;
     }
+
+    if (editedEndDate < editedStartDate) {
+      setEditError("End date cannot be before start date.");
+      return;
+    }
+
+    setEditError("");
 
     onUpdateTrip(tripId, trimmedName, editedStartDate, editedEndDate);
 
@@ -111,6 +127,8 @@ function Trips({
           onChange={handleEndDateChange}
         />
 
+        {formError && <p className="trips__form-error">{formError}</p>}
+
         <button className="trips__button" type="submit">
           Create Trip
         </button>
@@ -143,31 +161,37 @@ function Trips({
                 )}
 
                 {editingTripId === trip.id ? (
-                  <div className="trips__edit-dates">
-                    <label className="trips__edit-label">
-                      Start date
-                      <input
-                        className="trips__edit-date-input"
-                        type="date"
-                        value={editedStartDate}
-                        onChange={(event) =>
-                          setEditedStartDate(event.target.value)
-                        }
-                      />
-                    </label>
+                  <>
+                    <div className="trips__edit-dates">
+                      <label className="trips__edit-label">
+                        Start date
+                        <input
+                          className="trips__edit-date-input"
+                          type="date"
+                          value={editedStartDate}
+                          onChange={(event) =>
+                            setEditedStartDate(event.target.value)
+                          }
+                        />
+                      </label>
 
-                    <label className="trips__edit-label">
-                      End date
-                      <input
-                        className="trips__edit-date-input"
-                        type="date"
-                        value={editedEndDate}
-                        onChange={(event) =>
-                          setEditedEndDate(event.target.value)
-                        }
-                      />
-                    </label>
-                  </div>
+                      <label className="trips__edit-label">
+                        End date
+                        <input
+                          className="trips__edit-date-input"
+                          type="date"
+                          value={editedEndDate}
+                          onChange={(event) =>
+                            setEditedEndDate(event.target.value)
+                          }
+                        />
+                      </label>
+                    </div>
+
+                    {editError && (
+                      <p className="trips__form-error">{editError}</p>
+                    )}
+                  </>
                 ) : (
                   <p className="trips__dates">
                     {trip.startDate} - {trip.endDate}
@@ -229,6 +253,7 @@ function Trips({
                         setEditedTripName("");
                         setEditedStartDate("");
                         setEditedEndDate("");
+                        setEditError("");
                       }}
                     >
                       Cancel
