@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./Trips.css";
 import places from "../../data/places";
 
+const MAX_TRIP_NAME_LENGTH = 50;
+
 function Trips({
   trips,
   onCreateTrip,
@@ -22,27 +24,43 @@ function Trips({
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
+    setFormError("");
   }
 
   function handleStartDateChange(event) {
     setStartDate(event.target.value);
+    setFormError("");
   }
 
   function handleEndDateChange(event) {
     setEndDate(event.target.value);
+    setFormError("");
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    const trimmedName = tripName.trim();
+
+    const tripNameAlreadyExists = trips.some(
+      (trip) => trip.name.toLowerCase() === trimmedName.toLowerCase(),
+    );
+
+    if (tripNameAlreadyExists) {
+      setFormError("A trip with this name already exists.");
+      return;
+    }
+
     if (endDate < startDate) {
       setFormError("End date cannot be before start date.");
       return;
     }
+
     setFormError("");
 
     const newTrip = {
       id: Date.now(),
-      name: tripName,
+      name: trimmedName,
       startDate: startDate,
       endDate: endDate,
       places: [],
@@ -67,6 +85,17 @@ function Trips({
 
     if (!trimmedName || !editedStartDate || !editedEndDate) {
       setEditError("Please complete all trip fields.");
+      return;
+    }
+
+    const tripNameAlreadyExists = trips.some(
+      (trip) =>
+        trip.id !== tripId &&
+        trip.name.toLowerCase() === trimmedName.toLowerCase(),
+    );
+
+    if (tripNameAlreadyExists) {
+      setEditError("A trip with this name already exists.");
       return;
     }
 
@@ -100,8 +129,13 @@ function Trips({
           type="text"
           placeholder="Example: Montenegro Coast Trip"
           value={tripName}
+          maxLength={MAX_TRIP_NAME_LENGTH}
           onChange={handleTripNameChange}
         />
+
+        <p className="trips__character-count">
+          {tripName.length}/{MAX_TRIP_NAME_LENGTH}
+        </p>
 
         <label className="trips__label" htmlFor="start-date">
           Start date
@@ -146,12 +180,22 @@ function Trips({
             <article className="trips__card" key={trip.id}>
               <div className="trips__card-content">
                 {editingTripId === trip.id ? (
-                  <input
-                    className="trips__edit-input"
-                    type="text"
-                    value={editedTripName}
-                    onChange={(event) => setEditedTripName(event.target.value)}
-                  />
+                  <>
+                    <input
+                      className="trips__edit-input"
+                      type="text"
+                      value={editedTripName}
+                      maxLength={MAX_TRIP_NAME_LENGTH}
+                      onChange={(event) => {
+                        setEditedTripName(event.target.value);
+                        setEditError("");
+                      }}
+                    />
+
+                    <p className="trips__character-count">
+                      {editedTripName.length}/{MAX_TRIP_NAME_LENGTH}
+                    </p>
+                  </>
                 ) : (
                   <h3 className="trips__card-title">
                     <Link className="trips__card-link" to={`/trips/${trip.id}`}>
