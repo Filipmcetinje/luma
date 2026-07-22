@@ -21,6 +21,8 @@ function Trips({
   const [editedEndDate, setEditedEndDate] = useState("");
   const [formError, setFormError] = useState("");
   const [editError, setEditError] = useState("");
+  const [tripNotes, setTripNotes] = useState("");
+  const [editedTripNotes, setEditedTripNotes] = useState("");
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
@@ -35,6 +37,10 @@ function Trips({
   function handleEndDateChange(event) {
     setEndDate(event.target.value);
     setFormError("");
+  }
+
+  function handleTripNotesChange(event) {
+    setTripNotes(event.target.value);
   }
 
   function handleSubmit(event) {
@@ -63,6 +69,7 @@ function Trips({
       name: trimmedName,
       startDate: startDate,
       endDate: endDate,
+      notes: tripNotes.trim(),
       places: [],
     };
 
@@ -70,6 +77,7 @@ function Trips({
     setTripName("");
     setStartDate("");
     setEndDate("");
+    setTripNotes("");
   }
 
   function handleEditClick(trip) {
@@ -77,6 +85,7 @@ function Trips({
     setEditedTripName(trip.name);
     setEditedStartDate(trip.startDate);
     setEditedEndDate(trip.endDate);
+    setEditedTripNotes(trip.notes || "");
     setEditError("");
   }
 
@@ -106,12 +115,19 @@ function Trips({
 
     setEditError("");
 
-    onUpdateTrip(tripId, trimmedName, editedStartDate, editedEndDate);
+    onUpdateTrip(
+      tripId,
+      trimmedName,
+      editedStartDate,
+      editedEndDate,
+      editedTripNotes.trim(),
+    );
 
     setEditingTripId(null);
     setEditedTripName("");
     setEditedStartDate("");
     setEditedEndDate("");
+    setEditedTripNotes("");
   }
 
   return (
@@ -159,6 +175,18 @@ function Trips({
           type="date"
           value={endDate}
           onChange={handleEndDateChange}
+        />
+
+        <label className="trips__label" htmlFor="trip-notes">
+          Trip notes
+        </label>
+
+        <textarea
+          className="trips__textarea"
+          id="trip-notes"
+          placeholder="Add ideas, plans, or reminders for your trip"
+          value={tripNotes}
+          onChange={handleTripNotesChange}
         />
 
         {formError && <p className="trips__form-error">{formError}</p>}
@@ -232,6 +260,17 @@ function Trips({
                       </label>
                     </div>
 
+                    <label className="trips__edit-label">
+                      Trip notes
+                      <textarea
+                        className="trips__edit-textarea"
+                        value={editedTripNotes}
+                        onChange={(event) =>
+                          setEditedTripNotes(event.target.value)
+                        }
+                      />
+                    </label>
+
                     {editError && (
                       <p className="trips__form-error">{editError}</p>
                     )}
@@ -241,6 +280,8 @@ function Trips({
                     {trip.startDate} - {trip.endDate}
                   </p>
                 )}
+
+                {trip.notes && <p className="trips__notes">{trip.notes}</p>}
 
                 <p className="trips__card-count">
                   {placeCount} {placeCount === 1 ? "place" : "places"}
@@ -298,6 +339,7 @@ function Trips({
                         setEditedStartDate("");
                         setEditedEndDate("");
                         setEditError("");
+                        setEditedTripNotes("");
                       }}
                     >
                       Cancel

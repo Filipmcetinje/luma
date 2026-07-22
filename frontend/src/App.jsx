@@ -88,7 +88,13 @@ function App() {
     );
   }
 
-  function handleUpdateTrip(tripId, newName, newStartDate, newEndDate) {
+  function handleUpdateTrip(
+    tripId,
+    newName,
+    newStartDate,
+    newEndDate,
+    newNotes,
+  ) {
     setTrips((currentTrips) =>
       currentTrips.map((trip) => {
         if (trip.id !== tripId) {
@@ -100,6 +106,7 @@ function App() {
           name: newName,
           startDate: newStartDate,
           endDate: newEndDate,
+          notes: newNotes,
         };
       }),
     );
