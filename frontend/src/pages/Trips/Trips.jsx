@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Trips.css";
 import places from "../../data/places";
+import getTripStatus from "../../utils/getTripStatus";
 
 const MAX_TRIP_NAME_LENGTH = 50;
 
@@ -203,6 +204,7 @@ function Trips({
 
         {trips.map((trip) => {
           const placeCount = trip.places.length;
+          const tripStatus = getTripStatus(trip.startDate, trip.endDate);
 
           return (
             <article className="trips__card" key={trip.id}>
@@ -280,6 +282,12 @@ function Trips({
                     {trip.startDate} - {trip.endDate}
                   </p>
                 )}
+
+                <p
+                  className={`trips__status trips__status--${tripStatus.toLowerCase()}`}
+                >
+                  {tripStatus}
+                </p>
 
                 {trip.notes && <p className="trips__notes">{trip.notes}</p>}
 

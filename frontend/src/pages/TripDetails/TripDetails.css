@@ -6,3 +6,26 @@
 .trip-details__place-link:hover {
   text-decoration: underline;
 }
+.trip-details__status {
+  display: inline-block;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trip-details__status--upcoming {
+  color: #1d4ed8;
+  background-color: #dbeafe;
+}
+
+.trip-details__status--active {
+  color: #166534;
+  background-color: #dcfce7;
+}
+
+.trip-details__status--completed {
+  color: #475569;
+  background-color: #e2e8f0;
+}
