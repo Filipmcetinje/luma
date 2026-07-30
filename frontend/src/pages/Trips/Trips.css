@@ -173,3 +173,10 @@
   color: #475569;
   background-color: #e2e8f0;
 }
+
+.trips__countdown {
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+}

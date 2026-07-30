@@ -3,6 +3,7 @@ import PlaceCard from "../../components/PlaceCard/PlaceCard";
 import places from "../../data/places";
 import "./TripDetails.css";
 import getTripStatus from "../../utils/getTripStatus";
+import getDaysUntilTrip from "../../utils/getDaysUntilTrip";
 
 function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
   const { tripId } = useParams();
@@ -21,6 +22,8 @@ function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
 
   const tripStatus = getTripStatus(trip.startDate, trip.endDate);
 
+  const daysUntilTrip = getDaysUntilTrip(trip.startDate);
+
   return (
     <main className="trip-details">
       <h1 className="trip-details__title">{trip.name}</h1>
@@ -34,6 +37,12 @@ function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
       >
         {tripStatus}
       </p>
+
+      {tripStatus === "Upcoming" && (
+        <p className="trip-details__countdown">
+          Starts in {daysUntilTrip} {daysUntilTrip === 1 ? "day" : "days"}
+        </p>
+      )}
 
       <p className="trip-details__count">
         {placeCount} {placeCount === 1 ? "place" : "places"}
