@@ -36,3 +36,39 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+.trip-details__progress {
+  margin-top: 8px;
+}
+
+.trip-details__progress-text {
+  margin: 0 0 6px;
+  color: #166534;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trip-details__progress-bar {
+  display: block;
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border: none;
+  border-radius: 999px;
+  background-color: #e2e8f0;
+}
+
+.trip-details__progress-bar::-webkit-progress-bar {
+  border-radius: 999px;
+  background-color: #e2e8f0;
+}
+
+.trip-details__progress-bar::-webkit-progress-value {
+  border-radius: 999px;
+  background-color: #22c55e;
+}
+
+.trip-details__progress-bar::-moz-progress-bar {
+  border-radius: 999px;
+  background-color: #22c55e;
+}

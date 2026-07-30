@@ -4,6 +4,7 @@ import "./Trips.css";
 import places from "../../data/places";
 import getTripStatus from "../../utils/getTripStatus";
 import getDaysUntilTrip from "../../utils/getDaysUntilTrip";
+import getTripProgress from "../../utils/getTripProgress";
 
 const MAX_TRIP_NAME_LENGTH = 50;
 
@@ -207,6 +208,7 @@ function Trips({
           const placeCount = trip.places.length;
           const tripStatus = getTripStatus(trip.startDate, trip.endDate);
           const daysUntilTrip = getDaysUntilTrip(trip.startDate);
+          const tripProgress = getTripProgress(trip.startDate, trip.endDate);
 
           return (
             <article className="trips__card" key={trip.id}>
@@ -296,6 +298,22 @@ function Trips({
                     Starts in {daysUntilTrip}{" "}
                     {daysUntilTrip === 1 ? "day" : "days"}
                   </p>
+                )}
+
+                {tripStatus === "Active" && (
+                  <div className="trips__progress">
+                    <p className="trips__progress-text">
+                      {tripProgress}% complete
+                    </p>
+
+                    <progress
+                      className="trips__progress-bar"
+                      value={tripProgress}
+                      max="100"
+                    >
+                      {tripProgress}%
+                    </progress>
+                  </div>
                 )}
 
                 {trip.notes && <p className="trips__notes">{trip.notes}</p>}

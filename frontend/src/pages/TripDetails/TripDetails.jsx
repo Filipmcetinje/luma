@@ -4,6 +4,7 @@ import places from "../../data/places";
 import "./TripDetails.css";
 import getTripStatus from "../../utils/getTripStatus";
 import getDaysUntilTrip from "../../utils/getDaysUntilTrip";
+import getTripProgress from "../../utils/getTripProgress";
 
 function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
   const { tripId } = useParams();
@@ -24,6 +25,8 @@ function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
 
   const daysUntilTrip = getDaysUntilTrip(trip.startDate);
 
+  const tripProgress = getTripProgress(trip.startDate, trip.endDate);
+
   return (
     <main className="trip-details">
       <h1 className="trip-details__title">{trip.name}</h1>
@@ -42,6 +45,22 @@ function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
         <p className="trip-details__countdown">
           Starts in {daysUntilTrip} {daysUntilTrip === 1 ? "day" : "days"}
         </p>
+      )}
+
+      {tripStatus === "Active" && (
+        <div className="trip-details__progress">
+          <p className="trip-details__progress-text">
+            {tripProgress}% complete
+          </p>
+
+          <progress
+            className="trip-details__progress-bar"
+            value={tripProgress}
+            max="100"
+          >
+            {tripProgress}%
+          </progress>
+        </div>
       )}
 
       <p className="trip-details__count">
