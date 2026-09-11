@@ -1,20 +1,21 @@
 .place-card {
-  background: white;
-  border-radius: 20px;
   overflow: hidden;
   border: 1px solid #e5e5e5;
-  text-decoration: none;
-  color: inherit;
+  border-radius: 20px;
+  background-color: white;
 }
 
-.place-card__image-placeholder {
+.place-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.place-card__image {
+  display: block;
+  width: 100%;
   height: 220px;
-  background: #dfe7df;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #5f7d63;
-  font-weight: 600;
+  object-fit: cover;
 }
 
 .place-card__content {
@@ -22,26 +23,31 @@
 }
 
 .place-card__title {
+  margin: 0 0 8px;
   font-size: 24px;
-  margin-bottom: 8px;
 }
 
 .place-card__location {
+  margin: 0 0 12px;
   color: #555;
-  margin-bottom: 12px;
 }
 
 .place-card__category {
+  margin: 0;
   color: #5f7d63;
   font-weight: 600;
-  margin-bottom: 20px;
 }
 
 .place-card__button {
-  border: none;
-  background: #5f7d63;
-  color: white;
+  margin: 0 24px 24px;
   padding: 12px 22px;
+  border: none;
   border-radius: 10px;
+  background-color: #5f7d63;
+  color: white;
   cursor: pointer;
+}
+
+.place-card__button:hover {
+  background-color: #4f6c53;
 }

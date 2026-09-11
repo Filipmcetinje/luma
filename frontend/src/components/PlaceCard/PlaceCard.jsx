@@ -11,7 +11,11 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
   return (
     <article className="place-card">
       <Link className="place-card__link" to={`/places/${place.id}`}>
-        <div className="place-card__image-placeholder">Image</div>
+        <img
+          className="place-card__image"
+          src={place.image}
+          alt={place.title}
+        />
 
         <div className="place-card__content">
           <h2 className="place-card__title">{place.title}</h2>
@@ -20,7 +24,11 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
         </div>
       </Link>
 
-      <button className="place-card__button" onClick={handleSaveClick}>
+      <button
+        className="place-card__button"
+        type="button"
+        onClick={handleSaveClick}
+      >
         {isFavorite ? "Saved" : "Save"}
       </button>
     </article>

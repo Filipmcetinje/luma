@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import "./PlaceDetails.css";
 import places from "../../data/places";
+import "./PlaceDetails.css";
 
 function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const { placeId } = useParams();
@@ -21,14 +21,18 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
   if (!place) {
     return (
       <main className="place-details">
-        <h1>Place not found</h1>
+        <h1 className="place-details__title">Place not found</h1>
       </main>
     );
   }
 
   return (
     <main className="place-details">
-      <div className="place-details__image-placeholder">Image</div>
+      <img
+        className="place-details__image"
+        src={place.image}
+        alt={place.title}
+      />
 
       <section className="place-details__content">
         <p className="place-details__category">{place.category}</p>
