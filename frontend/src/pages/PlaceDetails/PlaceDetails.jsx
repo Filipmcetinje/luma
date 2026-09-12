@@ -7,6 +7,8 @@ import "./PlaceDetails.css";
 function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const { placeId } = useParams();
   const [selectedTripId, setSelectedTripId] = useState("");
+  const [addMessage, setAddMessage] = useState("");
+  const [addMessageType, setAddMessageType] = useState("");
 
   const place = places.find((place) => place.id === Number(placeId));
 
@@ -15,7 +17,19 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
       return;
     }
 
+    const selectedTrip = trips.find(
+      (trip) => trip.id === Number(selectedTripId),
+    );
+
+    if (selectedTrip?.places.includes(place.id)) {
+      setAddMessage(`${place.title} is already in this trip.`);
+      setAddMessageType("warning");
+      return;
+    }
+
     onAddPlaceToTrip(selectedTripId, place.id);
+    setAddMessage(`${place.title} was added to your trip.`);
+    setAddMessageType("success");
   }
 
   if (!place) {
@@ -79,6 +93,14 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
             >
               Add to Trip
             </button>
+
+            {addMessage && (
+              <p
+                className={`place-details__add-message place-details__add-message--${addMessageType}`}
+              >
+                {addMessage}
+              </p>
+            )}
           </>
         )}
       </section>

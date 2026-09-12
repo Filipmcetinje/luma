@@ -89,6 +89,19 @@
   opacity: 0.5;
 }
 
+.place-details__add-message {
+  margin: 16px 0 0;
+  font-weight: 600;
+}
+
+.place-details__add-message--success {
+  color: #166534;
+}
+
+.place-details__add-message--warning {
+  color: #b45309;
+}
+
 @media screen and (max-width: 700px) {
   .place-details {
     padding: 32px 20px;
