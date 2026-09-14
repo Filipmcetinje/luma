@@ -88,6 +88,14 @@ function Journal() {
   }
 
   function handleDeleteEntry(entryId) {
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this journal entry?",
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
     setEntries((currentEntries) =>
       currentEntries.filter((entry) => entry.id !== entryId),
     );
