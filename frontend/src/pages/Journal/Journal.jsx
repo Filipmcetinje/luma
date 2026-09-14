@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import "./Journal.css";
+import places from "../../data/places";
 
 function Journal() {
   const [entryTitle, setEntryTitle] = useState("");
   const [entryText, setEntryText] = useState("");
+  const [selectedPlaceId, setSelectedPlaceId] = useState("");
+
   const [entries, setEntries] = useState(() => {
     const savedEntries = localStorage.getItem("journalEntries");
 
