@@ -119,6 +119,40 @@
   background-color: #fff1f0;
 }
 
+.journal__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.journal__edit-button,
+.journal__cancel-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.journal__edit-button {
+  color: #fff;
+  background-color: #49634a;
+}
+
+.journal__edit-button:hover {
+  background-color: #354c36;
+}
+
+.journal__cancel-button {
+  color: #333;
+  background-color: #e2e2e2;
+}
+
+.journal__cancel-button:hover {
+  background-color: #cecece;
+}
+
 @media screen and (max-width: 700px) {
   .journal {
     padding: 40px 20px;

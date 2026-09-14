@@ -12,6 +12,11 @@ function Journal() {
 
   const [formError, setFormError] = useState("");
 
+  const [editingEntryId, setEditingEntryId] = useState(null);
+  const [editedTitle, setEditedTitle] = useState("");
+  const [editedText, setEditedText] = useState("");
+  const [editError, setEditError] = useState("");
+
   useEffect(() => {
     localStorage.setItem("journalEntries", JSON.stringify(entries));
   }, [entries]);
@@ -38,6 +43,48 @@ function Journal() {
     setEntries((currentEntries) => [newEntry, ...currentEntries]);
     setEntryTitle("");
     setEntryText("");
+  }
+
+  function handleStartEditing(entry) {
+    setEditError("");
+    setEditingEntryId(entry.id);
+    setEditedTitle(entry.title);
+    setEditedText(entry.text);
+  }
+
+  function handleSaveEdit(entryId) {
+    const trimmedTitle = editedTitle.trim();
+    const trimmedText = editedText.trim();
+
+    if (!trimmedTitle || !trimmedText) {
+      setEditError("Please add both a title and journal notes.");
+      return;
+    }
+
+    setEditError("");
+
+    setEntries((currentEntries) =>
+      currentEntries.map((entry) =>
+        entry.id === entryId
+          ? {
+              ...entry,
+              title: trimmedTitle,
+              text: trimmedText,
+            }
+          : entry,
+      ),
+    );
+
+    setEditingEntryId(null);
+    setEditedTitle("");
+    setEditedText("");
+  }
+
+  function handleCancelEdit() {
+    setEditingEntryId(null);
+    setEditedTitle("");
+    setEditedText("");
+    setEditError("");
   }
 
   function handleDeleteEntry(entryId) {
@@ -92,8 +139,58 @@ function Journal() {
             {entries.map((entry) => (
               <li className="journal__entry" key={entry.id}>
                 <p className="journal__entry-date">{entry.createdAt}</p>
-                <h3 className="journal__entry-title">{entry.title}</h3>
-                <p className="journal__entry-text">{entry.text}</p>
+                {editingEntryId === entry.id ? (
+                  <div className="journal__edit-form">
+                    <input
+                      className="journal__input"
+                      type="text"
+                      value={editedTitle}
+                      onChange={(event) => setEditedTitle(event.target.value)}
+                    />
+
+                    <textarea
+                      className="journal__textarea"
+                      value={editedText}
+                      onChange={(event) => setEditedText(event.target.value)}
+                    />
+
+                    {editError && <p className="journal__error">{editError}</p>}
+                  </div>
+                ) : (
+                  <>
+                    <h3 className="journal__entry-title">{entry.title}</h3>
+                    <p className="journal__entry-text">{entry.text}</p>
+                  </>
+                )}
+
+                {editingEntryId === entry.id ? (
+                  <button
+                    className="journal__edit-button"
+                    type="button"
+                    onClick={() => handleSaveEdit(entry.id)}
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    className="journal__edit-button"
+                    type="button"
+                    onClick={() => handleStartEditing(entry)}
+                  >
+                    Edit
+                  </button>
+                )}
+
+                {editingEntryId === entry.id && (
+                  <button
+                    className="journal__cancel-button"
+                    type="button"
+                    onClick={handleCancelEdit}
+                  >
+                    Cancel
+                  </button>
+                )}
+
                 <button
                   className="journal__delete-button"
                   type="button"
