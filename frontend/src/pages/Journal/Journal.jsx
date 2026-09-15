@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Journal.css";
 import places from "../../data/places";
+import { Link } from "react-router-dom";
 
 function Journal() {
   const [entryTitle, setEntryTitle] = useState("");
@@ -40,12 +41,14 @@ function Journal() {
       id: Date.now(),
       title: trimmedTitle,
       text: trimmedText,
+      placeId: selectedPlaceId ? Number(selectedPlaceId) : null,
       createdAt: new Date().toLocaleDateString(),
     };
 
     setEntries((currentEntries) => [newEntry, ...currentEntries]);
     setEntryTitle("");
     setEntryText("");
+    setSelectedPlaceId("");
   }
 
   function handleStartEditing(entry) {
@@ -135,6 +138,25 @@ function Journal() {
         />
         {formError && <p className="journal__error">{formError}</p>}
 
+        <label className="journal__label" htmlFor="entry-place">
+          Connect to a place (optional)
+        </label>
+
+        <select
+          className="journal__select"
+          id="entry-place"
+          value={selectedPlaceId}
+          onChange={(event) => setSelectedPlaceId(event.target.value)}
+        >
+          <option value="">No place selected</option>
+
+          {places.map((place) => (
+            <option key={place.id} value={place.id}>
+              {place.title} — {place.location}
+            </option>
+          ))}
+        </select>
+
         <button className="journal__button" type="submit">
           Save Entry
         </button>
@@ -150,6 +172,18 @@ function Journal() {
             {entries.map((entry) => (
               <li className="journal__entry" key={entry.id}>
                 <p className="journal__entry-date">{entry.createdAt}</p>
+                {entry.placeId && (
+                  <p className="journal__entry-place">
+                    Place:{" "}
+                    <Link
+                      className="journal__entry-place-link"
+                      to={`/places/${entry.placeId}`}
+                    >
+                      {places.find((place) => place.id === entry.placeId)
+                        ?.title || "Unknown place"}
+                    </Link>
+                  </p>
+                )}
                 {editingEntryId === entry.id ? (
                   <div className="journal__edit-form">
                     <input

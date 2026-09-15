@@ -152,6 +152,36 @@
 .journal__cancel-button:hover {
   background-color: #cecece;
 }
+.journal__select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #c8c8c8;
+  border-radius: 6px;
+  color: #333;
+  background-color: #fff;
+  font: inherit;
+}
+
+.journal__select:focus {
+  border-color: #49634a;
+  outline: 2px solid rgba(73, 99, 74, 0.2);
+}
+
+.journal__entry-place {
+  margin: 8px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.journal__entry-place-link {
+  color: #49634a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.journal__entry-place-link:hover {
+  text-decoration: underline;
+}
 
 @media screen and (max-width: 700px) {
   .journal {
