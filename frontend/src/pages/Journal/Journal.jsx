@@ -19,6 +19,7 @@ function Journal() {
   const [editingEntryId, setEditingEntryId] = useState(null);
   const [editedTitle, setEditedTitle] = useState("");
   const [editedText, setEditedText] = useState("");
+  const [editedPlaceId, setEditedPlaceId] = useState("");
   const [editError, setEditError] = useState("");
 
   useEffect(() => {
@@ -56,6 +57,7 @@ function Journal() {
     setEditingEntryId(entry.id);
     setEditedTitle(entry.title);
     setEditedText(entry.text);
+    setEditedPlaceId(entry.placeId ? String(entry.placeId) : "");
   }
 
   function handleSaveEdit(entryId) {
@@ -76,6 +78,7 @@ function Journal() {
               ...entry,
               title: trimmedTitle,
               text: trimmedText,
+              placeId: editedPlaceId ? Number(editedPlaceId) : null,
             }
           : entry,
       ),
@@ -84,6 +87,7 @@ function Journal() {
     setEditingEntryId(null);
     setEditedTitle("");
     setEditedText("");
+    setEditedPlaceId("");
   }
 
   function handleCancelEdit() {
@@ -91,6 +95,7 @@ function Journal() {
     setEditedTitle("");
     setEditedText("");
     setEditError("");
+    setEditedPlaceId("");
   }
 
   function handleDeleteEntry(entryId) {
@@ -198,6 +203,28 @@ function Journal() {
                       value={editedText}
                       onChange={(event) => setEditedText(event.target.value)}
                     />
+
+                    <label
+                      className="journal__label"
+                      htmlFor={`edit-place-${entry.id}`}
+                    >
+                      Connected place
+                    </label>
+
+                    <select
+                      className="journal__select"
+                      id={`edit-place-${entry.id}`}
+                      value={editedPlaceId}
+                      onChange={(event) => setEditedPlaceId(event.target.value)}
+                    >
+                      <option value="">No place selected</option>
+
+                      {places.map((place) => (
+                        <option key={place.id} value={place.id}>
+                          {place.title} — {place.location}
+                        </option>
+                      ))}
+                    </select>
 
                     {editError && <p className="journal__error">{editError}</p>}
                   </div>
