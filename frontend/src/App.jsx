@@ -159,7 +159,7 @@ function App() {
             />
           }
         />
-        <Route path="/journal" element={<Journal />} />
+        <Route path="/journal" element={<Journal trips={trips} />} />
         <Route
           path="/places/:placeId"
           element={

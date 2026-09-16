@@ -3,10 +3,11 @@ import "./Journal.css";
 import places from "../../data/places";
 import { Link } from "react-router-dom";
 
-function Journal() {
+function Journal({ trips }) {
   const [entryTitle, setEntryTitle] = useState("");
   const [entryText, setEntryText] = useState("");
   const [selectedPlaceId, setSelectedPlaceId] = useState("");
+  const [selectedTripId, setSelectedTripId] = useState("");
 
   const [entries, setEntries] = useState(() => {
     const savedEntries = localStorage.getItem("journalEntries");
@@ -20,6 +21,7 @@ function Journal() {
   const [editedTitle, setEditedTitle] = useState("");
   const [editedText, setEditedText] = useState("");
   const [editedPlaceId, setEditedPlaceId] = useState("");
+  const [editedTripId, setEditedTripId] = useState("");
   const [editError, setEditError] = useState("");
 
   useEffect(() => {
@@ -43,6 +45,7 @@ function Journal() {
       title: trimmedTitle,
       text: trimmedText,
       placeId: selectedPlaceId ? Number(selectedPlaceId) : null,
+      tripId: selectedTripId ? Number(selectedTripId) : null,
       createdAt: new Date().toLocaleDateString(),
     };
 
@@ -50,6 +53,7 @@ function Journal() {
     setEntryTitle("");
     setEntryText("");
     setSelectedPlaceId("");
+    setSelectedTripId("");
   }
 
   function handleStartEditing(entry) {
@@ -58,6 +62,7 @@ function Journal() {
     setEditedTitle(entry.title);
     setEditedText(entry.text);
     setEditedPlaceId(entry.placeId ? String(entry.placeId) : "");
+    setEditedTripId(entry.tripId ? String(entry.tripId) : "");
   }
 
   function handleSaveEdit(entryId) {
@@ -79,6 +84,7 @@ function Journal() {
               title: trimmedTitle,
               text: trimmedText,
               placeId: editedPlaceId ? Number(editedPlaceId) : null,
+              tripId: editedTripId ? Number(editedTripId) : null,
             }
           : entry,
       ),
@@ -88,14 +94,16 @@ function Journal() {
     setEditedTitle("");
     setEditedText("");
     setEditedPlaceId("");
+    setEditedTripId("");
   }
 
   function handleCancelEdit() {
     setEditingEntryId(null);
     setEditedTitle("");
     setEditedText("");
-    setEditError("");
     setEditedPlaceId("");
+    setEditedTripId("");
+    setEditError("");
   }
 
   function handleDeleteEntry(entryId) {
@@ -162,6 +170,29 @@ function Journal() {
           ))}
         </select>
 
+        <label className="journal__label" htmlFor="entry-trip">
+          Connect to a trip (optional)
+        </label>
+
+        <select
+          className="journal__select"
+          id="entry-trip"
+          value={selectedTripId}
+          onChange={(event) => setSelectedTripId(event.target.value)}
+        >
+          <option value="">No trip selected</option>
+
+          {trips.length === 0 ? (
+            <option disabled>No trips available</option>
+          ) : (
+            trips.map((trip) => (
+              <option key={trip.id} value={trip.id}>
+                {trip.name}
+              </option>
+            ))
+          )}
+        </select>
+
         <button className="journal__button" type="submit">
           Save Entry
         </button>
@@ -186,6 +217,18 @@ function Journal() {
                     >
                       {places.find((place) => place.id === entry.placeId)
                         ?.title || "Unknown place"}
+                    </Link>
+                  </p>
+                )}
+                {entry.tripId && (
+                  <p className="journal__entry-trip">
+                    Trip:{" "}
+                    <Link
+                      className="journal__entry-trip-link"
+                      to={`/trips/${entry.tripId}`}
+                    >
+                      {trips.find((trip) => trip.id === entry.tripId)?.name ||
+                        "Unknown trip"}
                     </Link>
                   </p>
                 )}
@@ -224,6 +267,32 @@ function Journal() {
                           {place.title} — {place.location}
                         </option>
                       ))}
+                    </select>
+
+                    <label
+                      className="journal__label"
+                      htmlFor={`edit-trip-${entry.id}`}
+                    >
+                      Connected trip
+                    </label>
+
+                    <select
+                      className="journal__select"
+                      id={`edit-trip-${entry.id}`}
+                      value={editedTripId}
+                      onChange={(event) => setEditedTripId(event.target.value)}
+                    >
+                      <option value="">No trip selected</option>
+
+                      {trips.length === 0 ? (
+                        <option disabled>No trips available</option>
+                      ) : (
+                        trips.map((trip) => (
+                          <option key={trip.id} value={trip.id}>
+                            {trip.name}
+                          </option>
+                        ))
+                      )}
                     </select>
 
                     {editError && <p className="journal__error">{editError}</p>}

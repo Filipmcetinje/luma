@@ -167,19 +167,22 @@
   outline: 2px solid rgba(73, 99, 74, 0.2);
 }
 
-.journal__entry-place {
+.journal__entry-place,
+.journal__entry-trip {
   margin: 8px 0;
   color: #666;
   font-size: 14px;
 }
 
-.journal__entry-place-link {
+.journal__entry-place-link,
+.journal__entry-trip-link {
   color: #49634a;
   font-weight: 600;
   text-decoration: none;
 }
 
-.journal__entry-place-link:hover {
+.journal__entry-place-link:hover,
+.journal__entry-trip-link:hover {
   text-decoration: underline;
 }
 
