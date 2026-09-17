@@ -8,6 +8,9 @@ function Journal({ trips }) {
   const [entryText, setEntryText] = useState("");
   const [selectedPlaceId, setSelectedPlaceId] = useState("");
   const [selectedTripId, setSelectedTripId] = useState("");
+  const [entryPhoto, setEntryPhoto] = useState("");
+  const [photoError, setPhotoError] = useState("");
+  const [photoInputKey, setPhotoInputKey] = useState(0);
 
   const [entries, setEntries] = useState(() => {
     const savedEntries = localStorage.getItem("journalEntries");
@@ -28,6 +31,44 @@ function Journal({ trips }) {
     localStorage.setItem("journalEntries", JSON.stringify(entries));
   }, [entries]);
 
+  function handlePhotoChange(event) {
+    const file = event.target.files[0];
+
+    if (!file) {
+      setEntryPhoto("");
+      setPhotoError("");
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setEntryPhoto("");
+      setPhotoError("Please select an image file.");
+      return;
+    }
+
+    const maximumPhotoSize = 1024 * 1024;
+
+    if (file.size > maximumPhotoSize) {
+      setEntryPhoto("");
+      setPhotoError("Please select an image smaller than 1 MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setEntryPhoto(reader.result);
+      setPhotoError("");
+    };
+
+    reader.onerror = () => {
+      setEntryPhoto("");
+      setPhotoError("The photo could not be loaded. Please try again.");
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -46,6 +87,7 @@ function Journal({ trips }) {
       text: trimmedText,
       placeId: selectedPlaceId ? Number(selectedPlaceId) : null,
       tripId: selectedTripId ? Number(selectedTripId) : null,
+      photo: entryPhoto || null,
       createdAt: new Date().toLocaleDateString(),
     };
 
@@ -54,6 +96,9 @@ function Journal({ trips }) {
     setEntryText("");
     setSelectedPlaceId("");
     setSelectedTripId("");
+    setEntryPhoto("");
+    setPhotoError("");
+    setPhotoInputKey((currentKey) => currentKey + 1);
   }
 
   function handleStartEditing(entry) {
@@ -193,6 +238,29 @@ function Journal({ trips }) {
           )}
         </select>
 
+        <label className="journal__label" htmlFor="entry-photo">
+          Add a photo (optional, maximum 1 MB)
+        </label>
+
+        <input
+          key={photoInputKey}
+          className="journal__file-input"
+          id="entry-photo"
+          type="file"
+          accept="image/*"
+          onChange={handlePhotoChange}
+        />
+
+        {photoError && <p className="journal__error">{photoError}</p>}
+
+        {entryPhoto && (
+          <img
+            className="journal__photo-preview"
+            src={entryPhoto}
+            alt="Selected journal preview"
+          />
+        )}
+
         <button className="journal__button" type="submit">
           Save Entry
         </button>
@@ -232,6 +300,15 @@ function Journal({ trips }) {
                     </Link>
                   </p>
                 )}
+
+                {entry.photo && (
+                  <img
+                    className="journal__entry-photo"
+                    src={entry.photo}
+                    alt={`Journal entry: ${entry.title}`}
+                  />
+                )}
+
                 {editingEntryId === entry.id ? (
                   <div className="journal__edit-form">
                     <input

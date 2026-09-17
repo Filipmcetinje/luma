@@ -185,6 +185,43 @@
 .journal__entry-trip-link:hover {
   text-decoration: underline;
 }
+.journal__file-input {
+  width: 100%;
+  color: #333;
+  font: inherit;
+}
+
+.journal__file-input::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #49634a;
+  font: inherit;
+  cursor: pointer;
+}
+
+.journal__file-input::file-selector-button:hover {
+  background-color: #354c36;
+}
+
+.journal__photo-preview,
+.journal__entry-photo {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.journal__photo-preview {
+  margin-top: 8px;
+}
+
+.journal__entry-photo {
+  margin: 16px 0;
+}
 
 @media screen and (max-width: 700px) {
   .journal {
