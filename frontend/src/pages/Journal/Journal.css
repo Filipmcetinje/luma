@@ -222,6 +222,21 @@
 .journal__entry-photo {
   margin: 16px 0;
 }
+.journal__remove-photo-button {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border: 1px solid #a8463c;
+  border-radius: 6px;
+  color: #a8463c;
+  background-color: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.journal__remove-photo-button:hover {
+  color: #fff;
+  background-color: #a8463c;
+}
 
 @media screen and (max-width: 700px) {
   .journal {

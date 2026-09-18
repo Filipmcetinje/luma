@@ -25,6 +25,8 @@ function Journal({ trips }) {
   const [editedText, setEditedText] = useState("");
   const [editedPlaceId, setEditedPlaceId] = useState("");
   const [editedTripId, setEditedTripId] = useState("");
+  const [editedPhoto, setEditedPhoto] = useState("");
+  const [editPhotoError, setEditPhotoError] = useState("");
   const [editError, setEditError] = useState("");
 
   useEffect(() => {
@@ -69,6 +71,40 @@ function Journal({ trips }) {
     reader.readAsDataURL(file);
   }
 
+  function handleEditPhotoChange(event) {
+    const file = event.target.files[0];
+
+    if (!file) {
+      setEditPhotoError("");
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setEditPhotoError("Please select an image file.");
+      return;
+    }
+
+    const maximumPhotoSize = 1024 * 1024;
+
+    if (file.size > maximumPhotoSize) {
+      setEditPhotoError("Please select an image smaller than 1 MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setEditedPhoto(reader.result);
+      setEditPhotoError("");
+    };
+
+    reader.onerror = () => {
+      setEditPhotoError("The photo could not be loaded. Please try again.");
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -108,6 +144,8 @@ function Journal({ trips }) {
     setEditedText(entry.text);
     setEditedPlaceId(entry.placeId ? String(entry.placeId) : "");
     setEditedTripId(entry.tripId ? String(entry.tripId) : "");
+    setEditedPhoto(entry.photo || "");
+    setEditPhotoError("");
   }
 
   function handleSaveEdit(entryId) {
@@ -130,6 +168,7 @@ function Journal({ trips }) {
               text: trimmedText,
               placeId: editedPlaceId ? Number(editedPlaceId) : null,
               tripId: editedTripId ? Number(editedTripId) : null,
+              photo: editedPhoto || null,
             }
           : entry,
       ),
@@ -140,6 +179,8 @@ function Journal({ trips }) {
     setEditedText("");
     setEditedPlaceId("");
     setEditedTripId("");
+    setEditedPhoto("");
+    setEditPhotoError("");
   }
 
   function handleCancelEdit() {
@@ -148,6 +189,8 @@ function Journal({ trips }) {
     setEditedText("");
     setEditedPlaceId("");
     setEditedTripId("");
+    setEditedPhoto("");
+    setEditPhotoError("");
     setEditError("");
   }
 
@@ -301,7 +344,7 @@ function Journal({ trips }) {
                   </p>
                 )}
 
-                {entry.photo && (
+                {entry.photo && editingEntryId !== entry.id && (
                   <img
                     className="journal__entry-photo"
                     src={entry.photo}
@@ -371,6 +414,46 @@ function Journal({ trips }) {
                         ))
                       )}
                     </select>
+
+                    <label
+                      className="journal__label"
+                      htmlFor={`edit-photo-${entry.id}`}
+                    >
+                      Replace photo (optional, maximum 1 MB)
+                    </label>
+
+                    <input
+                      className="journal__file-input"
+                      id={`edit-photo-${entry.id}`}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleEditPhotoChange}
+                    />
+
+                    {editPhotoError && (
+                      <p className="journal__error">{editPhotoError}</p>
+                    )}
+
+                    {editedPhoto && (
+                      <img
+                        className="journal__photo-preview"
+                        src={editedPhoto}
+                        alt={`Edited preview for ${editedTitle}`}
+                      />
+                    )}
+
+                    {editedPhoto && (
+                      <button
+                        className="journal__remove-photo-button"
+                        type="button"
+                        onClick={() => {
+                          setEditedPhoto("");
+                          setEditPhotoError("");
+                        }}
+                      >
+                        Remove Photo
+                      </button>
+                    )}
 
                     {editError && <p className="journal__error">{editError}</p>}
                   </div>
