@@ -133,6 +133,18 @@ function Trips({
     setEditedTripNotes("");
   }
 
+  function handleDeleteTrip(tripId) {
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this trip?",
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    onDeleteTrip(tripId);
+  }
+
   return (
     <main className="trips">
       <h1 className="trips__title">Trip Planner</h1>
@@ -393,7 +405,7 @@ function Trips({
                     <button
                       className="trips__delete-button"
                       type="button"
-                      onClick={() => onDeleteTrip(trip.id)}
+                      onClick={() => handleDeleteTrip(trip.id)}
                     >
                       Delete
                     </button>
