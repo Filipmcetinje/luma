@@ -3,7 +3,8 @@ import perastImage from "../assets/places/perast.jpg";
 import lovcenImage from "../assets/places/lovcen-national-park.jpg";
 const cetinjeImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/cetinje.jpg";
-import tivatImage from "../assets/places/tivat.jpg";
+const tivatImage =
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/tivat.jpg";
 const budvaImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/budva.png";
 
