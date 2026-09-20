@@ -1,6 +1,9 @@
 import kotorFortressImage from "../assets/places/kotor-fortress.jpg";
 import perastImage from "../assets/places/perast.jpg";
 import lovcenImage from "../assets/places/lovcen-national-park.jpg";
+import cetinjeImage from "../assets/places/cetinje.jpg";
+import tivatImage from "../assets/places/tivat.jpg";
+import budvaImage from "../assets/places/budva.jpg";
 
 const places = [
   {
@@ -32,6 +35,36 @@ const places = [
     description:
       "A mountain landscape with wide views, winding roads, and a powerful connection to Montenegrin history and culture.",
     bestTime: "Late afternoon",
+  },
+  {
+    id: 4,
+    title: "Cetinje",
+    location: "Cetinje",
+    category: "Art",
+    image: cetinjeImage,
+    description:
+      "Montenegro’s historic royal capital, filled with museums, old embassies, quiet streets, and cultural inspiration for artists and photographers.",
+    bestTime: "Morning or late afternoon",
+  },
+  {
+    id: 5,
+    title: "Tivat",
+    location: "Bay of Kotor",
+    category: "Coast",
+    image: tivatImage,
+    description:
+      "A modern coastal town with marinas, palm-lined promenades, mountain views, and peaceful waterfront scenes for photography and sketching.",
+    bestTime: "Late afternoon or sunset",
+  },
+  {
+    id: 6,
+    title: "Budva",
+    location: "Budva Riviera",
+    category: "Coast",
+    image: budvaImage,
+    description:
+      "A historic coastal town with stone walls, narrow streets, beaches, and dramatic views across the Adriatic Sea.",
+    bestTime: "Early morning or sunset",
   },
 ];
 
