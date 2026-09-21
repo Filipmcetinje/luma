@@ -1,4 +1,5 @@
-import kotorFortressImage from "../assets/places/kotor-fortress.jpg";
+const kotorFortressImage =
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/kotor-fortress.jpg";
 import perastImage from "../assets/places/perast.jpg";
 import lovcenImage from "../assets/places/lovcen-national-park.jpg";
 const cetinjeImage =
