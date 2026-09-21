@@ -2,7 +2,8 @@ const kotorFortressImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/kotor-fortress.jpg";
 const perastImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast.jpg";
-import lovcenImage from "../assets/places/lovcen-national-park.jpg";
+const lovcenImage =
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/lovcen-national-park.jpg";
 const cetinjeImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/cetinje.jpg";
 const tivatImage =
