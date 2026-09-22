@@ -1,5 +1,19 @@
 .discover {
+  background-color: #f7f8f5;
+}
+
+.discover__hero {
+  min-height: 480px;
   padding: 60px;
+  background-image:
+    linear-gradient(rgba(20, 34, 25, 0.55), rgba(20, 34, 25, 0.55)),
+    url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/montenegro-landscape.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.discover__hero-content {
+  max-width: 900px;
 }
 
 .discover__intro {
@@ -7,14 +21,18 @@
 }
 
 .discover__title {
-  margin-bottom: 16px;
+  margin: 0 0 16px;
+  color: #fff;
   font-size: 48px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .discover__text {
-  color: #555;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 20px;
   line-height: 1.5;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 .discover__filters {
@@ -26,10 +44,10 @@
 
 .discover__filter-button {
   padding: 9px 16px;
-  border: 1px solid #49634a;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 999px;
-  color: #49634a;
-  background-color: transparent;
+  color: #fff;
+  background-color: rgba(20, 34, 25, 0.35);
   font: inherit;
   cursor: pointer;
   transition:
@@ -39,13 +57,13 @@
 }
 
 .discover__filter-button:hover {
-  color: #fff;
-  background-color: #5e795f;
+  color: #29402e;
+  background-color: #fff;
   transform: translateY(-1px);
 }
 
 .discover__filter-button:focus-visible {
-  outline: 3px solid rgba(73, 99, 74, 0.3);
+  outline: 3px solid rgba(255, 255, 255, 0.7);
   outline-offset: 2px;
 }
 
@@ -59,5 +77,36 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  margin-top: 50px;
+  padding: 50px 60px 60px;
+}
+
+.discover__empty {
+  color: #555;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 900px) {
+  .discover__places {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .discover__hero {
+    min-height: 420px;
+    padding: 40px 20px;
+  }
+
+  .discover__title {
+    font-size: 38px;
+  }
+
+  .discover__text {
+    font-size: 18px;
+  }
+
+  .discover__places {
+    grid-template-columns: 1fr;
+    padding: 32px 20px 40px;
+  }
 }

@@ -32,33 +32,37 @@ function Discover({ favoritePlaceIds, onToggleFavorite }) {
 
   return (
     <main className="discover">
-      <section className="discover__intro">
-        <h1 className="discover__title">Discover Montenegro</h1>
+      <section className="discover__hero">
+        <div className="discover__hero-content">
+          <div className="discover__intro">
+            <h1 className="discover__title">Discover Montenegro</h1>
 
-        <p className="discover__text">
-          Find inspiring places for painting, photography, writing, and creative
-          travel.
-        </p>
+            <p className="discover__text">
+              Find inspiring places for painting, photography, writing, and
+              creative travel.
+            </p>
+          </div>
+
+          <SearchBar search={search} setSearch={setSearch} />
+
+          <div className="discover__filters">
+            {categories.map((category) => (
+              <button
+                className={`discover__filter-button ${
+                  selectedCategory === category
+                    ? "discover__filter-button_active"
+                    : ""
+                }`}
+                key={category}
+                type="button"
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
-
-      <SearchBar search={search} setSearch={setSearch} />
-
-      <div className="discover__filters">
-        {categories.map((category) => (
-          <button
-            className={`discover__filter-button ${
-              selectedCategory === category
-                ? "discover__filter-button_active"
-                : ""
-            }`}
-            key={category}
-            type="button"
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
 
       <section className="discover__places">
         {filteredPlaces.length > 0 ? (
