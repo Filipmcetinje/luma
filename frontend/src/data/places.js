@@ -48,6 +48,11 @@ const places = [
     location: "Cetinje",
     category: "Nature",
     image: lovcenImage,
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-national-park.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-3.jpg",
+    ],
     description:
       "A mountain landscape with wide views, winding roads, and a powerful connection to Montenegrin history and culture.",
     bestTime: "Late afternoon",
