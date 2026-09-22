@@ -18,6 +18,11 @@ const places = [
     location: "Kotor",
     category: "Mountain",
     image: kotorFortressImage,
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-fortress.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-3.jpg",
+    ],
     description:
       "A dramatic viewpoint above Kotor with old stone paths, mountain views, and beautiful light over the bay.",
     bestTime: "Early morning or golden hour",
