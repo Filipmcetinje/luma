@@ -68,6 +68,11 @@ const places = [
     location: "Budva Riviera",
     category: "Coast",
     image: budvaImage,
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva.png",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-3.jpg",
+    ],
     description:
       "A historic coastal town with stone walls, narrow streets, beaches, and dramatic views across the Adriatic Sea.",
     bestTime: "Early morning or sunset",

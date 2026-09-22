@@ -9,8 +9,13 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const [selectedTripId, setSelectedTripId] = useState("");
   const [addMessage, setAddMessage] = useState("");
   const [addMessageType, setAddMessageType] = useState("");
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const place = places.find((place) => place.id === Number(placeId));
+
+  const galleryImages = place?.gallery ?? (place?.image ? [place.image] : []);
+
+  const selectedImage = galleryImages[selectedImageIndex] ?? place?.image;
 
   function handleAddToTrip() {
     if (!selectedTripId) {
@@ -44,9 +49,29 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
     <main className="place-details">
       <img
         className="place-details__image"
-        src={place.image}
+        src={selectedImage}
         alt={place.title}
       />
+
+      {galleryImages.length > 1 && (
+        <div className="place-details__gallery">
+          {galleryImages.map((image, index) => (
+            <button
+              className={`place-details__thumbnail-button ${
+                selectedImageIndex === index
+                  ? "place-details__thumbnail-button_active"
+                  : ""
+              }`}
+              key={image}
+              type="button"
+              onClick={() => setSelectedImageIndex(index)}
+              aria-label={`Show ${place.title} photo ${index + 1}`}
+            >
+              <img className="place-details__thumbnail" src={image} alt="" />
+            </button>
+          ))}
+        </div>
+      )}
 
       <section className="place-details__content">
         <p className="place-details__category">{place.category}</p>
