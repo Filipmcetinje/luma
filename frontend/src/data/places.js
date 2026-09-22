@@ -63,6 +63,11 @@ const places = [
     location: "Bay of Kotor",
     category: "Coast",
     image: tivatImage,
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/tivat.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/tivat-2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/tivat-3.jpg",
+    ],
     description:
       "A modern coastal town with marinas, palm-lined promenades, mountain views, and peaceful waterfront scenes for photography and sketching.",
     bestTime: "Late afternoon or sunset",
