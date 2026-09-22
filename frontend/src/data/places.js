@@ -14,7 +14,7 @@ const budvaImage =
 const places = [
   {
     id: 1,
-    title: "Kotor Fortress",
+    title: "Kotor",
     location: "Kotor",
     category: "Mountain",
     image: kotorFortressImage,
