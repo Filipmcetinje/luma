@@ -33,6 +33,11 @@ const places = [
     location: "Bay of Kotor",
     category: "Coast",
     image: perastImage,
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-3.jpg",
+    ],
     description:
       "A peaceful coastal town with baroque architecture, calm water, islands, and strong inspiration for painters and photographers.",
     bestTime: "Morning light",
