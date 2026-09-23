@@ -1,21 +1,35 @@
 .trips {
-  max-width: 900px;
-  min-height: 500px;
-  margin: 0 auto;
-  padding: 48px 24px;
+  min-height: calc(100vh - 120px);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 48px max(24px, calc((100% - 1100px) / 2)) 72px;
+  background-image:
+    linear-gradient(rgba(20, 34, 40, 0.3), rgba(20, 34, 40, 0.3)),
+    url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/montenegro-landscape2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .trips__title {
   margin: 0 0 32px;
+  color: #fff;
   font-size: 40px;
   line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .trips__form {
   display: flex;
   flex-direction: column;
   max-width: 560px;
+  box-sizing: border-box;
   gap: 12px;
+  padding: 32px;
+  border: 1px solid #dde3dc;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 12px 30px rgba(39, 55, 43, 0.1);
 }
 
 .trips__label {
@@ -32,6 +46,24 @@
   font: inherit;
 }
 
+.trips__textarea {
+  width: 100%;
+  min-height: 120px;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #b8b8b8;
+  border-radius: 8px;
+  font: inherit;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.trips__textarea:focus {
+  border-color: #49634a;
+  outline: 2px solid rgba(73, 99, 74, 0.25);
+  outline-offset: 2px;
+}
+
 .trips__input:focus {
   outline: 2px solid #222;
   outline-offset: 2px;
@@ -43,16 +75,23 @@
 }
 .trips__button {
   align-self: flex-start;
+  margin-top: 8px;
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
+  color: #fff;
+  background-color: #49634a;
   font: inherit;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .trips__button:hover {
-  opacity: 0.8;
+  background-color: #5e795f;
+  transform: translateY(-1px);
 }
 .trips__list {
   margin-top: 48px;
@@ -60,7 +99,9 @@
 
 .trips__list-title {
   margin: 0 0 20px;
+  color: #fff;
   font-size: 28px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .trips__card {
@@ -72,6 +113,8 @@
   padding: 20px;
   border: 1px solid #d4d4d4;
   border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(20, 34, 40, 0.12);
 }
 
 .trips__card-title {
@@ -79,17 +122,41 @@
   font-size: 20px;
 }
 
+.trips__edit-button,
 .trips__delete-button {
-  padding: 8px 14px;
-  border: 1px solid #b8b8b8;
-  border-radius: 6px;
-  background: transparent;
+  min-width: 76px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background-color: transparent;
   font: inherit;
+  font-weight: 600;
   cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.trips__edit-button {
+  border: 1px solid #49634a;
+  color: #49634a;
+}
+
+.trips__edit-button:hover {
+  color: #fff;
+  background-color: #49634a;
+  transform: translateY(-1px);
+}
+
+.trips__delete-button {
+  border: 1px solid #b95050;
+  color: #a63f3f;
 }
 
 .trips__delete-button:hover {
-  opacity: 0.7;
+  color: #fff;
+  background-color: #b95050;
+  transform: translateY(-1px);
 }
 .trips__card-content {
   display: flex;
@@ -127,10 +194,43 @@
   gap: 8px;
 }
 
-.trips__edit-button,
-.trips__delete-button {
+.trips__save-button,
+.trips__cancel-button {
+  min-width: 76px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
   cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
+
+.trips__save-button {
+  border: 1px solid #49634a;
+  color: #fff;
+  background-color: #49634a;
+}
+
+.trips__save-button:hover {
+  background-color: #5e795f;
+  transform: translateY(-1px);
+}
+
+.trips__cancel-button {
+  border: 1px solid #777;
+  color: #555;
+  background-color: transparent;
+}
+
+.trips__cancel-button:hover {
+  color: #fff;
+  background-color: #777;
+  transform: translateY(-1px);
+}
+
 .trips__edit-dates {
   display: flex;
   gap: 12px;
@@ -143,8 +243,34 @@
   gap: 4px;
 }
 
-.trips__edit-date-input {
+.trips__edit-input,
+.trips__edit-date-input,
+.trips__edit-textarea {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #b8b8b8;
+  border-radius: 8px;
+  background-color: #fff;
   font: inherit;
+}
+
+.trips__edit-input,
+.trips__edit-textarea {
+  width: 100%;
+}
+
+.trips__edit-textarea {
+  min-height: 90px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.trips__edit-input:focus,
+.trips__edit-date-input:focus,
+.trips__edit-textarea:focus {
+  border-color: #49634a;
+  outline: 2px solid rgba(73, 99, 74, 0.25);
+  outline-offset: 2px;
 }
 .trips__form-error {
   margin: 0;

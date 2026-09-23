@@ -209,8 +209,6 @@ function Trips({
         <button className="trips__button" type="submit">
           Create Trip
         </button>
-
-        <p className="trips__preview">Current trip name: {tripName}</p>
       </form>
 
       <section className="trips__list">
