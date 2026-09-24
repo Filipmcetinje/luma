@@ -1,11 +1,13 @@
 import Hero from "../../components/Hero/Hero";
 import selfPortrait from "../../assets/artwork/self-portrait.jpg";
 import "./Home.css";
+import PhotographyShowcase from "../../components/PhotographyShowcase/PhotographyShowcase";
 
 function Home() {
   return (
     <main>
       <Hero />
+      <PhotographyShowcase />
 
       <section className="home__about">
         <img
