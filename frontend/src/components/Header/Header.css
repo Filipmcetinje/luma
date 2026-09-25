@@ -1,13 +1,16 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
+  justify-content: space-between;
   padding: 24px 60px;
 
-  background: white;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
+    url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/red-beach.jpg");
 
-  border-bottom: 1px solid #e5e5e5;
+  background-position: center;
+  background-size: cover;
+  border-bottom: 1px solid rgba(73, 99, 74, 0.25);
 }
 
 .header__logo {
