@@ -1,7 +1,10 @@
 .photography-showcase {
-  max-width: 1100px;
-  margin: 0 auto;
   padding: 72px 24px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/red-beach.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .photography-showcase__title {
@@ -11,10 +14,10 @@
 }
 
 .photography-showcase__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  column-count: 2;
+  column-gap: 32px;
 }
 
 .photography-showcase__photo {
@@ -22,10 +25,9 @@
   min-width: 0;
   color: inherit;
   text-decoration: none;
-}
-
-.photography-showcase__photo:nth-child(even) {
-  margin-top: 64px;
+  width: 100%;
+  margin: 0 0 32px;
+  break-inside: avoid;
 }
 
 .photography-showcase__photo img {
@@ -35,7 +37,8 @@
   border-radius: 16px;
 }
 
-.photography-showcase__photo span {
+.photography-showcase__photo span,
+.photography-showcase__photo figcaption {
   display: block;
   margin-top: 12px;
   font-size: 18px;
@@ -48,17 +51,61 @@
   border-radius: 16px;
 }
 
+.photography-showcase__open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.photography-showcase__open:focus-visible {
+  outline: 3px solid #4f6c53;
+  outline-offset: 6px;
+  border-radius: 16px;
+}
+
+.photography-showcase__dialog {
+  max-width: min(1100px, 92vw);
+  max-height: 90vh;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.photography-showcase__dialog::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.photography-showcase__dialog img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(90vh - 32px);
+  object-fit: contain;
+}
+
+.photography-showcase__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #222;
+  font-size: 28px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 700px) {
   .photography-showcase {
     padding: 48px 24px;
   }
 
   .photography-showcase__grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .photography-showcase__photo:nth-child(even) {
-    margin-top: 0;
+    column-count: 1;
   }
 }

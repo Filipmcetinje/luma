@@ -1,15 +1,53 @@
-import { Link } from "react-router-dom";
-import places from "../../data/places";
+import { useRef, useState } from "react";
+import heroImage from "../../assets/hero/montenegro-hero.jpg";
 import "./PhotographyShowcase.css";
 
-const featuredPhotos = [
-  { placeId: 1, photoIndex: 1 },
-  { placeId: 2, photoIndex: 0 },
-  { placeId: 4, photoIndex: 1 },
-  { placeId: 6, photoIndex: 2 },
+const photos = [
+  {
+    title: "Montenegro Landscape",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/montenegro-landscape.jpg",
+  },
+  {
+    title: "Montenegro Landscape II",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/montenegro-landscape2.jpg",
+  },
+  {
+    title: "My Pool",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/mypool.jpg",
+  },
+
+  {
+    title: "Bay Entrance",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/bay-enter.jpg",
+  },
+  {
+    title: "Montenegro",
+    image: heroImage,
+  },
+  {
+    title: "Coastal Plants",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/plant.jpg",
+  },
 ];
 
 function PhotographyShowcase() {
+  const dialogRef = useRef(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  function openPhoto(photo) {
+    setSelectedPhoto(photo);
+    dialogRef.current.showModal();
+  }
+
+  function closePhoto() {
+    dialogRef.current.close();
+  }
+
   return (
     <section className="photography-showcase">
       <h2 className="photography-showcase__title">
@@ -17,26 +55,46 @@ function PhotographyShowcase() {
       </h2>
 
       <div className="photography-showcase__grid">
-        {featuredPhotos.map(({ placeId, photoIndex }) => {
-          const place = places.find((item) => item.id === placeId);
-
-          return (
-            <Link
-              className="photography-showcase__photo"
-              key={`${placeId}-${photoIndex}`}
-              to={`/places/${placeId}`}
-              aria-label={`Explore ${place.title}`}
+        {photos.map((photo) => (
+          <figure className="photography-showcase__photo" key={photo.title}>
+            <button
+              className="photography-showcase__open"
+              type="button"
+              onClick={() => openPhoto(photo)}
+              aria-label={`View larger photo: ${photo.title}`}
             >
               <img
-                src={place.gallery[photoIndex]}
-                alt={`${place.title}, photographed by Filip Milosevic`}
+                src={photo.image}
+                alt={`${photo.title}, photographed by Filip Milosevic`}
                 loading="lazy"
               />
-              <span>{place.title}</span>
-            </Link>
-          );
-        })}
+            </button>
+            <figcaption>{photo.title}</figcaption>
+          </figure>
+        ))}
       </div>
+
+      <dialog
+        className="photography-showcase__dialog"
+        ref={dialogRef}
+        aria-label={selectedPhoto?.title || "Photo viewer"}
+      >
+        <button
+          className="photography-showcase__close"
+          type="button"
+          onClick={closePhoto}
+          aria-label="Close photo viewer"
+        >
+          ×
+        </button>
+
+        {selectedPhoto && (
+          <img
+            src={selectedPhoto.image}
+            alt={`${selectedPhoto.title}, photographed by Filip Milosevic`}
+          />
+        )}
+      </dialog>
     </section>
   );
 }
