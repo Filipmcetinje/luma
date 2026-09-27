@@ -102,6 +102,22 @@ const places = [
       "A historic coastal town with stone walls, narrow streets, beaches, and dramatic views across the Adriatic Sea.",
     bestTime: "Early morning or sunset",
   },
+  {
+    id: 7,
+    title: "Scadar Lake",
+    location: "Scadar Lake",
+    category: "Nature",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/scadar-lake.jpg",
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake-2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake-3.jpg",
+    ],
+    description:
+      "A wide lake landscape with mountain views, green wetlands, and winding waterways that invite photography and quiet exploration.",
+    bestTime: "Early morning or late afternoon",
+  },
 ];
 
 export default places;

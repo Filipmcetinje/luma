@@ -24,14 +24,20 @@ const photos = [
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/bay-enter.jpg",
   },
-  {
-    title: "Montenegro",
-    image: heroImage,
-  },
+
   {
     title: "Coastal Plants",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/plant.jpg",
+  },
+  {
+    title: "Scadar Lake",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake.jpg",
+  },
+  {
+    title: "Montenegro",
+    image: heroImage,
   },
 ];
 
