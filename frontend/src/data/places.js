@@ -22,6 +22,8 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-fortress.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-2.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-3.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-4.png",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-5.png",
     ],
     description:
       "A dramatic viewpoint above Kotor with old stone paths, mountain views, and beautiful light over the bay.",
@@ -36,7 +38,7 @@ const places = [
     gallery: [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-2.jpg",
-      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-3.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-3.png",
     ],
     description:
       "A peaceful coastal town with baroque architecture, calm water, islands, and strong inspiration for painters and photographers.",
