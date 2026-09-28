@@ -4,7 +4,7 @@
   margin: 0;
   padding: 48px max(24px, calc((100% - 1100px) / 2)) 72px;
   background-image:
-    linear-gradient(rgba(20, 34, 40, 0.3), rgba(20, 34, 40, 0.3)),
+    linear-gradient(rgba(20, 34, 40, 0.25), rgba(20, 34, 40, 0.25)),
     url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/montenegro-landscape2.jpg");
   background-position: center;
   background-size: cover;
