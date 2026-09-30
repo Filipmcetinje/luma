@@ -14,6 +14,20 @@ const artworks = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/grass2.jpg",
     description: "Colorful abstract painting by Filip Milosevic",
   },
+  {
+    title: "Smile",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/smile.webp",
+    description:
+      "An expressive painting with a warm orange figure surrounded by blue and green brushstrokes, by Filip Milosevic.",
+  },
+  {
+    title: "Grass III",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/grass3.webp",
+    description:
+      "Pink flowers among textured green and yellow brushstrokes, painted by Filip Milosevic.",
+  },
 ];
 
 function ArtworkShowcase() {

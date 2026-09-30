@@ -1,3 +1,13 @@
+.place-details-page {
+  min-height: calc(100vh - 180px);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)),
+    url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/red-beach.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .place-details {
   box-sizing: border-box;
   max-width: 1100px;

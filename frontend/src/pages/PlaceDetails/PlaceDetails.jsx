@@ -46,89 +46,93 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
   }
 
   return (
-    <main className="place-details">
-      <img
-        className="place-details__image"
-        src={selectedImage}
-        alt={place.title}
-      />
+    <main className="place-details-page">
+      <div className="place-details">
+        <img
+          className="place-details__image"
+          src={selectedImage}
+          alt={place.title}
+        />
 
-      {galleryImages.length > 1 && (
-        <div className="place-details__gallery">
-          {galleryImages.map((image, index) => (
-            <button
-              className={`place-details__thumbnail-button ${
-                selectedImageIndex === index
-                  ? "place-details__thumbnail-button_active"
-                  : ""
-              }`}
-              key={image}
-              type="button"
-              onClick={() => setSelectedImageIndex(index)}
-              aria-label={`Show ${place.title} photo ${index + 1}`}
-            >
-              <img className="place-details__thumbnail" src={image} alt="" />
-            </button>
-          ))}
-        </div>
-      )}
-
-      <section className="place-details__content">
-        <p className="place-details__category">{place.category}</p>
-
-        <h1 className="place-details__title">{place.title}</h1>
-
-        <p className="place-details__location">{place.location}</p>
-
-        <p className="place-details__description">{place.description}</p>
-
-        <p className="place-details__best-time">Best time: {place.bestTime}</p>
-      </section>
-
-      <section className="place-details__trip-section">
-        <h2 className="place-details__trip-title">Add to a trip</h2>
-
-        {trips.length === 0 ? (
-          <p className="place-details__trip-message">
-            Create a trip first before adding this place.
-          </p>
-        ) : (
-          <>
-            <select
-              className="place-details__trip-select"
-              value={selectedTripId}
-              onChange={(event) => setSelectedTripId(event.target.value)}
-            >
-              <option value="" disabled>
-                Choose a trip
-              </option>
-
-              {trips.map((trip) => (
-                <option key={trip.id} value={trip.id}>
-                  {trip.name}
-                </option>
-              ))}
-            </select>
-
-            <button
-              className="place-details__trip-button"
-              type="button"
-              onClick={handleAddToTrip}
-              disabled={!selectedTripId}
-            >
-              Add to Trip
-            </button>
-
-            {addMessage && (
-              <p
-                className={`place-details__add-message place-details__add-message--${addMessageType}`}
+        {galleryImages.length > 1 && (
+          <div className="place-details__gallery">
+            {galleryImages.map((image, index) => (
+              <button
+                className={`place-details__thumbnail-button ${
+                  selectedImageIndex === index
+                    ? "place-details__thumbnail-button_active"
+                    : ""
+                }`}
+                key={image}
+                type="button"
+                onClick={() => setSelectedImageIndex(index)}
+                aria-label={`Show ${place.title} photo ${index + 1}`}
               >
-                {addMessage}
-              </p>
-            )}
-          </>
+                <img className="place-details__thumbnail" src={image} alt="" />
+              </button>
+            ))}
+          </div>
         )}
-      </section>
+
+        <section className="place-details__content">
+          <p className="place-details__category">{place.category}</p>
+
+          <h1 className="place-details__title">{place.title}</h1>
+
+          <p className="place-details__location">{place.location}</p>
+
+          <p className="place-details__description">{place.description}</p>
+
+          <p className="place-details__best-time">
+            Best time: {place.bestTime}
+          </p>
+        </section>
+
+        <section className="place-details__trip-section">
+          <h2 className="place-details__trip-title">Add to a trip</h2>
+
+          {trips.length === 0 ? (
+            <p className="place-details__trip-message">
+              Create a trip first before adding this place.
+            </p>
+          ) : (
+            <>
+              <select
+                className="place-details__trip-select"
+                value={selectedTripId}
+                onChange={(event) => setSelectedTripId(event.target.value)}
+              >
+                <option value="" disabled>
+                  Choose a trip
+                </option>
+
+                {trips.map((trip) => (
+                  <option key={trip.id} value={trip.id}>
+                    {trip.name}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                className="place-details__trip-button"
+                type="button"
+                onClick={handleAddToTrip}
+                disabled={!selectedTripId}
+              >
+                Add to Trip
+              </button>
+
+              {addMessage && (
+                <p
+                  className={`place-details__add-message place-details__add-message--${addMessageType}`}
+                >
+                  {addMessage}
+                </p>
+              )}
+            </>
+          )}
+        </section>
+      </div>
     </main>
   );
 }

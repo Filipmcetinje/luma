@@ -39,6 +39,16 @@ const photos = [
     title: "Montenegro",
     image: heroImage,
   },
+  {
+    title: "Bay Panorama",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/bay.png",
+  },
+  {
+    title: "Landscape",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/landscape.jpg",
+  },
 ];
 
 function PhotographyShowcase() {
