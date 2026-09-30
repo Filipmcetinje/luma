@@ -49,6 +49,21 @@ const photos = [
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/landscape.jpg",
   },
+  {
+    title: "Sunset View",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/view.png",
+  },
+  {
+    title: "Lovcen National Park",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-national-park.jpg",
+  },
+  {
+    title: "budva sunset",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-2.jpg",
+  },
 ];
 
 function PhotographyShowcase() {

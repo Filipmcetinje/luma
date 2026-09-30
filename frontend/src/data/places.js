@@ -54,6 +54,9 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-national-park.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-2.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-3.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/view.png",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-wood.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-5.png",
     ],
     description:
       "A mountain landscape with wide views, winding roads, and a powerful connection to Montenegrin history and culture.",
@@ -71,6 +74,7 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/cetinje-3.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/nikac.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/landscape2.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/cetinje-4.png",
     ],
     description:
       "Montenegro’s historic royal capital, filled with museums, old embassies, quiet streets, and cultural inspiration for artists and photographers.",
@@ -101,6 +105,7 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva.png",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-2.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-3.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/red-beach2.png",
     ],
     description:
       "A historic coastal town with stone walls, narrow streets, beaches, and dramatic views across the Adriatic Sea.",
@@ -117,6 +122,7 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake-2.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake-3.jpg",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake-4.png",
     ],
     description:
       "A wide lake landscape with mountain views, green wetlands, and winding waterways that invite photography and quiet exploration.",
