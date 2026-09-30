@@ -16,6 +16,10 @@ function Header({ favoriteCount }) {
           Discover
         </Link>
 
+        <Link className="header__link" to="/art">
+          Art
+        </Link>
+
         <Link className="header__link" to="/favorites">
           Favorites ({favoriteCount})
         </Link>

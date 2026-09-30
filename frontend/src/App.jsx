@@ -11,6 +11,7 @@ import PlaceDetails from "./pages/PlaceDetails/PlaceDetails";
 import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
+import Art from "./pages/Art/Art";
 
 function App() {
   const [favoritePlaceIds, setFavoritePlaceIds] = useState(() => {
@@ -118,6 +119,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/art" element={<Art />} />
         <Route
           path="/discover"
           element={
