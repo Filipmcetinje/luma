@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Discover.css";
 import PlaceCard from "../../components/PlaceCard/PlaceCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import PhotographyShowcase from "../../components/PhotographyShowcase/PhotographyShowcase";
 import places from "../../data/places";
 
 const categories = [
@@ -75,6 +76,8 @@ function Discover({ favoritePlaceIds, onToggleFavorite }) {
           <Link to="/art">View My Artwork</Link>
         </section>
       )}
+
+      {selectedCategory === "Photography" && <PhotographyShowcase />}
 
       <section className="discover__places">
         {filteredPlaces.length > 0 ? (
