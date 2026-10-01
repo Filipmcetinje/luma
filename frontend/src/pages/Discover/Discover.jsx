@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./Discover.css";
 import PlaceCard from "../../components/PlaceCard/PlaceCard";
@@ -63,6 +64,17 @@ function Discover({ favoritePlaceIds, onToggleFavorite }) {
           </div>
         </div>
       </section>
+
+      {selectedCategory === "Art" && (
+        <section className="discover__art-intro">
+          <h2>Explore Art in Montenegro</h2>
+          <p>
+            Discover places connected to painting, sculpture, architecture, and
+            museums.
+          </p>
+          <Link to="/art">View My Artwork</Link>
+        </section>
+      )}
 
       <section className="discover__places">
         {filteredPlaces.length > 0 ? (

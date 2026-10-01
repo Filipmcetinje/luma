@@ -91,6 +91,44 @@
   font-size: 18px;
 }
 
+.discover__art-intro {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 60px 0;
+  color: #29402e;
+}
+
+.discover__art-intro h2 {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 4vw, 36px);
+}
+
+.discover__art-intro p {
+  max-width: 650px;
+  margin: 0 0 20px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.discover__art-intro a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #49634a;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.discover__art-intro a:hover {
+  background-color: #29402e;
+}
+
+.discover__art-intro a:focus-visible {
+  outline: 3px solid #29402e;
+  outline-offset: 4px;
+}
+
 @media screen and (max-width: 900px) {
   .discover__places {
     grid-template-columns: repeat(2, 1fr);
@@ -114,5 +152,8 @@
   .discover__places {
     grid-template-columns: 1fr;
     padding: 32px 20px 40px;
+  }
+  .discover__art-intro {
+    padding: 32px 20px 0;
   }
 }
