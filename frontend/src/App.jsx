@@ -12,8 +12,19 @@ import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
 import Art from "./pages/Art/Art";
+import { checkBackendHealth } from "./utils/api";
 
 function App() {
+  useEffect(() => {
+    checkBackendHealth()
+      .then((data) => {
+        console.log("Luma backend connected:", data);
+      })
+      .catch((error) => {
+        console.error("Luma backend connection failed:", error);
+      });
+  }, []);
+
   const [favoritePlaceIds, setFavoritePlaceIds] = useState(() => {
     const savedFavorites = localStorage.getItem("favoritePlaceIds");
 
