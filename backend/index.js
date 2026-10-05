@@ -1,5 +1,7 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,6 +18,28 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Luma backend is running on port ${PORT}`);
-});
+async function startServer() {
+  if (!process.env.MONGODB_URI) {
+    console.error("Missing MONGODB_URI in backend environment settings.");
+    process.exit(1);
+  }
+
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+
+    console.log("Luma connected to MongoDB");
+
+    app.listen(PORT, () => {
+      console.log(`Luma backend is running on port ${PORT}`);
+    });
+  } catch {
+    console.error(
+      "MongoDB connection failed. Check database credentials and Atlas network access.",
+    );
+    process.exit(1);
+  }
+}
+
+startServer();
