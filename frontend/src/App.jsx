@@ -12,6 +12,7 @@ import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
 import Art from "./pages/Art/Art";
+import Signup from "./pages/Signup/Signup";
 import { checkBackendHealth } from "./utils/api";
 
 function App() {
@@ -130,6 +131,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/art" element={<Art />} />
         <Route
           path="/discover"
