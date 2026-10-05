@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import { signup } from "./controllers/auth.js";
+import { signup, login } from "./controllers/auth.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,6 +16,7 @@ app.use(
 app.use(express.json());
 
 app.post("/signup", signup);
+app.post("/login", login);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });

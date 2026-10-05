@@ -1,4 +1,6 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
 import validator from "validator";
 import User from "../models/user.js";
 
@@ -68,6 +70,59 @@ export async function signup(req, res) {
 
     return res.status(500).json({
       message: "Unable to create your account. Please try again.",
+    });
+  }
+}
+
+export async function login(req, res) {
+  const { email, password } = req.body ?? {};
+
+  if (
+    typeof email !== "string" ||
+    typeof password !== "string" ||
+    !validator.isEmail(email.trim()) ||
+    password.length < 8 ||
+    bcrypt.truncates(password)
+  ) {
+    return res.status(400).json({
+      message: "Enter a valid email and password.",
+    });
+  }
+
+  if (!process.env.JWT_SECRET) {
+    return res.status(500).json({
+      message: "Login is temporarily unavailable.",
+    });
+  }
+
+  try {
+    const user = await User.findOne({
+      email: email.trim().toLowerCase(),
+    }).select("+passwordHash");
+
+    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+      return res.status(401).json({
+        message: "Incorrect email or password.",
+      });
+    }
+
+    const token = jwt.sign({}, process.env.JWT_SECRET, {
+      algorithm: "HS256",
+      subject: user._id.toString(),
+      expiresIn: "1h",
+    });
+
+    return res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch {
+    return res.status(500).json({
+      message: "Unable to log in. Please try again.",
     });
   }
 }
