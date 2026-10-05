@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./Header.css";
 
-function Header({ favoriteCount }) {
+function Header({ favoriteCount, currentUser, onLogout }) {
   return (
     <header className="header">
       <h2 className="header__logo">Luma</h2>
@@ -31,6 +31,30 @@ function Header({ favoriteCount }) {
         <Link className="header__link" to="/journal">
           Journal
         </Link>
+
+        {currentUser ? (
+          <>
+            <span className="header__link">Hello, {currentUser.name}</span>
+
+            <button
+              className="header__link header__logout"
+              type="button"
+              onClick={onLogout}
+            >
+              Log out
+            </button>
+          </>
+        ) : (
+          <>
+            <Link className="header__link" to="/login">
+              Log in
+            </Link>
+
+            <Link className="header__link" to="/signup">
+              Sign up
+            </Link>
+          </>
+        )}
       </nav>
     </header>
   );

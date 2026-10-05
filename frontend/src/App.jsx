@@ -13,9 +13,52 @@ import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
 import Art from "./pages/Art/Art";
 import Signup from "./pages/Signup/Signup";
-import { checkBackendHealth } from "./utils/api";
+import Login from "./pages/Login/Login";
+import { checkBackendHealth, getCurrentUser } from "./utils/api";
 
 function App() {
+  const [auth, setAuth] = useState(null);
+
+  function handleLogin(loginResult) {
+    sessionStorage.setItem("lumaToken", loginResult.token);
+    setAuth(loginResult);
+  }
+
+  function handleLogout() {
+    sessionStorage.removeItem("lumaToken");
+    setAuth(null);
+  }
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("lumaToken");
+
+    if (!token) return;
+
+    let cancelled = false;
+
+    getCurrentUser(token)
+      .then(({ user }) => {
+        if (!cancelled && sessionStorage.getItem("lumaToken") === token) {
+          setAuth({ token, user });
+        }
+      })
+      .catch((error) => {
+        if (cancelled || sessionStorage.getItem("lumaToken") !== token) {
+          return;
+        }
+
+        if (error.status === 401) {
+          sessionStorage.removeItem("lumaToken");
+        } else {
+          console.error("Unable to restore login:", error.message);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   useEffect(() => {
     checkBackendHealth()
       .then((data) => {
@@ -127,11 +170,16 @@ function App() {
 
   return (
     <>
-      <Header favoriteCount={favoritePlaceIds.length} />
+      <Header
+        favoriteCount={favoritePlaceIds.length}
+        currentUser={auth?.user}
+        onLogout={handleLogout}
+      />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/art" element={<Art />} />
         <Route
           path="/discover"

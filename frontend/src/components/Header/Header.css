@@ -20,7 +20,11 @@
 
 .header__nav {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  gap: 12px 30px;
 }
 
 .header__link {
@@ -32,6 +36,18 @@
 .header__link:hover {
   color: #5f7d63;
 }
+.header__logout {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.header__logout:focus-visible {
+  outline: 3px solid #29402e;
+  outline-offset: 4px;
+}
 
 @media screen and (max-width: 600px) {
   .header {
@@ -42,7 +58,7 @@
   }
 
   .header__nav {
-    flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 12px 18px;
   }
 
