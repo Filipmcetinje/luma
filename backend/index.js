@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { signup, login } from "./controllers/auth.js";
+import { requireAuth } from "./middleware/auth.js";
+import { getCurrentUser } from "./controllers/users.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,6 +19,7 @@ app.use(express.json());
 
 app.post("/signup", signup);
 app.post("/login", login);
+app.get("/users/me", requireAuth, getCurrentUser);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });
