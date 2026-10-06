@@ -50,3 +50,29 @@ export function getCurrentUser(token) {
     },
   });
 }
+
+export function getFavorites(token) {
+  return request("/users/me/favorites", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function addFavorite(token, placeId) {
+  return request(`/users/me/favorites/${placeId}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function removeFavorite(token, placeId) {
+  return request(`/users/me/favorites/${placeId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
