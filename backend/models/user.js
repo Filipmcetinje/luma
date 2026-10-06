@@ -26,6 +26,16 @@ const userSchema = new mongoose.Schema(
       required: true,
       select: false,
     },
+    favoritePlaceIds: {
+      type: [Number],
+      default: [],
+      validate: {
+        validator: (ids) =>
+          ids.every((id) => Number.isInteger(id) && id > 0) &&
+          new Set(ids).size === ids.length,
+        message: "Favorites must contain unique positive integer IDs.",
+      },
+    },
   },
   { timestamps: true },
 );
