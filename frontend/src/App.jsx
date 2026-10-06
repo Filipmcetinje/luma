@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
@@ -14,10 +14,20 @@ import TripDetails from "./pages/TripDetails/TripDetails";
 import Art from "./pages/Art/Art";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
-import { checkBackendHealth, getCurrentUser } from "./utils/api";
+import {
+  checkBackendHealth,
+  getCurrentUser,
+  getFavorites,
+  addFavorite,
+  removeFavorite,
+} from "./utils/api";
 
 function App() {
   const [auth, setAuth] = useState(null);
+  const [accountFavorites, setAccountFavorites] = useState(null);
+  const accountToken = auth?.token ?? null;
+  const favoriteSaveInProgress = useRef(false);
+  const [favoriteSave, setFavoriteSave] = useState(null);
 
   function handleLogin(loginResult) {
     sessionStorage.setItem("lumaToken", loginResult.token);
@@ -69,7 +79,37 @@ function App() {
       });
   }, []);
 
-  const [favoritePlaceIds, setFavoritePlaceIds] = useState(() => {
+  useEffect(() => {
+    if (!accountToken) return;
+
+    let cancelled = false;
+
+    getFavorites(accountToken)
+      .then(({ favoritePlaceIds }) => {
+        if (!cancelled) {
+          setAccountFavorites({
+            token: accountToken,
+            ids: favoritePlaceIds,
+            error: "",
+          });
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setAccountFavorites({
+            token: accountToken,
+            ids: [],
+            error: error.message || "Unable to load favorites.",
+          });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [accountToken]);
+
+  const [localFavoritePlaceIds, setLocalFavoritePlaceIds] = useState(() => {
     const savedFavorites = localStorage.getItem("favoritePlaceIds");
 
     return savedFavorites ? JSON.parse(savedFavorites) : [];
@@ -86,16 +126,79 @@ function App() {
   }, [trips]);
 
   useEffect(() => {
-    localStorage.setItem("favoritePlaceIds", JSON.stringify(favoritePlaceIds));
-  }, [favoritePlaceIds]);
+    localStorage.setItem(
+      "favoritePlaceIds",
+      JSON.stringify(localFavoritePlaceIds),
+    );
+  }, [localFavoritePlaceIds]);
 
-  function handleToggleFavorite(placeId) {
-    if (favoritePlaceIds.includes(placeId)) {
-      setFavoritePlaceIds(favoritePlaceIds.filter((id) => id !== placeId));
-    } else {
-      setFavoritePlaceIds([...favoritePlaceIds, placeId]);
+  const accountFavoritesReady =
+    accountToken !== null && accountFavorites?.token === accountToken;
+
+  const favoritePlaceIds = accountToken
+    ? accountFavoritesReady
+      ? accountFavorites.ids
+      : []
+    : localFavoritePlaceIds;
+
+  async function handleToggleFavorite(placeId) {
+    if (!accountToken) {
+      setLocalFavoritePlaceIds((currentIds) =>
+        currentIds.includes(placeId)
+          ? currentIds.filter((id) => id !== placeId)
+          : [...currentIds, placeId],
+      );
+      return;
+    }
+
+    if (
+      !accountFavoritesReady ||
+      accountFavorites.error ||
+      favoriteSaveInProgress.current
+    ) {
+      return;
+    }
+
+    const token = accountToken;
+    const isFavorite = favoritePlaceIds.includes(placeId);
+
+    favoriteSaveInProgress.current = true;
+    setFavoriteSave({ token, pending: true, error: "" });
+
+    try {
+      const result = await (isFavorite ? removeFavorite : addFavorite)(
+        token,
+        placeId,
+      );
+
+      if (sessionStorage.getItem("lumaToken") !== token) return;
+
+      setAccountFavorites({
+        token,
+        ids: result.favoritePlaceIds,
+        error: "",
+      });
+    } catch (error) {
+      if (sessionStorage.getItem("lumaToken") !== token) return;
+
+      if (error.status === 401) {
+        handleLogout();
+      } else {
+        setFavoriteSave({
+          token,
+          pending: false,
+          error: error.message || "Unable to save favorites.",
+        });
+      }
+    } finally {
+      favoriteSaveInProgress.current = false;
+
+      setFavoriteSave((current) =>
+        current?.token === token ? { ...current, pending: false } : current,
+      );
     }
   }
+
   const favoritePlaces = places.filter((place) =>
     favoritePlaceIds.includes(place.id),
   );
@@ -175,6 +278,25 @@ function App() {
         currentUser={auth?.user}
         onLogout={handleLogout}
       />
+
+      {accountToken && !accountFavoritesReady && (
+        <p role="status">Loading your favorites…</p>
+      )}
+
+      {accountFavoritesReady && accountFavorites.error && (
+        <p role="alert">{accountFavorites.error}</p>
+      )}
+
+      {accountToken && favoriteSave?.token === accountToken && (
+  <>
+    {favoriteSave.pending && (
+      <p role="status">Saving your favorites…</p>
+    )}
+    {favoriteSave.error && (
+      <p role="alert">{favoriteSave.error}</p>
+    )}
+  </>
+)}
 
       <Routes>
         <Route path="/" element={<Home />} />
