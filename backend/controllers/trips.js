@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 import Trip from "../models/trip.js";
+import placeIds from "../data/placeIds.js";
 
 function formatTrip(trip) {
   return {
@@ -169,4 +170,58 @@ export async function deleteTrip(req, res) {
       message: "Unable to delete your trip. Please try again.",
     });
   }
+}
+
+async function updateTripPlace(req, res, operation) {
+  const { tripId, placeId: rawPlaceId } = req.params;
+
+  if (!mongoose.isObjectIdOrHexString(tripId)) {
+    return res.status(400).json({
+      message: "Enter a valid trip ID.",
+    });
+  }
+
+  if (!/^[1-9]\d*$/.test(rawPlaceId)) {
+    return res.status(400).json({
+      message: "Enter a valid destination ID.",
+    });
+  }
+
+  const placeId = Number(rawPlaceId);
+
+  if (!Number.isSafeInteger(placeId) || !placeIds.has(placeId)) {
+    return res.status(404).json({
+      message: "Destination not found.",
+    });
+  }
+
+  try {
+    const trip = await Trip.findOneAndUpdate(
+      { _id: tripId, owner: req.userId },
+      { [operation]: { places: placeId } },
+      { returnDocument: "after", runValidators: true },
+    );
+
+    if (!trip) {
+      return res.status(404).json({
+        message: "Trip not found.",
+      });
+    }
+
+    return res.json({
+      trip: formatTrip(trip),
+    });
+  } catch {
+    return res.status(500).json({
+      message: "Unable to update trip destinations. Please try again.",
+    });
+  }
+}
+
+export function addPlaceToTrip(req, res) {
+  return updateTripPlace(req, res, "$addToSet");
+}
+
+export function removePlaceFromTrip(req, res) {
+  return updateTripPlace(req, res, "$pull");
 }
