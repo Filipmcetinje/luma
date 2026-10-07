@@ -10,6 +10,7 @@ import {
   addFavorite,
   removeFavorite,
 } from "./controllers/favorites.js";
+import { getTrips, createTrip } from "./controllers/trips.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -28,6 +29,8 @@ app.get("/users/me", requireAuth, getCurrentUser);
 app.get("/users/me/favorites", requireAuth, getFavorites);
 app.put("/users/me/favorites/:placeId", requireAuth, addFavorite);
 app.delete("/users/me/favorites/:placeId", requireAuth, removeFavorite);
+app.get("/trips", requireAuth, getTrips);
+app.post("/trips", requireAuth, createTrip);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });
