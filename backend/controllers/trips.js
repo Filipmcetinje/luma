@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 import Trip from "../models/trip.js";
 
 function formatTrip(trip) {
@@ -71,6 +73,100 @@ export async function createTrip(req, res) {
 
     return res.status(500).json({
       message: "Unable to create your trip. Please try again.",
+    });
+  }
+}
+
+export async function updateTrip(req, res) {
+  const { tripId } = req.params;
+  const { name, startDate, endDate, notes = "" } = req.body ?? {};
+
+  if (!mongoose.isObjectIdOrHexString(tripId)) {
+    return res.status(400).json({
+      message: "Enter a valid trip ID.",
+    });
+  }
+
+  if (
+    typeof name !== "string" ||
+    typeof startDate !== "string" ||
+    typeof endDate !== "string" ||
+    typeof notes !== "string"
+  ) {
+    return res.status(400).json({
+      message: "Enter a trip name, dates, and valid notes.",
+    });
+  }
+
+  try {
+    const trip = await Trip.findOne({
+      _id: tripId,
+      owner: req.userId,
+    });
+
+    if (!trip) {
+      return res.status(404).json({
+        message: "Trip not found.",
+      });
+    }
+
+    trip.name = name.trim();
+    trip.startDate = startDate;
+    trip.endDate = endDate;
+    trip.notes = notes.trim();
+
+    await trip.save();
+
+    return res.json({
+      trip: formatTrip(trip),
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        message: "A trip with this name already exists.",
+      });
+    }
+
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        message: Object.values(error.errors)[0].message,
+      });
+    }
+
+    return res.status(500).json({
+      message: "Unable to update your trip. Please try again.",
+    });
+  }
+}
+
+export async function deleteTrip(req, res) {
+  const { tripId } = req.params;
+
+  if (!mongoose.isObjectIdOrHexString(tripId)) {
+    return res.status(400).json({
+      message: "Enter a valid trip ID.",
+    });
+  }
+
+  try {
+    const trip = await Trip.findOneAndDelete({
+      _id: tripId,
+      owner: req.userId,
+    });
+
+    if (!trip) {
+      return res.status(404).json({
+        message: "Trip not found.",
+      });
+    }
+
+    return res.json({
+      message: "Trip deleted.",
+      id: trip._id.toString(),
+    });
+  } catch {
+    return res.status(500).json({
+      message: "Unable to delete your trip. Please try again.",
     });
   }
 }
