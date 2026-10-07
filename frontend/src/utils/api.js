@@ -76,3 +76,60 @@ export function removeFavorite(token, placeId) {
     },
   });
 }
+
+export function getTrips(token) {
+  return request("/trips", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function createTrip(token, { name, startDate, endDate, notes }) {
+  return request("/trips", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, startDate, endDate, notes }),
+  });
+}
+
+export function updateTrip(token, tripId, { name, startDate, endDate, notes }) {
+  return request(`/trips/${tripId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, startDate, endDate, notes }),
+  });
+}
+
+export function deleteTrip(token, tripId) {
+  return request(`/trips/${tripId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function addPlaceToTrip(token, tripId, placeId) {
+  return request(`/trips/${tripId}/places/${placeId}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function removePlaceFromTrip(token, tripId, placeId) {
+  return request(`/trips/${tripId}/places/${placeId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
