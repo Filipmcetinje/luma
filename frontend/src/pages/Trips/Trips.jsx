@@ -26,6 +26,12 @@ function Trips({
   const [editError, setEditError] = useState("");
   const [tripNotes, setTripNotes] = useState("");
   const [editedTripNotes, setEditedTripNotes] = useState("");
+  const [isCreating, setIsCreating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [deletingTripId, setDeletingTripId] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
+  const [removingPlace, setRemovingPlace] = useState(null);
+  const [removePlaceError, setRemovePlaceError] = useState("");
 
   function handleTripNameChange(event) {
     setTripName(event.target.value);
@@ -46,10 +52,17 @@ function Trips({
     setTripNotes(event.target.value);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
+    if (isCreating) return;
+
     const trimmedName = tripName.trim();
+
+    if (!trimmedName || !startDate || !endDate) {
+      setFormError("Please enter a trip name and both dates.");
+      return;
+    }
 
     const tripNameAlreadyExists = trips.some(
       (trip) => trip.name.toLowerCase() === trimmedName.toLowerCase(),
@@ -66,21 +79,27 @@ function Trips({
     }
 
     setFormError("");
+    setIsCreating(true);
 
-    const newTrip = {
-      id: Date.now(),
-      name: trimmedName,
-      startDate: startDate,
-      endDate: endDate,
-      notes: tripNotes.trim(),
-      places: [],
-    };
+    try {
+      await onCreateTrip({
+        id: Date.now(),
+        name: trimmedName,
+        startDate,
+        endDate,
+        notes: tripNotes.trim(),
+        places: [],
+      });
 
-    onCreateTrip(newTrip);
-    setTripName("");
-    setStartDate("");
-    setEndDate("");
-    setTripNotes("");
+      setTripName("");
+      setStartDate("");
+      setEndDate("");
+      setTripNotes("");
+    } catch (error) {
+      setFormError(error.message || "Unable to create your trip.");
+    } finally {
+      setIsCreating(false);
+    }
   }
 
   function handleEditClick(trip) {
@@ -92,7 +111,9 @@ function Trips({
     setEditError("");
   }
 
-  function handleSaveClick(tripId) {
+  async function handleSaveClick(tripId) {
+    if (isUpdating) return;
+
     const trimmedName = editedTripName.trim();
 
     if (!trimmedName || !editedStartDate || !editedEndDate) {
@@ -117,32 +138,65 @@ function Trips({
     }
 
     setEditError("");
+    setIsUpdating(true);
 
-    onUpdateTrip(
-      tripId,
-      trimmedName,
-      editedStartDate,
-      editedEndDate,
-      editedTripNotes.trim(),
-    );
+    try {
+      await onUpdateTrip(
+        tripId,
+        trimmedName,
+        editedStartDate,
+        editedEndDate,
+        editedTripNotes.trim(),
+      );
 
-    setEditingTripId(null);
-    setEditedTripName("");
-    setEditedStartDate("");
-    setEditedEndDate("");
-    setEditedTripNotes("");
+      setEditingTripId(null);
+      setEditedTripName("");
+      setEditedStartDate("");
+      setEditedEndDate("");
+      setEditedTripNotes("");
+    } catch (error) {
+      setEditError(error.message || "Unable to update your trip.");
+    } finally {
+      setIsUpdating(false);
+    }
   }
 
-  function handleDeleteTrip(tripId) {
+  async function handleDeleteTrip(tripId) {
+    if (deletingTripId !== null) return;
+
     const shouldDelete = window.confirm(
       "Are you sure you want to delete this trip?",
     );
 
-    if (!shouldDelete) {
-      return;
-    }
+    if (!shouldDelete) return;
 
-    onDeleteTrip(tripId);
+    setDeleteError("");
+    setDeletingTripId(tripId);
+
+    try {
+      await onDeleteTrip(tripId);
+    } catch (error) {
+      setDeleteError(error.message || "Unable to delete your trip.");
+    } finally {
+      setDeletingTripId(null);
+    }
+  }
+
+  async function handleRemovePlace(tripId, placeId) {
+    if (removingPlace !== null) return;
+
+    setRemovePlaceError("");
+    setRemovingPlace({ tripId, placeId });
+
+    try {
+      await onRemovePlaceFromTrip(tripId, placeId);
+    } catch (error) {
+      setRemovePlaceError(
+        error.message || "Unable to remove this destination.",
+      );
+    } finally {
+      setRemovingPlace(null);
+    }
   }
 
   return (
@@ -206,13 +260,24 @@ function Trips({
 
         {formError && <p className="trips__form-error">{formError}</p>}
 
-        <button className="trips__button" type="submit">
-          Create Trip
+        <button className="trips__button" type="submit" disabled={isCreating}>
+          {isCreating ? "Creating trip…" : "Create Trip"}
         </button>
       </form>
 
       <section className="trips__list">
         <h2 className="trips__list-title">Your Trips</h2>
+        {deleteError && (
+          <p className="trips__form-error" role="alert">
+            {deleteError}
+          </p>
+        )}
+
+        {removePlaceError && (
+          <p className="trips__form-error" role="alert">
+            {removePlaceError}
+          </p>
+        )}
 
         {trips.map((trip) => {
           const placeCount = trip.places.length;
@@ -352,11 +417,15 @@ function Trips({
                         <button
                           className="trips__remove-place-button"
                           type="button"
-                          onClick={() =>
-                            onRemovePlaceFromTrip(trip.id, placeId)
+                          onClick={() => handleRemovePlace(trip.id, placeId)}
+                          disabled={
+                            removingPlace !== null || deletingTripId !== null
                           }
                         >
-                          Remove
+                          {removingPlace?.tripId === trip.id &&
+                          removingPlace?.placeId === placeId
+                            ? "Removing…"
+                            : "Remove"}
                         </button>
                       </li>
                     );
@@ -371,13 +440,15 @@ function Trips({
                       className="trips__save-button"
                       type="button"
                       onClick={() => handleSaveClick(trip.id)}
+                      disabled={isUpdating}
                     >
-                      Save
+                      {isUpdating ? "Saving…" : "Save"}
                     </button>
 
                     <button
                       className="trips__cancel-button"
                       type="button"
+                      disabled={isUpdating}
                       onClick={() => {
                         setEditingTripId(null);
                         setEditedTripName("");
@@ -404,8 +475,9 @@ function Trips({
                       className="trips__delete-button"
                       type="button"
                       onClick={() => handleDeleteTrip(trip.id)}
+                      disabled={deletingTripId !== null || isUpdating}
                     >
-                      Delete
+                      {deletingTripId === trip.id ? "Deleting…" : "Delete"}
                     </button>
                   </>
                 )}

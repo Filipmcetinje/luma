@@ -10,6 +10,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const [addMessage, setAddMessage] = useState("");
   const [addMessageType, setAddMessageType] = useState("");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isAdding, setIsAdding] = useState(false);
 
   const place = places.find((place) => place.id === Number(placeId));
 
@@ -17,24 +18,41 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
   const selectedImage = galleryImages[selectedImageIndex] ?? place?.image;
 
-  function handleAddToTrip() {
-    if (!selectedTripId) {
+  async function handleAddToTrip() {
+    if (!selectedTripId || !place || isAdding) return;
+
+    setAddMessage("");
+    setAddMessageType("");
+
+    const selectedTrip = trips.find(
+      (trip) => String(trip.id) === selectedTripId,
+    );
+
+    if (!selectedTrip) {
+      setAddMessage("Please choose an available trip.");
+      setAddMessageType("warning");
       return;
     }
 
-    const selectedTrip = trips.find(
-      (trip) => trip.id === Number(selectedTripId),
-    );
-
-    if (selectedTrip?.places.includes(place.id)) {
+    if (selectedTrip.places.includes(place.id)) {
       setAddMessage(`${place.title} is already in this trip.`);
       setAddMessageType("warning");
       return;
     }
 
-    onAddPlaceToTrip(selectedTripId, place.id);
-    setAddMessage(`${place.title} was added to your trip.`);
-    setAddMessageType("success");
+    setIsAdding(true);
+
+    try {
+      await onAddPlaceToTrip(selectedTripId, place.id);
+
+      setAddMessage(`${place.title} was added to your trip.`);
+      setAddMessageType("success");
+    } catch (error) {
+      setAddMessage(error.message || "Unable to add this place.");
+      setAddMessageType("warning");
+    } finally {
+      setIsAdding(false);
+    }
   }
 
   if (!place) {
@@ -100,6 +118,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
               <select
                 className="place-details__trip-select"
                 value={selectedTripId}
+                disabled={isAdding}
                 onChange={(event) => setSelectedTripId(event.target.value)}
               >
                 <option value="" disabled>
@@ -117,9 +136,9 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
                 className="place-details__trip-button"
                 type="button"
                 onClick={handleAddToTrip}
-                disabled={!selectedTripId}
+                disabled={!selectedTripId || isAdding}
               >
-                Add to Trip
+                {isAdding ? "Adding…" : "Add to Trip"}
               </button>
 
               {addMessage && (

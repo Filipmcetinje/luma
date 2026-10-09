@@ -9,7 +9,7 @@ import getTripProgress from "../../utils/getTripProgress";
 function TripDetails({ trips, favoritePlaceIds, onToggleFavorite }) {
   const { tripId } = useParams();
 
-  const trip = trips.find((trip) => trip.id === Number(tripId));
+  const trip = trips.find((trip) => String(trip.id) === tripId);
 
   if (!trip) {
     return (

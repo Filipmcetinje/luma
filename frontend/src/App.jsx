@@ -20,23 +20,38 @@ import {
   getFavorites,
   addFavorite,
   removeFavorite,
+  getTrips,
+  createTrip,
+  updateTrip,
+  deleteTrip,
+  addPlaceToTrip,
+  removePlaceFromTrip,
 } from "./utils/api";
 
 function App() {
   const [auth, setAuth] = useState(null);
+  const [isRestoringAuth, setIsRestoringAuth] = useState(() =>
+    Boolean(sessionStorage.getItem("lumaToken")),
+  );
+  const [authRestoreError, setAuthRestoreError] = useState("");
   const [accountFavorites, setAccountFavorites] = useState(null);
   const accountToken = auth?.token ?? null;
   const favoriteSaveInProgress = useRef(false);
   const [favoriteSave, setFavoriteSave] = useState(null);
+  const [accountTrips, setAccountTrips] = useState(null);
 
   function handleLogin(loginResult) {
     sessionStorage.setItem("lumaToken", loginResult.token);
     setAuth(loginResult);
+    setIsRestoringAuth(false);
+    setAuthRestoreError("");
   }
 
   function handleLogout() {
     sessionStorage.removeItem("lumaToken");
     setAuth(null);
+    setIsRestoringAuth(false);
+    setAuthRestoreError("");
   }
 
   useEffect(() => {
@@ -50,6 +65,7 @@ function App() {
       .then(({ user }) => {
         if (!cancelled && sessionStorage.getItem("lumaToken") === token) {
           setAuth({ token, user });
+          setAuthRestoreError("");
         }
       })
       .catch((error) => {
@@ -60,7 +76,14 @@ function App() {
         if (error.status === 401) {
           sessionStorage.removeItem("lumaToken");
         } else {
-          console.error("Unable to restore login:", error.message);
+          setAuthRestoreError(
+            "Unable to restore your login. Please refresh or log in again.",
+          );
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setIsRestoringAuth(false);
         }
       });
 
@@ -109,21 +132,62 @@ function App() {
     };
   }, [accountToken]);
 
+  useEffect(() => {
+    if (!accountToken) return;
+
+    let cancelled = false;
+
+    getTrips(accountToken)
+      .then(({ trips }) => {
+        if (!cancelled) {
+          setAccountTrips({
+            token: accountToken,
+            trips,
+            error: "",
+          });
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setAccountTrips({
+            token: accountToken,
+            trips: [],
+            error: error.message || "Unable to load your trips.",
+          });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [accountToken]);
+
   const [localFavoritePlaceIds, setLocalFavoritePlaceIds] = useState(() => {
     const savedFavorites = localStorage.getItem("favoritePlaceIds");
 
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
-  const [trips, setTrips] = useState(() => {
+  const [localTrips, setLocalTrips] = useState(() => {
     const savedTrips = localStorage.getItem("trips");
 
     return savedTrips ? JSON.parse(savedTrips) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem("trips", JSON.stringify(trips));
-  }, [trips]);
+    localStorage.setItem("trips", JSON.stringify(localTrips));
+  }, [localTrips]);
+
+  const accountTripsReady =
+    accountToken !== null &&
+    accountTrips?.token === accountToken &&
+    !accountTrips.error;
+
+  const trips = accountToken
+    ? accountTripsReady
+      ? accountTrips.trips
+      : []
+    : localTrips;
 
   useEffect(() => {
     localStorage.setItem(
@@ -203,71 +267,300 @@ function App() {
     favoritePlaceIds.includes(place.id),
   );
 
-  function handleCreateTrip(newTrip) {
-    setTrips((currentTrips) => [...currentTrips, newTrip]);
+  async function handleCreateTrip(newTrip) {
+    if (!accountToken) {
+      setLocalTrips((currentTrips) => [...currentTrips, newTrip]);
+      return;
+    }
+
+    if (accountTrips?.token !== accountToken || accountTrips.error) {
+      throw new Error("Your account trips are unavailable. Please refresh.");
+    }
+
+    const token = accountToken;
+
+    try {
+      const { trip } = await createTrip(token, newTrip);
+
+      if (sessionStorage.getItem("lumaToken") !== token) {
+        throw new Error("Your login changed. Please check your account trips.");
+      }
+
+      setAccountTrips((current) =>
+        current?.token === token
+          ? { ...current, trips: [trip, ...current.trips] }
+          : current,
+      );
+    } catch (error) {
+      if (
+        error.status === 401 &&
+        sessionStorage.getItem("lumaToken") === token
+      ) {
+        handleLogout();
+      }
+
+      throw error;
+    }
   }
 
-  function handleDeleteTrip(tripId) {
-    setTrips((currentTrips) =>
-      currentTrips.filter((trip) => trip.id !== tripId),
-    );
+  async function handleDeleteTrip(tripId) {
+    if (!accountToken) {
+      setLocalTrips((currentTrips) =>
+        currentTrips.filter((trip) => trip.id !== tripId),
+      );
+      return;
+    }
+
+    const token = accountToken;
+
+    if (
+      accountTrips?.token !== token ||
+      accountTrips.error ||
+      !accountTrips.trips.some((trip) => trip.id === tripId)
+    ) {
+      throw new Error("This account trip is unavailable. Please refresh.");
+    }
+
+    try {
+      await deleteTrip(token, tripId);
+
+      if (sessionStorage.getItem("lumaToken") !== token) {
+        throw new Error("Your login changed. Please check your account trips.");
+      }
+
+      setAccountTrips((current) =>
+        current?.token === token
+          ? {
+              ...current,
+              trips: current.trips.filter((trip) => trip.id !== tripId),
+            }
+          : current,
+      );
+    } catch (error) {
+      if (
+        error.status === 401 &&
+        sessionStorage.getItem("lumaToken") === token
+      ) {
+        handleLogout();
+      }
+
+      throw error;
+    }
   }
 
-  function handleAddPlaceToTrip(tripId, placeId) {
-    setTrips((currentTrips) =>
-      currentTrips.map((trip) => {
-        if (trip.id !== Number(tripId)) {
-          return trip;
-        }
+  async function handleAddPlaceToTrip(tripId, placeId) {
+    if (!accountToken) {
+      setLocalTrips((currentTrips) =>
+        currentTrips.map((trip) => {
+          if (
+            String(trip.id) !== String(tripId) ||
+            trip.places.includes(placeId)
+          ) {
+            return trip;
+          }
 
-        if (trip.places.includes(placeId)) {
-          return trip;
-        }
+          return {
+            ...trip,
+            places: [...trip.places, placeId],
+          };
+        }),
+      );
+      return;
+    }
 
-        return {
-          ...trip,
-          places: [...trip.places, placeId],
-        };
-      }),
-    );
+    const token = accountToken;
+
+    if (
+      accountTrips?.token !== token ||
+      accountTrips.error ||
+      !accountTrips.trips.some((trip) => trip.id === String(tripId))
+    ) {
+      throw new Error("This account trip is unavailable. Please refresh.");
+    }
+
+    try {
+      const { trip: updatedTrip } = await addPlaceToTrip(
+        token,
+        tripId,
+        placeId,
+      );
+
+      if (sessionStorage.getItem("lumaToken") !== token) {
+        throw new Error("Your login changed. Please check your account trips.");
+      }
+
+      setAccountTrips((current) =>
+        current?.token === token
+          ? {
+              ...current,
+              trips: current.trips.map((trip) =>
+                trip.id === updatedTrip.id ? updatedTrip : trip,
+              ),
+            }
+          : current,
+      );
+    } catch (error) {
+      if (
+        error.status === 401 &&
+        sessionStorage.getItem("lumaToken") === token
+      ) {
+        handleLogout();
+      }
+
+      throw error;
+    }
   }
 
-  function handleRemovePlaceFromTrip(tripId, placeId) {
-    setTrips((currentTrips) =>
-      currentTrips.map((trip) => {
-        if (trip.id !== tripId) {
-          return trip;
-        }
+  async function handleRemovePlaceFromTrip(tripId, placeId) {
+    if (!accountToken) {
+      setLocalTrips((currentTrips) =>
+        currentTrips.map((trip) =>
+          String(trip.id) === String(tripId)
+            ? {
+                ...trip,
+                places: trip.places.filter((id) => id !== placeId),
+              }
+            : trip,
+        ),
+      );
+      return;
+    }
 
-        return {
-          ...trip,
-          places: trip.places.filter((id) => id !== placeId),
-        };
-      }),
-    );
+    const token = accountToken;
+
+    if (
+      accountTrips?.token !== token ||
+      accountTrips.error ||
+      !accountTrips.trips.some((trip) => trip.id === String(tripId))
+    ) {
+      throw new Error("This account trip is unavailable. Please refresh.");
+    }
+
+    try {
+      const { trip: updatedTrip } = await removePlaceFromTrip(
+        token,
+        tripId,
+        placeId,
+      );
+
+      if (sessionStorage.getItem("lumaToken") !== token) {
+        throw new Error("Your login changed. Please check your account trips.");
+      }
+
+      setAccountTrips((current) =>
+        current?.token === token
+          ? {
+              ...current,
+              trips: current.trips.map((trip) =>
+                trip.id === updatedTrip.id ? updatedTrip : trip,
+              ),
+            }
+          : current,
+      );
+    } catch (error) {
+      if (
+        error.status === 401 &&
+        sessionStorage.getItem("lumaToken") === token
+      ) {
+        handleLogout();
+      }
+
+      throw error;
+    }
   }
 
-  function handleUpdateTrip(
+  async function handleUpdateTrip(
     tripId,
     newName,
     newStartDate,
     newEndDate,
     newNotes,
   ) {
-    setTrips((currentTrips) =>
-      currentTrips.map((trip) => {
-        if (trip.id !== tripId) {
-          return trip;
-        }
+    if (!accountToken) {
+      setLocalTrips((currentTrips) =>
+        currentTrips.map((trip) =>
+          trip.id === tripId
+            ? {
+                ...trip,
+                name: newName,
+                startDate: newStartDate,
+                endDate: newEndDate,
+                notes: newNotes,
+              }
+            : trip,
+        ),
+      );
+      return;
+    }
 
-        return {
-          ...trip,
-          name: newName,
-          startDate: newStartDate,
-          endDate: newEndDate,
-          notes: newNotes,
-        };
-      }),
+    const token = accountToken;
+
+    if (
+      accountTrips?.token !== token ||
+      accountTrips.error ||
+      !accountTrips.trips.some((trip) => trip.id === tripId)
+    ) {
+      throw new Error("This account trip is unavailable. Please refresh.");
+    }
+
+    try {
+      const { trip: updatedTrip } = await updateTrip(token, tripId, {
+        name: newName,
+        startDate: newStartDate,
+        endDate: newEndDate,
+        notes: newNotes,
+      });
+
+      if (sessionStorage.getItem("lumaToken") !== token) {
+        throw new Error("Your login changed. Please check your account trips.");
+      }
+
+      setAccountTrips((current) =>
+        current?.token === token
+          ? {
+              ...current,
+              trips: current.trips.map((trip) =>
+                trip.id === updatedTrip.id ? updatedTrip : trip,
+              ),
+            }
+          : current,
+      );
+    } catch (error) {
+      if (
+        error.status === 401 &&
+        sessionStorage.getItem("lumaToken") === token
+      ) {
+        handleLogout();
+      }
+
+      throw error;
+    }
+  }
+
+  if (isRestoringAuth || authRestoreError) {
+    return (
+      <>
+        <Header
+          favoriteCount={0}
+          currentUser={auth?.user}
+          onLogout={handleLogout}
+        />
+
+        <main className="trip-details">
+          {isRestoringAuth ? (
+            <p role="status">Restoring your login…</p>
+          ) : (
+            <>
+              <p role="alert">{authRestoreError}</p>
+              <button type="button" onClick={handleLogout}>
+                Continue as guest
+              </button>
+            </>
+          )}
+        </main>
+
+        <Footer />
+      </>
     );
   }
 
@@ -288,15 +581,25 @@ function App() {
       )}
 
       {accountToken && favoriteSave?.token === accountToken && (
-  <>
-    {favoriteSave.pending && (
-      <p role="status">Saving your favorites…</p>
-    )}
-    {favoriteSave.error && (
-      <p role="alert">{favoriteSave.error}</p>
-    )}
-  </>
-)}
+        <>
+          {favoriteSave.pending && <p role="status">Saving your favorites…</p>}
+          {favoriteSave.error && <p role="alert">{favoriteSave.error}</p>}
+        </>
+      )}
+
+      {accountToken && accountTrips?.token !== accountToken && (
+        <p role="status">Loading your trips…</p>
+      )}
+
+      {accountToken &&
+        accountTrips?.token === accountToken &&
+        (accountTrips.error ? (
+          <p role="alert">{accountTrips.error}</p>
+        ) : (
+          <p role="status">
+            Your account has {accountTrips.trips.length} saved trips.
+          </p>
+        ))}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -337,11 +640,21 @@ function App() {
         <Route
           path="/trips/:tripId"
           element={
-            <TripDetails
-              trips={trips}
-              favoritePlaceIds={favoritePlaceIds}
-              onToggleFavorite={handleToggleFavorite}
-            />
+            accountToken && !accountTripsReady ? (
+              <main className="trip-details">
+                {accountTrips?.token === accountToken && accountTrips.error ? (
+                  <p role="alert">{accountTrips.error}</p>
+                ) : (
+                  <p role="status">Loading your trip…</p>
+                )}
+              </main>
+            ) : (
+              <TripDetails
+                trips={trips}
+                favoritePlaceIds={favoritePlaceIds}
+                onToggleFavorite={handleToggleFavorite}
+              />
+            )
           }
         />
         <Route path="/journal" element={<Journal trips={trips} />} />

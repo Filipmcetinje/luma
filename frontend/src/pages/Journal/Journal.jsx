@@ -122,7 +122,7 @@ function Journal({ trips }) {
       title: trimmedTitle,
       text: trimmedText,
       placeId: selectedPlaceId ? Number(selectedPlaceId) : null,
-      tripId: selectedTripId ? Number(selectedTripId) : null,
+      tripId: selectedTripId || null,
       photo: entryPhoto || null,
       createdAt: new Date().toLocaleDateString(),
     };
@@ -167,7 +167,7 @@ function Journal({ trips }) {
               title: trimmedTitle,
               text: trimmedText,
               placeId: editedPlaceId ? Number(editedPlaceId) : null,
-              tripId: editedTripId ? Number(editedTripId) : null,
+              tripId: editedTripId || null,
               photo: editedPhoto || null,
             }
           : entry,
@@ -338,8 +338,9 @@ function Journal({ trips }) {
                       className="journal__entry-trip-link"
                       to={`/trips/${entry.tripId}`}
                     >
-                      {trips.find((trip) => trip.id === entry.tripId)?.name ||
-                        "Unknown trip"}
+                      {trips.find(
+                        (trip) => String(trip.id) === String(entry.tripId),
+                      )?.name || "Unknown trip"}
                     </Link>
                   </p>
                 )}
