@@ -133,3 +133,49 @@ export function removePlaceFromTrip(token, tripId, placeId) {
     },
   });
 }
+
+export function getJournalEntries(token) {
+  return request("/journal", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function createJournalEntry(
+  token,
+  { title, text, placeId = null, tripId = null },
+) {
+  return request("/journal", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ title, text, placeId, tripId }),
+  });
+}
+
+export function updateJournalEntry(
+  token,
+  entryId,
+  { title, text, placeId = null, tripId = null },
+) {
+  return request(`/journal/${entryId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ title, text, placeId, tripId }),
+  });
+}
+
+export function deleteJournalEntry(token, entryId) {
+  return request(`/journal/${entryId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
