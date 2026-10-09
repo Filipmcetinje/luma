@@ -83,3 +83,73 @@ export async function createJournalEntry(req, res) {
     });
   }
 }
+
+export async function updateJournalEntry(req, res) {
+  const { entryId } = req.params;
+  const { title, text, placeId = null, tripId = null } = req.body ?? {};
+
+  if (!mongoose.isObjectIdOrHexString(entryId)) {
+    return res.status(400).json({
+      message: "Enter a valid journal entry ID.",
+    });
+  }
+
+  if (
+    typeof title !== "string" ||
+    typeof text !== "string" ||
+    (placeId !== null && !Number.isSafeInteger(placeId)) ||
+    (tripId !== null &&
+      (typeof tripId !== "string" || !mongoose.isObjectIdOrHexString(tripId)))
+  ) {
+    return res.status(400).json({
+      message: "Enter a title, notes, and valid connections.",
+    });
+  }
+
+  try {
+    const entry = await JournalEntry.findOne({
+      _id: entryId,
+      owner: req.userId,
+    });
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Journal entry not found.",
+      });
+    }
+
+    if (tripId !== null) {
+      const trip = await Trip.exists({
+        _id: tripId,
+        owner: req.userId,
+      });
+
+      if (!trip) {
+        return res.status(404).json({
+          message: "Connected trip not found.",
+        });
+      }
+    }
+
+    entry.title = title.trim();
+    entry.text = text.trim();
+    entry.placeId = placeId;
+    entry.tripId = tripId;
+
+    await entry.save();
+
+    return res.json({
+      entry: formatEntry(entry),
+    });
+  } catch (error) {
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        message: Object.values(error.errors)[0].message,
+      });
+    }
+
+    return res.status(500).json({
+      message: "Unable to update your journal entry. Please try again.",
+    });
+  }
+}
