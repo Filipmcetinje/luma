@@ -23,6 +23,7 @@ import {
   getJournalEntries,
   createJournalEntry,
   updateJournalEntry,
+  deleteJournalEntry,
 } from "./controllers/journal.js";
 
 const app = express();
@@ -51,6 +52,7 @@ app.delete("/trips/:tripId/places/:placeId", requireAuth, removePlaceFromTrip);
 app.get("/journal", requireAuth, getJournalEntries);
 app.post("/journal", requireAuth, createJournalEntry);
 app.patch("/journal/:entryId", requireAuth, updateJournalEntry);
+app.delete("/journal/:entryId", requireAuth, deleteJournalEntry);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });

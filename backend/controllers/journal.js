@@ -153,3 +153,35 @@ export async function updateJournalEntry(req, res) {
     });
   }
 }
+
+export async function deleteJournalEntry(req, res) {
+  const { entryId } = req.params;
+
+  if (!mongoose.isObjectIdOrHexString(entryId)) {
+    return res.status(400).json({
+      message: "Enter a valid journal entry ID.",
+    });
+  }
+
+  try {
+    const entry = await JournalEntry.findOneAndDelete({
+      _id: entryId,
+      owner: req.userId,
+    });
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Journal entry not found.",
+      });
+    }
+
+    return res.json({
+      message: "Journal entry deleted.",
+      id: entry._id.toString(),
+    });
+  } catch {
+    return res.status(500).json({
+      message: "Unable to delete your journal entry. Please try again.",
+    });
+  }
+}
