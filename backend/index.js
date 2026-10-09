@@ -19,6 +19,8 @@ import {
   removePlaceFromTrip,
 } from "./controllers/trips.js";
 
+import { getJournalEntries } from "./controllers/journal.js";
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -42,6 +44,7 @@ app.patch("/trips/:tripId", requireAuth, updateTrip);
 app.delete("/trips/:tripId", requireAuth, deleteTrip);
 app.put("/trips/:tripId/places/:placeId", requireAuth, addPlaceToTrip);
 app.delete("/trips/:tripId/places/:placeId", requireAuth, removePlaceFromTrip);
+app.get("/journal", requireAuth, getJournalEntries);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });
