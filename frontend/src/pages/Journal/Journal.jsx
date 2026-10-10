@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import "./Journal.css";
 import places from "../../data/places";
 import { Link } from "react-router-dom";
+import {
+  getJournalEntries,
+  createJournalEntry,
+  updateJournalEntry,
+  deleteJournalEntry,
+} from "../../utils/api";
 
-function Journal({ trips }) {
+function Journal({ trips, token }) {
   const [entryTitle, setEntryTitle] = useState("");
   const [entryText, setEntryText] = useState("");
   const [selectedPlaceId, setSelectedPlaceId] = useState("");
@@ -12,13 +18,15 @@ function Journal({ trips }) {
   const [photoError, setPhotoError] = useState("");
   const [photoInputKey, setPhotoInputKey] = useState(0);
 
-  const [entries, setEntries] = useState(() => {
+  const [localEntries, setLocalEntries] = useState(() => {
     const savedEntries = localStorage.getItem("journalEntries");
 
     return savedEntries ? JSON.parse(savedEntries) : [];
   });
 
   const [formError, setFormError] = useState("");
+
+  const [isCreating, setIsCreating] = useState(false);
 
   const [editingEntryId, setEditingEntryId] = useState(null);
   const [editedTitle, setEditedTitle] = useState("");
@@ -28,10 +36,54 @@ function Journal({ trips }) {
   const [editedPhoto, setEditedPhoto] = useState("");
   const [editPhotoError, setEditPhotoError] = useState("");
   const [editError, setEditError] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [deletingEntryId, setDeletingEntryId] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("journalEntries", JSON.stringify(entries));
-  }, [entries]);
+    localStorage.setItem("journalEntries", JSON.stringify(localEntries));
+  }, [localEntries]);
+
+  const [accountEntries, setAccountEntries] = useState(null);
+
+  const accountEntriesReady =
+    token !== null && accountEntries?.token === token && !accountEntries.error;
+
+  const entries = token
+    ? accountEntriesReady
+      ? accountEntries.entries
+      : []
+    : localEntries;
+
+  useEffect(() => {
+    if (!token) return;
+
+    let cancelled = false;
+
+    getJournalEntries(token)
+      .then(({ entries }) => {
+        if (!cancelled) {
+          setAccountEntries({
+            token,
+            entries,
+            error: "",
+          });
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setAccountEntries({
+            token,
+            entries: [],
+            error: error.message || "Unable to load your journal.",
+          });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [token]);
 
   function handlePhotoChange(event) {
     const file = event.target.files[0];
@@ -105,8 +157,10 @@ function Journal({ trips }) {
     reader.readAsDataURL(file);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+
+    if (isCreating) return;
 
     const trimmedTitle = entryTitle.trim();
     const trimmedText = entryText.trim();
@@ -115,26 +169,61 @@ function Journal({ trips }) {
       setFormError("Please add both a title and journal notes.");
       return;
     }
-    setFormError("");
 
-    const newEntry = {
-      id: Date.now(),
+    if (token && (accountEntries?.token !== token || accountEntries.error)) {
+      setFormError("Your account journal is unavailable. Please refresh.");
+      return;
+    }
+
+    if (token && entryPhoto) {
+      setFormError("Account photo uploads are coming in the next step.");
+      return;
+    }
+
+    setFormError("");
+    setIsCreating(true);
+
+    const details = {
       title: trimmedTitle,
       text: trimmedText,
       placeId: selectedPlaceId ? Number(selectedPlaceId) : null,
       tripId: selectedTripId || null,
-      photo: entryPhoto || null,
-      createdAt: new Date().toLocaleDateString(),
     };
 
-    setEntries((currentEntries) => [newEntry, ...currentEntries]);
-    setEntryTitle("");
-    setEntryText("");
-    setSelectedPlaceId("");
-    setSelectedTripId("");
-    setEntryPhoto("");
-    setPhotoError("");
-    setPhotoInputKey((currentKey) => currentKey + 1);
+    try {
+      if (token) {
+        const { entry } = await createJournalEntry(token, details);
+
+        if (sessionStorage.getItem("lumaToken") !== token) return;
+
+        setAccountEntries((current) =>
+          current?.token === token
+            ? { ...current, entries: [entry, ...current.entries] }
+            : current,
+        );
+      } else {
+        const newEntry = {
+          ...details,
+          id: Date.now(),
+          photo: entryPhoto || null,
+          createdAt: new Date().toLocaleDateString(),
+        };
+
+        setLocalEntries((currentEntries) => [newEntry, ...currentEntries]);
+      }
+
+      setEntryTitle("");
+      setEntryText("");
+      setSelectedPlaceId("");
+      setSelectedTripId("");
+      setEntryPhoto("");
+      setPhotoError("");
+      setPhotoInputKey((currentKey) => currentKey + 1);
+    } catch (error) {
+      setFormError(error.message || "Unable to save your journal entry.");
+    } finally {
+      setIsCreating(false);
+    }
   }
 
   function handleStartEditing(entry) {
@@ -148,7 +237,9 @@ function Journal({ trips }) {
     setEditPhotoError("");
   }
 
-  function handleSaveEdit(entryId) {
+  async function handleSaveEdit(entryId) {
+    if (isUpdating) return;
+
     const trimmedTitle = editedTitle.trim();
     const trimmedText = editedText.trim();
 
@@ -157,30 +248,67 @@ function Journal({ trips }) {
       return;
     }
 
+    if (
+      token &&
+      (accountEntries?.token !== token ||
+        accountEntries.error ||
+        !accountEntries.entries.some((entry) => entry.id === entryId))
+    ) {
+      setEditError("This account entry is unavailable. Please refresh.");
+      return;
+    }
+
+    if (token && editedPhoto) {
+      setEditError("Account photo uploads are coming next.");
+      return;
+    }
+
     setEditError("");
+    setIsUpdating(true);
 
-    setEntries((currentEntries) =>
-      currentEntries.map((entry) =>
-        entry.id === entryId
-          ? {
-              ...entry,
-              title: trimmedTitle,
-              text: trimmedText,
-              placeId: editedPlaceId ? Number(editedPlaceId) : null,
-              tripId: editedTripId || null,
-              photo: editedPhoto || null,
-            }
-          : entry,
-      ),
-    );
+    const details = {
+      title: trimmedTitle,
+      text: trimmedText,
+      placeId: editedPlaceId ? Number(editedPlaceId) : null,
+      tripId: editedTripId || null,
+    };
 
-    setEditingEntryId(null);
-    setEditedTitle("");
-    setEditedText("");
-    setEditedPlaceId("");
-    setEditedTripId("");
-    setEditedPhoto("");
-    setEditPhotoError("");
+    try {
+      if (token) {
+        const { entry: updatedEntry } = await updateJournalEntry(
+          token,
+          entryId,
+          details,
+        );
+
+        if (sessionStorage.getItem("lumaToken") !== token) return;
+
+        setAccountEntries((current) =>
+          current?.token === token
+            ? {
+                ...current,
+                entries: current.entries.map((entry) =>
+                  entry.id === updatedEntry.id ? updatedEntry : entry,
+                ),
+              }
+            : current,
+        );
+      } else {
+        setLocalEntries((currentEntries) =>
+          currentEntries.map((entry) =>
+            entry.id === entryId
+              ? { ...entry, ...details, photo: editedPhoto || null }
+              : entry,
+          ),
+        );
+      }
+
+      handleCancelEdit();
+    } catch (error) {
+      setEditError(error.message || "Unable to update your journal entry.");
+    } finally {
+      setIsUpdating(false);
+    }
   }
 
   function handleCancelEdit() {
@@ -194,23 +322,82 @@ function Journal({ trips }) {
     setEditError("");
   }
 
-  function handleDeleteEntry(entryId) {
+  async function handleDeleteEntry(entryId) {
+    if (deletingEntryId !== null || isUpdating) return;
+
     const shouldDelete = window.confirm(
       "Are you sure you want to delete this journal entry?",
     );
 
-    if (!shouldDelete) {
+    if (!shouldDelete) return;
+
+    if (
+      token &&
+      (accountEntries?.token !== token ||
+        accountEntries.error ||
+        !accountEntries.entries.some((entry) => entry.id === entryId))
+    ) {
+      setDeleteError("This account entry is unavailable. Please refresh.");
       return;
     }
 
-    setEntries((currentEntries) =>
-      currentEntries.filter((entry) => entry.id !== entryId),
-    );
+    setDeleteError("");
+    setDeletingEntryId(entryId);
+
+    try {
+      if (token) {
+        await deleteJournalEntry(token, entryId);
+
+        if (sessionStorage.getItem("lumaToken") !== token) return;
+
+        setAccountEntries((current) =>
+          current?.token === token
+            ? {
+                ...current,
+                entries: current.entries.filter(
+                  (entry) => entry.id !== entryId,
+                ),
+              }
+            : current,
+        );
+      } else {
+        setLocalEntries((currentEntries) =>
+          currentEntries.filter((entry) => entry.id !== entryId),
+        );
+      }
+
+      if (editingEntryId === entryId) {
+        handleCancelEdit();
+      }
+    } catch (error) {
+      setDeleteError(error.message || "Unable to delete your journal entry.");
+    } finally {
+      setDeletingEntryId(null);
+    }
   }
 
   return (
     <main className="journal">
       <h1 className="journal__title">Creative Journal</h1>
+
+      {token && accountEntries?.token !== token && (
+        <p className="journal__account-status" role="status">
+          Loading your journal…
+        </p>
+      )}
+
+      {token &&
+        accountEntries?.token === token &&
+        (accountEntries.error ? (
+          <p className="journal__error" role="alert">
+            {accountEntries.error}
+          </p>
+        ) : (
+          <p className="journal__account-status" role="status">
+            Your account has {accountEntries.entries.length} saved journal
+            entries.
+          </p>
+        ))}
 
       <form className="journal__form" onSubmit={handleSubmit}>
         <label className="journal__label" htmlFor="entry-title">
@@ -292,7 +479,10 @@ function Journal({ trips }) {
           type="file"
           accept="image/*"
           onChange={handlePhotoChange}
+          disabled={Boolean(token) || isCreating}
         />
+
+        {token && <p>Account photo uploads are coming next.</p>}
 
         {photoError && <p className="journal__error">{photoError}</p>}
 
@@ -304,21 +494,31 @@ function Journal({ trips }) {
           />
         )}
 
-        <button className="journal__button" type="submit">
-          Save Entry
+        <button className="journal__button" type="submit" disabled={isCreating}>
+          {isCreating ? "Saving…" : "Save Entry"}
         </button>
       </form>
 
       <section className="journal__entries">
         <h2 className="journal__entries-title">Your Entries</h2>
 
-        {entries.length === 0 ? (
+        {deleteError && (
+          <p className="journal__error" role="alert">
+            {deleteError}
+          </p>
+        )}
+
+        {token && !accountEntriesReady ? null : entries.length === 0 ? (
           <p className="journal__empty">No journal entries yet.</p>
         ) : (
           <ul className="journal__list">
             {entries.map((entry) => (
               <li className="journal__entry" key={entry.id}>
-                <p className="journal__entry-date">{entry.createdAt}</p>
+                <p className="journal__entry-date">
+                  {token
+                    ? new Date(entry.createdAt).toLocaleDateString()
+                    : entry.createdAt}
+                </p>
                 {entry.placeId && (
                   <p className="journal__entry-place">
                     Place:{" "}
@@ -429,7 +629,10 @@ function Journal({ trips }) {
                       type="file"
                       accept="image/*"
                       onChange={handleEditPhotoChange}
+                      disabled={Boolean(token) || isUpdating}
                     />
+
+                    {token && <p>Account photo uploads are coming next.</p>}
 
                     {editPhotoError && (
                       <p className="journal__error">{editPhotoError}</p>
@@ -470,8 +673,9 @@ function Journal({ trips }) {
                     className="journal__edit-button"
                     type="button"
                     onClick={() => handleSaveEdit(entry.id)}
+                    disabled={isUpdating}
                   >
-                    Save
+                    {isUpdating ? "Saving…" : "Save"}
                   </button>
                 ) : (
                   <button
@@ -488,6 +692,7 @@ function Journal({ trips }) {
                     className="journal__cancel-button"
                     type="button"
                     onClick={handleCancelEdit}
+                    disabled={isUpdating}
                   >
                     Cancel
                   </button>
@@ -497,8 +702,9 @@ function Journal({ trips }) {
                   className="journal__delete-button"
                   type="button"
                   onClick={() => handleDeleteEntry(entry.id)}
+                  disabled={deletingEntryId !== null || isUpdating}
                 >
-                  Delete
+                  {deletingEntryId === entry.id ? "Deleting…" : "Delete"}
                 </button>
               </li>
             ))}

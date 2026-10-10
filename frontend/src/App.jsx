@@ -657,7 +657,16 @@ function App() {
             )
           }
         />
-        <Route path="/journal" element={<Journal trips={trips} />} />
+        <Route
+          path="/journal"
+          element={
+            <Journal
+              key={auth?.token ?? "guest"}
+              trips={trips}
+              token={auth?.token ?? null}
+            />
+          }
+        />
         <Route
           path="/places/:placeId"
           element={

@@ -256,6 +256,19 @@
   background-color: #a8463c;
 }
 
+.journal__account-status {
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 16px auto;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #29402e;
+  line-height: 1.5;
+  text-align: center;
+}
+
 @media screen and (max-width: 700px) {
   .journal {
     padding: 40px 20px;
