@@ -24,7 +24,9 @@ import {
   createJournalEntry,
   updateJournalEntry,
   deleteJournalEntry,
+  addJournalPhoto,
 } from "./controllers/journal.js";
+import { receiveJournalPhoto } from "./middleware/journalPhoto.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -53,6 +55,12 @@ app.get("/journal", requireAuth, getJournalEntries);
 app.post("/journal", requireAuth, createJournalEntry);
 app.patch("/journal/:entryId", requireAuth, updateJournalEntry);
 app.delete("/journal/:entryId", requireAuth, deleteJournalEntry);
+app.post(
+  "/journal/:entryId/photo",
+  requireAuth,
+  receiveJournalPhoto,
+  addJournalPhoto,
+);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });

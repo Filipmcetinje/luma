@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import Trip from "../models/trip.js";
 
 import JournalEntry from "../models/journalEntry.js";
+import cloudinary from "../utils/cloudinary.js";
+import uploadPhotoBuffer from "../utils/uploadJournalPhoto.js";
 
 function formatEntry(entry) {
   return {
@@ -10,6 +12,7 @@ function formatEntry(entry) {
     text: entry.text,
     placeId: entry.placeId,
     tripId: entry.tripId ? entry.tripId.toString() : null,
+    photo: entry.photo ?? null,
     createdAt: entry.createdAt.toISOString(),
     updatedAt: entry.updatedAt.toISOString(),
   };
@@ -183,5 +186,90 @@ export async function deleteJournalEntry(req, res) {
     return res.status(500).json({
       message: "Unable to delete your journal entry. Please try again.",
     });
+  }
+}
+
+export async function addJournalPhoto(req, res) {
+  const { entryId } = req.params;
+
+  if (!mongoose.isObjectIdOrHexString(entryId)) {
+    return res.status(400).json({
+      message: "Enter a valid journal entry ID.",
+    });
+  }
+
+  let uploadedPhoto = null;
+  let photoSaved = false;
+  let uploading = false;
+
+  try {
+    const entry = await JournalEntry.findOne({
+      _id: entryId,
+      owner: req.userId,
+    });
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Journal entry not found.",
+      });
+    }
+
+    if (entry.photoPublicId) {
+      return res.status(409).json({
+        message: "Remove the existing photo before adding another.",
+      });
+    }
+
+    uploading = true;
+    uploadedPhoto = await uploadPhotoBuffer(req.file.buffer);
+    uploading = false;
+
+    const updatedEntry = await JournalEntry.findOneAndUpdate(
+      {
+        _id: entryId,
+        owner: req.userId,
+        photoPublicId: null,
+      },
+      {
+        $set: {
+          photo: uploadedPhoto.secure_url,
+          photoPublicId: uploadedPhoto.public_id,
+        },
+      },
+      { returnDocument: "after", runValidators: true },
+    );
+
+    if (!updatedEntry) {
+      return res.status(409).json({
+        message: "The entry changed during upload. Please refresh.",
+      });
+    }
+
+    photoSaved = true;
+
+    return res.json({
+      entry: formatEntry(updatedEntry),
+    });
+  } catch (error) {
+    if (uploading && error.http_code === 400) {
+      return res.status(400).json({
+        message: "Choose a valid JPEG, PNG, or WebP photo.",
+      });
+    }
+
+    return res.status(uploading ? 502 : 500).json({
+      message: "Unable to save your photo. Please try again.",
+    });
+  } finally {
+    if (uploadedPhoto && !photoSaved) {
+      try {
+        await cloudinary.uploader.destroy(uploadedPhoto.public_id, {
+          resource_type: "image",
+          invalidate: true,
+        });
+      } catch {
+        console.error("Unable to clean up an unsaved Journal photo.");
+      }
+    }
   }
 }
