@@ -33,6 +33,14 @@ const journalEntrySchema = new mongoose.Schema(
       ref: "Trip",
       default: null,
     },
+    photo: {
+      type: String,
+      default: null,
+    },
+    photoPublicId: {
+      type: String,
+      default: null,
+    },
   },
   { timestamps: true },
 );
