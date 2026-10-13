@@ -179,3 +179,25 @@ export function deleteJournalEntry(token, entryId) {
     },
   });
 }
+
+export function uploadJournalPhoto(token, entryId, file) {
+  const form = new FormData();
+  form.append("photo", file);
+
+  return request(`/journal/${entryId}/photo`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: form,
+  });
+}
+
+export function removeJournalPhoto(token, entryId) {
+  return request(`/journal/${entryId}/photo`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
