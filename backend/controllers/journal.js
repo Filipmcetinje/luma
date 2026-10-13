@@ -167,7 +167,7 @@ export async function deleteJournalEntry(req, res) {
   }
 
   try {
-    const entry = await JournalEntry.findOneAndDelete({
+    const entry = await JournalEntry.findOne({
       _id: entryId,
       owner: req.userId,
     });
@@ -178,9 +178,34 @@ export async function deleteJournalEntry(req, res) {
       });
     }
 
+    if (entry.photoPublicId) {
+      const result = await cloudinary.uploader.destroy(entry.photoPublicId, {
+        resource_type: "image",
+        invalidate: true,
+      });
+
+      if (!["ok", "not found"].includes(result.result)) {
+        return res.status(502).json({
+          message: "Unable to remove the entry’s photo. Please try again.",
+        });
+      }
+    }
+
+    const deletedEntry = await JournalEntry.findOneAndDelete({
+      _id: entryId,
+      owner: req.userId,
+      photoPublicId: entry.photoPublicId ?? null,
+    });
+
+    if (!deletedEntry) {
+      return res.status(409).json({
+        message: "The entry changed during deletion. Please refresh.",
+      });
+    }
+
     return res.json({
       message: "Journal entry deleted.",
-      id: entry._id.toString(),
+      id: deletedEntry._id.toString(),
     });
   } catch {
     return res.status(500).json({
