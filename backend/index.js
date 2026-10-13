@@ -25,6 +25,7 @@ import {
   updateJournalEntry,
   deleteJournalEntry,
   addJournalPhoto,
+  removeJournalPhoto,
 } from "./controllers/journal.js";
 import { receiveJournalPhoto } from "./middleware/journalPhoto.js";
 
@@ -61,6 +62,7 @@ app.post(
   receiveJournalPhoto,
   addJournalPhoto,
 );
+app.delete("/journal/:entryId/photo", requireAuth, removeJournalPhoto);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Luma backend is running" });

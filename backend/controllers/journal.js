@@ -273,3 +273,72 @@ export async function addJournalPhoto(req, res) {
     }
   }
 }
+
+export async function removeJournalPhoto(req, res) {
+  const { entryId } = req.params;
+
+  if (!mongoose.isObjectIdOrHexString(entryId)) {
+    return res.status(400).json({
+      message: "Enter a valid journal entry ID.",
+    });
+  }
+
+  try {
+    const entry = await JournalEntry.findOne({
+      _id: entryId,
+      owner: req.userId,
+    });
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Journal entry not found.",
+      });
+    }
+
+    if (!entry.photoPublicId) {
+      return res.json({
+        entry: formatEntry(entry),
+      });
+    }
+
+    const result = await cloudinary.uploader.destroy(entry.photoPublicId, {
+      resource_type: "image",
+      invalidate: true,
+    });
+
+    if (!["ok", "not found"].includes(result.result)) {
+      return res.status(502).json({
+        message: "Unable to remove your photo. Please try again.",
+      });
+    }
+
+    const updatedEntry = await JournalEntry.findOneAndUpdate(
+      {
+        _id: entryId,
+        owner: req.userId,
+        photoPublicId: entry.photoPublicId,
+      },
+      {
+        $set: {
+          photo: null,
+          photoPublicId: null,
+        },
+      },
+      { returnDocument: "after", runValidators: true },
+    );
+
+    if (!updatedEntry) {
+      return res.status(409).json({
+        message: "The entry changed during removal. Please refresh.",
+      });
+    }
+
+    return res.json({
+      entry: formatEntry(updatedEntry),
+    });
+  } catch {
+    return res.status(500).json({
+      message: "Unable to remove your photo. Please try again.",
+    });
+  }
+}
