@@ -7,6 +7,8 @@ import {
   createJournalEntry,
   updateJournalEntry,
   deleteJournalEntry,
+  uploadJournalPhoto,
+  removeJournalPhoto,
 } from "../../utils/api";
 
 function Journal({ trips, token }) {
@@ -15,6 +17,7 @@ function Journal({ trips, token }) {
   const [selectedPlaceId, setSelectedPlaceId] = useState("");
   const [selectedTripId, setSelectedTripId] = useState("");
   const [entryPhoto, setEntryPhoto] = useState("");
+  const [entryPhotoFile, setEntryPhotoFile] = useState(null);
   const [photoError, setPhotoError] = useState("");
   const [photoInputKey, setPhotoInputKey] = useState(0);
 
@@ -34,9 +37,11 @@ function Journal({ trips, token }) {
   const [editedPlaceId, setEditedPlaceId] = useState("");
   const [editedTripId, setEditedTripId] = useState("");
   const [editedPhoto, setEditedPhoto] = useState("");
+  const [editedPhotoFile, setEditedPhotoFile] = useState(null);
   const [editPhotoError, setEditPhotoError] = useState("");
   const [editError, setEditError] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isRemovingPhoto, setIsRemovingPhoto] = useState(false);
   const [deletingEntryId, setDeletingEntryId] = useState(null);
   const [deleteError, setDeleteError] = useState("");
 
@@ -87,6 +92,7 @@ function Journal({ trips, token }) {
 
   function handlePhotoChange(event) {
     const file = event.target.files[0];
+    setEntryPhotoFile(null);
 
     if (!file) {
       setEntryPhoto("");
@@ -112,6 +118,7 @@ function Journal({ trips, token }) {
 
     reader.onload = () => {
       setEntryPhoto(reader.result);
+      setEntryPhotoFile(file);
       setPhotoError("");
     };
 
@@ -125,6 +132,7 @@ function Journal({ trips, token }) {
 
   function handleEditPhotoChange(event) {
     const file = event.target.files[0];
+    setEditedPhotoFile(null);
 
     if (!file) {
       setEditPhotoError("");
@@ -147,6 +155,7 @@ function Journal({ trips, token }) {
 
     reader.onload = () => {
       setEditedPhoto(reader.result);
+      setEditedPhotoFile(file);
       setEditPhotoError("");
     };
 
@@ -175,11 +184,6 @@ function Journal({ trips, token }) {
       return;
     }
 
-    if (token && entryPhoto) {
-      setFormError("Account photo uploads are coming in the next step.");
-      return;
-    }
-
     setFormError("");
     setIsCreating(true);
 
@@ -201,6 +205,35 @@ function Journal({ trips, token }) {
             ? { ...current, entries: [entry, ...current.entries] }
             : current,
         );
+
+        if (entryPhotoFile) {
+          try {
+            const { entry: updatedEntry } = await uploadJournalPhoto(
+              token,
+              entry.id,
+              entryPhotoFile,
+            );
+
+            if (sessionStorage.getItem("lumaToken") !== token) return;
+
+            setAccountEntries((current) =>
+              current?.token === token
+                ? {
+                    ...current,
+                    entries: current.entries.map((item) =>
+                      item.id === updatedEntry.id ? updatedEntry : item,
+                    ),
+                  }
+                : current,
+            );
+          } catch {
+            if (sessionStorage.getItem("lumaToken") !== token) return;
+
+            setFormError(
+              "Your entry was saved, but its photo upload failed. The entry appears below without a photo.",
+            );
+          }
+        }
       } else {
         const newEntry = {
           ...details,
@@ -217,6 +250,7 @@ function Journal({ trips, token }) {
       setSelectedPlaceId("");
       setSelectedTripId("");
       setEntryPhoto("");
+      setEntryPhotoFile(null);
       setPhotoError("");
       setPhotoInputKey((currentKey) => currentKey + 1);
     } catch (error) {
@@ -234,6 +268,7 @@ function Journal({ trips, token }) {
     setEditedPlaceId(entry.placeId ? String(entry.placeId) : "");
     setEditedTripId(entry.tripId ? String(entry.tripId) : "");
     setEditedPhoto(entry.photo || "");
+    setEditedPhotoFile(null);
     setEditPhotoError("");
   }
 
@@ -258,11 +293,6 @@ function Journal({ trips, token }) {
       return;
     }
 
-    if (token && editedPhoto) {
-      setEditError("Account photo uploads are coming next.");
-      return;
-    }
-
     setEditError("");
     setIsUpdating(true);
 
@@ -275,13 +305,47 @@ function Journal({ trips, token }) {
 
     try {
       if (token) {
-        const { entry: updatedEntry } = await updateJournalEntry(
+        let { entry: updatedEntry } = await updateJournalEntry(
           token,
           entryId,
           details,
         );
 
         if (sessionStorage.getItem("lumaToken") !== token) return;
+
+        if (editedPhotoFile) {
+          try {
+            const result = await uploadJournalPhoto(
+              token,
+              entryId,
+              editedPhotoFile,
+            );
+
+            updatedEntry = result.entry;
+          } catch (error) {
+            if (sessionStorage.getItem("lumaToken") !== token) return;
+
+            setAccountEntries((current) =>
+              current?.token === token
+                ? {
+                    ...current,
+                    entries: current.entries.map((entry) =>
+                      entry.id === updatedEntry.id ? updatedEntry : entry,
+                    ),
+                  }
+                : current,
+            );
+
+            setEditError(
+              `Your text changes were saved, but the photo upload failed. ${
+                error.message || "Please try again."
+              }`,
+            );
+            return;
+          }
+
+          if (sessionStorage.getItem("lumaToken") !== token) return;
+        }
 
         setAccountEntries((current) =>
           current?.token === token
@@ -318,8 +382,53 @@ function Journal({ trips, token }) {
     setEditedPlaceId("");
     setEditedTripId("");
     setEditedPhoto("");
+    setEditedPhotoFile(null);
     setEditPhotoError("");
     setEditError("");
+  }
+
+  async function handleRemovePhoto(entryId) {
+    if (isRemovingPhoto || isUpdating) return;
+    if (editedPhotoFile) {
+      const entry = entries.find((item) => item.id === entryId);
+
+      setEditedPhoto(entry?.photo || "");
+      setEditedPhotoFile(null);
+      setEditPhotoError("");
+      return;
+    }
+
+    if (!token) {
+      setEditedPhoto("");
+      setEditPhotoError("");
+      return;
+    }
+
+    setEditPhotoError("");
+    setIsRemovingPhoto(true);
+
+    try {
+      const { entry: updatedEntry } = await removeJournalPhoto(token, entryId);
+
+      if (sessionStorage.getItem("lumaToken") !== token) return;
+
+      setAccountEntries((current) =>
+        current?.token === token
+          ? {
+              ...current,
+              entries: current.entries.map((entry) =>
+                entry.id === updatedEntry.id ? updatedEntry : entry,
+              ),
+            }
+          : current,
+      );
+
+      setEditedPhoto("");
+    } catch (error) {
+      setEditPhotoError(error.message || "Unable to remove your photo.");
+    } finally {
+      setIsRemovingPhoto(false);
+    }
   }
 
   async function handleDeleteEntry(entryId) {
@@ -479,7 +588,7 @@ function Journal({ trips, token }) {
           type="file"
           accept="image/*"
           onChange={handlePhotoChange}
-          disabled={Boolean(token) || isCreating}
+          disabled={isCreating || (Boolean(token) && !accountEntriesReady)}
         />
 
         {token && <p>Account photo uploads are coming next.</p>}
@@ -629,10 +738,16 @@ function Journal({ trips, token }) {
                       type="file"
                       accept="image/*"
                       onChange={handleEditPhotoChange}
-                      disabled={Boolean(token) || isUpdating}
+                      disabled={
+                        isUpdating ||
+                        isRemovingPhoto ||
+                        (Boolean(token) && Boolean(entry.photo))
+                      }
                     />
 
-                    {token && <p>Account photo uploads are coming next.</p>}
+                    {token && entry.photo && (
+                      <p>Delete the saved photo first to choose another.</p>
+                    )}
 
                     {editPhotoError && (
                       <p className="journal__error">{editPhotoError}</p>
@@ -647,15 +762,27 @@ function Journal({ trips, token }) {
                     )}
 
                     {editedPhoto && (
+                      <p>
+                        {token
+                          ? "Deleting this photo takes effect immediately. Cancel will not restore it."
+                          : "Click Save to keep photo changes. Cancel keeps the original photo."}
+                      </p>
+                    )}
+
+                    {editedPhoto && (
                       <button
                         className="journal__remove-photo-button"
                         type="button"
-                        onClick={() => {
-                          setEditedPhoto("");
-                          setEditPhotoError("");
-                        }}
+                        onClick={() => handleRemovePhoto(entry.id)}
+                        disabled={isRemovingPhoto || isUpdating}
                       >
-                        Remove Photo
+                        {isRemovingPhoto
+                          ? "Removing…"
+                          : editedPhotoFile
+                            ? "Clear selected photo"
+                            : token
+                              ? "Delete saved photo"
+                              : "Remove Photo"}
                       </button>
                     )}
 
@@ -673,7 +800,7 @@ function Journal({ trips, token }) {
                     className="journal__edit-button"
                     type="button"
                     onClick={() => handleSaveEdit(entry.id)}
-                    disabled={isUpdating}
+                    disabled={isUpdating || isRemovingPhoto}
                   >
                     {isUpdating ? "Saving…" : "Save"}
                   </button>
@@ -692,7 +819,7 @@ function Journal({ trips, token }) {
                     className="journal__cancel-button"
                     type="button"
                     onClick={handleCancelEdit}
-                    disabled={isUpdating}
+                    disabled={isUpdating || isRemovingPhoto}
                   >
                     Cancel
                   </button>
@@ -702,7 +829,9 @@ function Journal({ trips, token }) {
                   className="journal__delete-button"
                   type="button"
                   onClick={() => handleDeleteEntry(entry.id)}
-                  disabled={deletingEntryId !== null || isUpdating}
+                  disabled={
+                    deletingEntryId !== null || isUpdating || isRemovingPhoto
+                  }
                 >
                   {deletingEntryId === entry.id ? "Deleting…" : "Delete"}
                 </button>
