@@ -34,7 +34,11 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: ["https://luma-delta-bice.vercel.app", "http://localhost:5173"],
+    origin: [
+      "https://luma-delta-bice.vercel.app",
+      "https://luma-montenegro.vercel.app",
+      "http://localhost:5173",
+    ],
   }),
 );
 
