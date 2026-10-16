@@ -373,3 +373,50 @@
   opacity: 0.6;
   cursor: default;
 }
+.trips__card-content {
+  min-width: 0;
+}
+
+.trips__input,
+.trips__textarea,
+.trips__edit-input,
+.trips__edit-date-input,
+.trips__edit-textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .trips__card {
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .trips__card-content {
+    width: 100%;
+  }
+
+  .trips__edit-dates {
+    flex-direction: column;
+  }
+
+  .trips__edit-label {
+    min-width: 0;
+  }
+
+  .trips__edit-date-input {
+    width: 100%;
+  }
+
+  .trips__card-actions {
+    flex-wrap: wrap;
+  }
+
+  .trips__places-list {
+    padding-left: 20px;
+    overflow-wrap: anywhere;
+  }
+}
