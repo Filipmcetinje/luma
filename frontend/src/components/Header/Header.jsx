@@ -1,13 +1,46 @@
+import { useRef, useState } from "react";
+
 import { Link } from "react-router-dom";
 
 import "./Header.css";
 
 function Header({ favoriteCount, currentUser, onLogout }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "Escape" && isMenuOpen) {
+      closeMenu();
+      menuButtonRef.current?.focus();
+    }
+  }
+
   return (
-    <header className="header">
+    <header className="header" onKeyDown={handleKeyDown}>
       <h2 className="header__logo">Luma</h2>
 
-      <nav className="header__nav">
+      <button
+        className="header__menu-toggle"
+        type="button"
+        ref={menuButtonRef}
+        aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+        aria-expanded={isMenuOpen}
+        aria-controls="header-navigation"
+        onClick={() => setIsMenuOpen((current) => !current)}
+      >
+        <span aria-hidden="true">{isMenuOpen ? "×" : "☰"}</span>
+      </button>
+
+      <nav
+        id="header-navigation"
+        className={`header__nav ${isMenuOpen ? "header__nav_open" : ""}`}
+        aria-label="Main navigation"
+        onClick={closeMenu}
+      >
         <Link className="header__link" to="/">
           Home
         </Link>
