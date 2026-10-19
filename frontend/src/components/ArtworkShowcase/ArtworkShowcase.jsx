@@ -56,6 +56,20 @@ const artworks = [
     description:
       "Layers of green and yellow leaves painted with expressive brushstrokes, by Filip Milosevic.",
   },
+  {
+    title: "Self-Portrait",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/self-portret_copy.jpg",
+    description:
+      "An abstract self-portrait with textured gray forms and red, yellow, and green accents, by Filip Milosevic.",
+  },
+  {
+    title: "Composition",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/composition.jpg",
+    description:
+      "An abstract composition with flowing red, yellow, blue, and purple forms against a dark background, by Filip Milosevic.",
+  },
 ];
 
 function ArtworkShowcase({ limit }) {
