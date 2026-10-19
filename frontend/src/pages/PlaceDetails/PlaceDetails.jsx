@@ -65,6 +65,8 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
   return (
     <main className="place-details-page">
+      <title>{`${place.title} | Luma`}</title>
+
       <div className="place-details">
         <img
           className="place-details__image"
