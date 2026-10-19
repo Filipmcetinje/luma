@@ -5,3 +5,5 @@ Disallow: /signup
 Disallow: /favorites
 Disallow: /trips
 Disallow: /journal
+
+Sitemap: https://luma-montenegro.vercel.app/sitemap.xml
