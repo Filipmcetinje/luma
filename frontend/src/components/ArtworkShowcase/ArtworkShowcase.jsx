@@ -28,9 +28,38 @@ const artworks = [
     description:
       "Pink flowers among textured green and yellow brushstrokes, painted by Filip Milosevic.",
   },
+  {
+    title: "Wild Pomegranate Flower",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/wild-pomegranate-flower.jpg",
+    description:
+      "Red wild pomegranate flowers against textured green and blue brushstrokes, painted by Filip Milosevic.",
+  },
+  {
+    title: "Wild Pomegranate",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/wild-pomegranate.jpg",
+    description:
+      "An expressive painting with golden yellow, purple, and green brushstrokes, by Filip Milosevic.",
+  },
+  {
+    title: "Abstract",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/abstract.jpg",
+    description:
+      "An abstract painting with curved gray, white, and blue forms and a yellow-green accent, by Filip Milosevic.",
+  },
+  {
+    title: "Leaves",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/leaves.jpg",
+    description:
+      "Layers of green and yellow leaves painted with expressive brushstrokes, by Filip Milosevic.",
+  },
 ];
 
-function ArtworkShowcase() {
+function ArtworkShowcase({ limit }) {
+  const displayedArtworks = limit ? artworks.slice(0, limit) : artworks;
   const dialogRef = useRef(null);
   const [selectedArtwork, setSelectedArtwork] = useState(null);
 
@@ -48,7 +77,7 @@ function ArtworkShowcase() {
       <h2 className="artwork-showcase__title">Art Inspired by Montenegro</h2>
 
       <div className="artwork-showcase__grid">
-        {artworks.map((artwork) => (
+        {displayedArtworks.map((artwork) => (
           <figure className="artwork-showcase__piece" key={artwork.title}>
             <button
               className="artwork-showcase__open"

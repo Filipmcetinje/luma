@@ -22,7 +22,7 @@ function Home() {
 
       <div className="home__creative-background">
         <PhotographyShowcase />
-        <ArtworkShowcase />
+        <ArtworkShowcase limit={4} />
 
         <section className="home__about-section">
           <div className="home__about">
