@@ -86,9 +86,12 @@
     font-size: 20px;
   }
   .hero__lighthouse {
-    right: -45px;
+    right: 0;
     bottom: -70px;
-    height: 360px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 360px;
     opacity: 0.75;
   }
 }

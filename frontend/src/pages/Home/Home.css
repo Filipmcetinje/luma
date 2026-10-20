@@ -104,12 +104,16 @@
 }
 
 .home__portrait-dialog {
-  max-width: min(1100px, 92vw);
+  max-width: min(1100px, calc(100vw - 32px));
   max-height: 90vh;
   padding: 16px;
   border: 0;
   border-radius: 16px;
   background: #fff;
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  margin: auto;
 }
 
 .home__portrait-dialog::backdrop {
@@ -121,6 +125,7 @@
   max-width: 100%;
   max-height: calc(90vh - 32px);
   object-fit: contain;
+  margin: 0 auto;
 }
 
 .home__portrait-close {
