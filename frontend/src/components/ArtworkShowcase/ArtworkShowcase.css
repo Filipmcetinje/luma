@@ -96,6 +96,32 @@
   cursor: pointer;
 }
 
+.artwork-showcase__more {
+  margin: 32px 0 0;
+  text-align: center;
+}
+
+.artwork-showcase__more a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #49634a;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.artwork-showcase__more a:hover {
+  background-color: #5e795f;
+}
+
+.artwork-showcase__more a:focus-visible {
+  outline: 3px solid #29402e;
+  outline-offset: 4px;
+}
+
 @media screen and (max-width: 700px) {
   .artwork-showcase {
     padding: 16px 24px 48px;

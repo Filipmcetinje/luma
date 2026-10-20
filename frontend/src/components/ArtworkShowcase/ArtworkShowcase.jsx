@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ArtworkShowcase.css";
 
 const artworks = [
@@ -109,6 +110,12 @@ function ArtworkShowcase({ limit }) {
           </figure>
         ))}
       </div>
+
+      {displayedArtworks.length < artworks.length && (
+        <p className="artwork-showcase__more">
+          <Link to="/art">View all artwork</Link>
+        </p>
+      )}
 
       <dialog
         className="artwork-showcase__dialog"
