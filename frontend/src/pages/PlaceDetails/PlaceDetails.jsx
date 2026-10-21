@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import places from "../../data/places";
 import "./PlaceDetails.css";
@@ -127,7 +127,11 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
             <ul>
               {place.nearbyPlaces.map((nearbyPlace) => (
-                <li key={nearbyPlace.slug}>{nearbyPlace.title}</li>
+                <li key={nearbyPlace.slug}>
+                  <Link to={`/places/${place.id}/nearby/${nearbyPlace.slug}`}>
+                    {nearbyPlace.title}
+                  </Link>
+                </li>
               ))}
             </ul>
           </section>

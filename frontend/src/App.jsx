@@ -8,6 +8,7 @@ import Discover from "./pages/Discover/Discover";
 import Trips from "./pages/Trips/Trips";
 import Journal from "./pages/Journal/Journal";
 import PlaceDetails from "./pages/PlaceDetails/PlaceDetails";
+import NearbyPlaceDetails from "./pages/NearbyPlaceDetails/NearbyPlaceDetails";
 import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
@@ -675,6 +676,11 @@ function App() {
               onAddPlaceToTrip={handleAddPlaceToTrip}
             />
           }
+        />
+
+        <Route
+          path="/places/:placeId/nearby/:nearbySlug"
+          element={<NearbyPlaceDetails />}
         />
       </Routes>
 
