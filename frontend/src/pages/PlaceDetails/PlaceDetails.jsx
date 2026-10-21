@@ -121,6 +121,18 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
           </p>
         </section>
 
+        {place.nearbyPlaces?.length > 0 && (
+          <section className="place-details__nearby">
+            <h2>Places around {place.title}</h2>
+
+            <ul>
+              {place.nearbyPlaces.map((nearbyPlace) => (
+                <li key={nearbyPlace.slug}>{nearbyPlace.title}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="place-details__trip-section">
           <h2 className="place-details__trip-title">Add to a trip</h2>
 

@@ -175,6 +175,33 @@
   outline-offset: 4px;
 }
 
+.place-details__nearby {
+  margin-top: 40px;
+}
+
+.place-details__nearby h2 {
+  margin: 0 0 20px;
+  font-size: 28px;
+}
+
+.place-details__nearby ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.place-details__nearby li {
+  padding: 16px;
+  border: 1px solid #d4ddd4;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #29402e;
+  font-weight: 600;
+}
+
 @media screen and (max-width: 700px) {
   .place-details {
     padding: 32px 20px;
