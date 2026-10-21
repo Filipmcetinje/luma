@@ -152,6 +152,28 @@
 .place-details__add-message--warning {
   color: #b45309;
 }
+.place-details__map-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5f7d63;
+  color: #fff;
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.place-details__map-link:hover {
+  background-color: #4c6550;
+}
+
+.place-details__map-link:focus-visible {
+  outline: 3px solid #5f7d63;
+  outline-offset: 4px;
+}
 
 @media screen and (max-width: 700px) {
   .place-details {

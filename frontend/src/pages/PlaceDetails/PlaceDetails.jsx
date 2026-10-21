@@ -103,6 +103,17 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
           <p className="place-details__location">{place.location}</p>
 
+          <a
+            className="place-details__map-link"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              `${place.title}, ${place.location}, Montenegro`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open in Google Maps
+          </a>
+
           <p className="place-details__description">{place.description}</p>
 
           <p className="place-details__best-time">
