@@ -45,3 +45,14 @@
   outline: 3px solid #29402e;
   outline-offset: 3px;
 }
+
+.nearby-place-details__accommodations p {
+  margin: 8px 0 12px;
+  color: #444;
+  font-weight: 400;
+}
+
+.nearby-place-details__accommodations span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

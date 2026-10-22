@@ -86,7 +86,11 @@ function NearbyPlaceDetails() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {option.name} — view property details
+                    <strong>{option.name}</strong>
+
+                    {option.description && <p>{option.description}</p>}
+
+                    <span>View property details →</span>
                   </a>
                 </li>
               ))}

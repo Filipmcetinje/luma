@@ -41,14 +41,20 @@ const places = [
         accommodationOptions: [
           {
             name: "Casa del Mare – Pietra",
+            description:
+              "Hotel near the waterfront, about 3 km from Kotor’s Old Town according to Montenegro’s official tourism listing.",
             url: "https://www.montenegro.travel/en/plan-your-stay-in-montenegro/where-to-stay/461-casa-del-mare-pietra",
           },
           {
             name: "Forza Mare",
+            description:
+              "A five-star boutique hotel on the waterfront, listed by Montenegro’s official tourism website.",
             url: "https://www.montenegro.travel/en/plan-your-stay-in-montenegro/where-to-stay/349-forza-mare",
           },
           {
             name: "Point of View — One-Bedroom Apartment",
+            description:
+              "A one-bedroom apartment with a kitchen. The host states that parking must be reserved.",
             url: "https://www.airbnb.com/rooms/653404430312412716",
           },
         ],
