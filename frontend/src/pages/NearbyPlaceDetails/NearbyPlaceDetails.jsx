@@ -57,6 +57,17 @@ function NearbyPlaceDetails() {
             {nearbyPlace.description}
           </p>
         )}
+        {nearbyPlace.stayAdvice && (
+          <section className="place-details__trip-section">
+            <h2 className="place-details__trip-title">
+              Staying in {nearbyPlace.title}
+            </h2>
+
+            <p className="place-details__description">
+              {nearbyPlace.stayAdvice}
+            </p>
+          </section>
+        )}
       </div>
     </main>
   );
