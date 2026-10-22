@@ -52,6 +52,11 @@ function NearbyPlaceDetails() {
         >
           Open in Google Maps
         </a>
+        {nearbyPlace.description && (
+          <p className="place-details__description">
+            {nearbyPlace.description}
+          </p>
+        )}
       </div>
     </main>
   );

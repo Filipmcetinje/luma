@@ -34,6 +34,8 @@ const places = [
         title: "Dobrota",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/dobrota.png",
+        description:
+          "Dobrota stretches along the Bay of Kotor beside Kotor, with waterfront views and historic stone buildings. Explore the shoreline, enjoy photography, and use the map to check the exact location of places you want to visit.",
       },
       { slug: "ljuta", title: "Ljuta" },
       { slug: "muo", title: "Muo" },
@@ -42,6 +44,8 @@ const places = [
         title: "Prčanj",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/prcanj.png",
+        description:
+          "Discover Prčanj, a seaside village shaped by generations of sailors and sea captains. The Church of the Nativity of Mary rises above its waterfront, connecting the village’s maritime past with its striking architecture. Bring your camera or sketchbook to explore the buildings and views across the Bay of Kotor.",
       },
       { slug: "stoliv", title: "Stoliv" },
     ],
