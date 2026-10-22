@@ -42,6 +42,16 @@ function NearbyPlaceDetails() {
         <p className="place-details__location">
           {destination.title}, Montenegro
         </p>
+        <a
+          className="place-details__map-link"
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            `${nearbyPlace.title}, ${destination.title}, Montenegro`,
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Google Maps
+        </a>
       </div>
     </main>
   );

@@ -37,7 +37,12 @@ const places = [
       },
       { slug: "ljuta", title: "Ljuta" },
       { slug: "muo", title: "Muo" },
-      { slug: "prcanj", title: "Prčanj" },
+      {
+        slug: "prcanj",
+        title: "Prčanj",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/prcanj.png",
+      },
       { slug: "stoliv", title: "Stoliv" },
     ],
   },
