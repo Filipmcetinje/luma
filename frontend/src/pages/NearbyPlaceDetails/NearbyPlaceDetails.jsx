@@ -26,8 +26,11 @@ function NearbyPlaceDetails() {
       <title>{`${nearbyPlace.title} | ${destination.title} | Luma`}</title>
 
       <div className="place-details nearby-place-details">
-        <Link to={`/places/${destination.id}`}>
-          Back to {destination.title}
+        <Link
+          className="nearby-place-details__back"
+          to={`/places/${destination.id}`}
+        >
+          ← Back to {destination.title}
         </Link>
 
         {nearbyPlace.image && (
@@ -69,6 +72,19 @@ function NearbyPlaceDetails() {
             </p>
           </section>
         )}
+
+        {nearbyPlace.transportAdvice && (
+          <section className="place-details__trip-section">
+            <h2 className="place-details__trip-title">
+              Getting around {nearbyPlace.title}
+            </h2>
+
+            <p className="place-details__description">
+              {nearbyPlace.transportAdvice}
+            </p>
+          </section>
+        )}
+
         {nearbyPlace.accommodationOptions?.length > 0 && (
           <section className="place-details__trip-section">
             <h2 className="place-details__trip-title">Accommodation options</h2>

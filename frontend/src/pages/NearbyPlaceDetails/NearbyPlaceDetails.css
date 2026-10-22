@@ -56,3 +56,31 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.nearby-place-details__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  border: 1px solid #49634a;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #29402e;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nearby-place-details__back:hover {
+  background-color: #49634a;
+  color: #fff;
+}
+
+.nearby-place-details__back:focus-visible {
+  outline: 3px solid #29402e;
+  outline-offset: 4px;
+}

@@ -38,6 +38,8 @@ const places = [
           "Dobrota stretches along the Bay of Kotor beside Kotor, with waterfront views and historic stone buildings. Explore the shoreline, enjoy photography, and use the map to check the exact location of places you want to visit.",
         stayAdvice:
           "Before choosing accommodation in Dobrota, check its exact location on the map. If you plan to visit Kotor’s Old Town often, compare the walking route from each property. If you are driving, confirm parking availability and any extra charges with your host.",
+        transportAdvice:
+          "Plan your journeys from your accommodation’s exact address. Check the walking route to Kotor’s Old Town before deciding to walk. For local buses, confirm the nearest stop, direction, and current timetable with your host or the operator. If you choose a taxi, confirm the fare before travelling.",
         accommodationOptions: [
           {
             name: "Casa del Mare – Pietra",
