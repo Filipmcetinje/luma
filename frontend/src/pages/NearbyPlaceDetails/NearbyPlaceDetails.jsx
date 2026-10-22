@@ -29,6 +29,14 @@ function NearbyPlaceDetails() {
           Back to {destination.title}
         </Link>
 
+        {nearbyPlace.image && (
+          <img
+            className="place-details__image"
+            src={nearbyPlace.image}
+            alt={`${nearbyPlace.title}, ${destination.title}, Montenegro`}
+          />
+        )}
+
         <h1 className="place-details__title">{nearbyPlace.title}</h1>
 
         <p className="place-details__location">

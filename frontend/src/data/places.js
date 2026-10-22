@@ -29,7 +29,12 @@ const places = [
       "A dramatic viewpoint above Kotor with old stone paths, mountain views, and beautiful light over the bay.",
     bestTime: "Early morning or golden hour",
     nearbyPlaces: [
-      { slug: "dobrota", title: "Dobrota" },
+      {
+        slug: "dobrota",
+        title: "Dobrota",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/dobrota.png",
+      },
       { slug: "ljuta", title: "Ljuta" },
       { slug: "muo", title: "Muo" },
       { slug: "prcanj", title: "Prčanj" },
