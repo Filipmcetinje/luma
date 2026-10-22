@@ -38,6 +38,20 @@ const places = [
           "Dobrota stretches along the Bay of Kotor beside Kotor, with waterfront views and historic stone buildings. Explore the shoreline, enjoy photography, and use the map to check the exact location of places you want to visit.",
         stayAdvice:
           "Before choosing accommodation in Dobrota, check its exact location on the map. If you plan to visit Kotor’s Old Town often, compare the walking route from each property. If you are driving, confirm parking availability and any extra charges with your host.",
+        accommodationOptions: [
+          {
+            name: "Casa del Mare – Pietra",
+            url: "https://www.montenegro.travel/en/plan-your-stay-in-montenegro/where-to-stay/461-casa-del-mare-pietra",
+          },
+          {
+            name: "Forza Mare",
+            url: "https://www.montenegro.travel/en/plan-your-stay-in-montenegro/where-to-stay/349-forza-mare",
+          },
+          {
+            name: "Point of View — One-Bedroom Apartment",
+            url: "https://www.airbnb.com/rooms/653404430312412716",
+          },
+        ],
       },
       { slug: "ljuta", title: "Ljuta" },
       { slug: "muo", title: "Muo" },

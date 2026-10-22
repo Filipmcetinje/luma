@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import places from "../../data/places";
+import "./NearbyPlaceDetails.css";
 import "../PlaceDetails/PlaceDetails.css";
 
 function NearbyPlaceDetails() {
@@ -24,7 +25,7 @@ function NearbyPlaceDetails() {
     <main className="place-details-page">
       <title>{`${nearbyPlace.title} | ${destination.title} | Luma`}</title>
 
-      <div className="place-details">
+      <div className="place-details nearby-place-details">
         <Link to={`/places/${destination.id}`}>
           Back to {destination.title}
         </Link>
@@ -66,6 +67,30 @@ function NearbyPlaceDetails() {
             <p className="place-details__description">
               {nearbyPlace.stayAdvice}
             </p>
+          </section>
+        )}
+        {nearbyPlace.accommodationOptions?.length > 0 && (
+          <section className="place-details__trip-section">
+            <h2 className="place-details__trip-title">Accommodation options</h2>
+
+            <p>
+              Explore property details and check current prices and
+              availability.
+            </p>
+
+            <ul className="nearby-place-details__accommodations">
+              {nearbyPlace.accommodationOptions.map((option) => (
+                <li key={option.url}>
+                  <a
+                    href={option.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {option.name} — view property details
+                  </a>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
       </div>

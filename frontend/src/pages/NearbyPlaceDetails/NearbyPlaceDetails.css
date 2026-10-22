@@ -1,0 +1,47 @@
+.nearby-place-details > .place-details__description,
+.nearby-place-details > .place-details__trip-section {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nearby-place-details > .place-details__title,
+.nearby-place-details > .place-details__location {
+  text-align: center;
+}
+
+.nearby-place-details > .place-details__map-link {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nearby-place-details__accommodations {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nearby-place-details__accommodations a {
+  display: block;
+  padding: 18px;
+  border: 1px solid #d4ddd4;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #29402e;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.nearby-place-details__accommodations a:hover {
+  background-color: #edf2ed;
+}
+
+.nearby-place-details__accommodations a:focus-visible {
+  outline: 3px solid #29402e;
+  outline-offset: 3px;
+}
