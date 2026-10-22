@@ -82,6 +82,18 @@ function NearbyPlaceDetails() {
             <p className="place-details__description">
               {nearbyPlace.transportAdvice}
             </p>
+
+            {nearbyPlace.transportLinks?.map((link) => (
+              <a
+                className="place-details__map-link"
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
           </section>
         )}
 

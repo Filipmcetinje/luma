@@ -40,6 +40,12 @@ const places = [
           "Before choosing accommodation in Dobrota, check its exact location on the map. If you plan to visit Kotor’s Old Town often, compare the walking route from each property. If you are driving, confirm parking availability and any extra charges with your host.",
         transportAdvice:
           "Plan your journeys from your accommodation’s exact address. Check the walking route to Kotor’s Old Town before deciding to walk. For local buses, confirm the nearest stop, direction, and current timetable with your host or the operator. If you choose a taxi, confirm the fare before travelling.",
+        transportLinks: [
+          {
+            label: "Bus timetables — Kotor Municipality",
+            url: "https://www.kotor.me/sekretarijat-za-investicije---nadle%C4%B9%C4%BEnosti/javni-prevoz/",
+          },
+        ],
         accommodationOptions: [
           {
             name: "Casa del Mare – Pietra",
