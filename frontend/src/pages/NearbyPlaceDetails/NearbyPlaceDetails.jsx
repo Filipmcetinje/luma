@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import places from "../../data/places";
 import "./NearbyPlaceDetails.css";
@@ -5,6 +6,7 @@ import "../PlaceDetails/PlaceDetails.css";
 
 function NearbyPlaceDetails() {
   const { placeId, nearbySlug } = useParams();
+  const [photoSelection, setPhotoSelection] = useState(null);
 
   const destination = places.find((place) => place.id === Number(placeId));
 
@@ -21,6 +23,15 @@ function NearbyPlaceDetails() {
     );
   }
 
+  const galleryImages =
+    nearbyPlace.gallery ?? (nearbyPlace.image ? [nearbyPlace.image] : []);
+
+  const selectedImage =
+    photoSelection?.placeKey === `${placeId}/${nearbySlug}` &&
+    galleryImages.includes(photoSelection.image)
+      ? photoSelection.image
+      : galleryImages[0];
+
   return (
     <main className="place-details-page">
       <title>{`${nearbyPlace.title} | ${destination.title} | Luma`}</title>
@@ -33,12 +44,43 @@ function NearbyPlaceDetails() {
           ← Back to {destination.title}
         </Link>
 
-        {nearbyPlace.image && (
+        {selectedImage && (
           <img
             className="place-details__image"
-            src={nearbyPlace.image}
+            src={selectedImage}
             alt={`${nearbyPlace.title}, ${destination.title}, Montenegro`}
           />
+        )}
+
+        {galleryImages.length > 1 && (
+          <div className="place-details__gallery">
+            {galleryImages.map((image, index) => (
+              <button
+                className={`place-details__thumbnail-button ${
+                  selectedImage === image
+                    ? "place-details__thumbnail-button_active"
+                    : ""
+                }`}
+                key={image}
+                type="button"
+                onClick={() =>
+                  setPhotoSelection({
+                    placeKey: `${placeId}/${nearbySlug}`,
+                    image,
+                  })
+                }
+                aria-label={`Show ${nearbyPlace.title} photo ${index + 1}`}
+                aria-pressed={selectedImage === image}
+              >
+                <img
+                  className="place-details__thumbnail"
+                  src={image}
+                  alt=""
+                  loading="lazy"
+                />
+              </button>
+            ))}
+          </div>
         )}
 
         <h1 className="place-details__title">{nearbyPlace.title}</h1>

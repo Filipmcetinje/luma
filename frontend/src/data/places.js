@@ -74,6 +74,11 @@ const places = [
         title: "Prčanj",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/prcanj.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/prcanj.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/prcanj-2.png",
+        ],
+
         description:
           "Discover Prčanj, a seaside village shaped by generations of sailors and sea captains. The Church of the Nativity of Mary rises above its waterfront, connecting the village’s maritime past with its striking architecture. Bring your camera or sketchbook to explore the buildings and views across the Bay of Kotor.",
       },
