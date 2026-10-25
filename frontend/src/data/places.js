@@ -122,6 +122,10 @@ const places = [
       {
         slug: "stoliv",
         title: "Stoliv",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/stoliv.png",
+        description:
+          "Stoliv brings together two different sides of the bay: Donji Stoliv along the waterfront and Gornji Stoliv above it on the slopes of Vrmac. Explore the stone buildings beside the sea, or follow the uphill walking route through chestnut woodland to the upper village for views across the Bay of Kotor.",
         accommodationOptions: [
           {
             name: "Hyatt Regency Kotor Bay Resort",
