@@ -1,7 +1,7 @@
 const kotorFortressImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/kotor-fortress.jpg";
 const perastImage =
-  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast.jpg";
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-1.png";
 const lovcenImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/lovcen-national-park.jpg";
 const cetinjeImage =
@@ -83,9 +83,46 @@ const places = [
           "Discover Prčanj, a seaside village shaped by generations of sailors and sea captains. The Church of the Nativity of Mary rises above its waterfront, connecting the village’s maritime past with its striking architecture. Bring your camera or sketchbook to explore the buildings and views across the Bay of Kotor.",
         stayAdvice:
           "Prčanj is a place I recommend for a quieter stay by the bay, with waterfront walks, swimming, and mountains rising above the sea. I especially love the feeling of mountain air meeting the Mediterranean. For confident cyclists, exploring toward Kotor or Tivat by bike is another way to enjoy the bay. Check your route and traffic conditions before setting off.",
+        accommodationOptions: [
+          {
+            name: "Hotel Libertas",
+            description:
+              "A hotel in an 18th-century stone house, with an outdoor pool, private beach, and sea-view rooms.",
+            url: "https://www.montenegro.travel/en/plan-your-stay-in-montenegro/where-to-stay/489-libertas",
+          },
+          {
+            name: "Djurovic Apartments",
+            description:
+              "Apartments with equipped kitchens and dining areas—a self-catering option to compare with hotel stays.",
+            url: "https://djurovicapartmani.com/",
+          },
+          {
+            name: "Villa Old Mariner",
+            description:
+              "A traditional stone villa in Prčanj. Explore its rooms and contact the property to check availability and prices for your dates.",
+            url: "https://villaoldmariner.com/home",
+          },
+          {
+            name: "Art Galathea",
+            description:
+              "A hotel in an 18th-century stone building near the beach, combining traditional décor with modern amenities.",
+            url: "https://www.montenegro.travel/en/plan-your-stay-in-montenegro/where-to-stay/531-art-galathea",
+          },
+        ],
       },
 
-      { slug: "stoliv", title: "Stoliv" },
+      {
+        slug: "stoliv",
+        title: "Stoliv",
+        accommodationOptions: [
+          {
+            name: "Hyatt Regency Kotor Bay Resort",
+            description:
+              "A waterfront resort in Donji Stoliv, home to VRMAC Health & Wellbeing Retreat de’MAR.",
+            url: "https://www.hyatt.com/hyatt-regency/en-US/tivrk-hyatt-regency-kotor-bay-resort",
+          },
+        ],
+      },
     ],
   },
   {
