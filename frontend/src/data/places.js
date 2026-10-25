@@ -68,7 +68,14 @@ const places = [
         ],
       },
       { slug: "ljuta", title: "Ljuta" },
-      { slug: "muo", title: "Muo" },
+      {
+        slug: "orahovac",
+        title: "Orahovac",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/orahovac.png",
+        description:
+          "Orahovac is a small, quiet village on the Bay of Kotor—a place I recommend for resting and slowing down. Spend unhurried days by the water, enjoy the mountain views, and settle into the gentle pace of life beside the bay.",
+      },
       {
         slug: "prcanj",
         title: "Prčanj",
