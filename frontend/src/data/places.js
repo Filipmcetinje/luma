@@ -83,6 +83,14 @@ const places = [
           "Discover Prčanj, a seaside village shaped by generations of sailors and sea captains. The Church of the Nativity of Mary rises above its waterfront, connecting the village’s maritime past with its striking architecture. Bring your camera or sketchbook to explore the buildings and views across the Bay of Kotor.",
         stayAdvice:
           "Prčanj is a place I recommend for a quieter stay by the bay, with waterfront walks, swimming, and mountains rising above the sea. I especially love the feeling of mountain air meeting the Mediterranean. For confident cyclists, exploring toward Kotor or Tivat by bike is another way to enjoy the bay. Check your route and traffic conditions before setting off.",
+        transportAdvice:
+          "Planning a day in Kotor or Tivat? Before leaving your accommodation in Prčanj, confirm the nearest bus stop, direction, and return service with your host or Blue Line. Check whether your journey requires a connection. For a taxi, agree on the fare before setting off. If you bring a car, ask your accommodation about parking before arrival.",
+        transportLinks: [
+          {
+            label: "Bus timetables — Kotor Municipality",
+            url: "https://www.kotor.me/opstinakotor/javni-prevoz/",
+          },
+        ],
         accommodationOptions: [
           {
             name: "Hotel Libertas",
