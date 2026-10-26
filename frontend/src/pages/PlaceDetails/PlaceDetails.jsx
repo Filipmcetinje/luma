@@ -115,10 +115,6 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
           </a>
 
           <p className="place-details__description">{place.description}</p>
-
-          <p className="place-details__best-time">
-            Best time: {place.bestTime}
-          </p>
         </section>
 
         {place.nearbyPlaces?.length > 0 && (

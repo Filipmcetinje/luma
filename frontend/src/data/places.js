@@ -27,8 +27,8 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-5.png",
     ],
     description:
-      "A dramatic viewpoint above Kotor with old stone paths, mountain views, and beautiful light over the bay.",
-    bestTime: "Early morning or golden hour",
+      "Inside Kotor’s medieval walls, narrow streets open into lively squares surrounded by churches and stone palaces. St. Tryphon’s Cathedral, consecrated in 1166, is a landmark of a town shaped by centuries of seafaring, trade, and artistic exchange. Explore its sacred art, maritime history, and varied architecture, then pause in a café or climb above the rooftops for views of the bay. Kotor brings history and everyday life together in a compact town full of contrasts.",
+
     nearbyPlaces: [
       {
         slug: "dobrota",
