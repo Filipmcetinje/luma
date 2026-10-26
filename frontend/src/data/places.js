@@ -67,7 +67,14 @@ const places = [
           },
         ],
       },
-      { slug: "ljuta", title: "Ljuta" },
+      {
+        slug: "ljuta",
+        title: "Ljuta",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/ljuta.png",
+        description:
+          "Ljuta is a small, quiet place I recommend for resting beside the bay. Its river emerges at the foot of the mountains and flows roughly 200 metres directly into the sea. After heavy rain, this short river becomes a powerful, rushing torrent—a striking contrast to the village’s peaceful atmosphere.",
+      },
       {
         slug: "orahovac",
         title: "Orahovac",
