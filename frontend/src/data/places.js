@@ -75,6 +75,26 @@ const places = [
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/orahovac.png",
         description:
           "Orahovac is a small, quiet village on the Bay of Kotor—a place I recommend for resting and slowing down. Spend unhurried days by the water, enjoy the mountain views, and settle into the gentle pace of life beside the bay.",
+        accommodationOptions: [
+          {
+            name: "Casa del Mare – Amfora",
+            description:
+              "A seaside hotel with balcony suites overlooking the bay or mountains, a restaurant, and a beach directly in front.",
+            url: "https://casadelmare.me/cdm-amfora.html",
+          },
+          {
+            name: "Villa Popović",
+            description:
+              "Studios and larger apartments with access to a shared garden overlooking the bay. Options include two-bedroom apartments.",
+            url: "https://villapopovic.com/",
+          },
+          {
+            name: "Kompas Apartments",
+            description:
+              "Self-catering apartments with equipped kitchens and sea-view balconies. The property lists one parking space per apartment.",
+            url: "https://www.kompasapartmani.com/index",
+          },
+        ],
       },
       {
         slug: "prcanj",
@@ -151,6 +171,7 @@ const places = [
     category: "Coast",
     image: perastImage,
     gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-4.png",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-1.png",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-2.jpg",
