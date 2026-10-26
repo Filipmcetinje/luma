@@ -19,6 +19,7 @@ const places = [
     category: "Mountain",
     image: kotorFortressImage,
     gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor_-panoramic.png",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-fortress.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-2.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor-3.jpg",
@@ -74,6 +75,26 @@ const places = [
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/ljuta.png",
         description:
           "Ljuta is a small, quiet place I recommend for resting beside the bay. Its river emerges at the foot of the mountains and flows roughly 200 metres directly into the sea. After heavy rain, this short river becomes a powerful, rushing torrent—a striking contrast to the village’s peaceful atmosphere.",
+        accommodationOptions: [
+          {
+            name: "Villa Nikčević",
+            description:
+              "Seafront rooms and apartments with a swimming pool, private beach, restaurant, and free parking.",
+            url: "https://vilanikcevic.com/en/about-us/",
+          },
+          {
+            name: "Villa Ljuta",
+            description:
+              "A whole four-bedroom villa with three bathrooms, a swimming pool, and a large terrace—an option for families travelling together.",
+            url: "https://villaljuta.com/",
+          },
+          {
+            name: "Porta del Mare I – Sea View",
+            description:
+              "A seafront studio in Ljuta with a kitchen, air conditioning, and free parking, listed on Airbnb.",
+            url: "https://www.airbnb.com/rooms/35767536",
+          },
+        ],
       },
       {
         slug: "orahovac",
