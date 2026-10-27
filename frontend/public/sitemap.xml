@@ -10,4 +10,9 @@
   <url><loc>https://luma-montenegro.vercel.app/places/5</loc></url>
   <url><loc>https://luma-montenegro.vercel.app/places/6</loc></url>
   <url><loc>https://luma-montenegro.vercel.app/places/7</loc></url>
+ <url><loc>https://luma-montenegro.vercel.app/places/1/nearby/dobrota</loc></url>
+  <url><loc>https://luma-montenegro.vercel.app/places/1/nearby/ljuta</loc></url>
+  <url><loc>https://luma-montenegro.vercel.app/places/1/nearby/orahovac</loc></url>
+  <url><loc>https://luma-montenegro.vercel.app/places/1/nearby/prcanj</loc></url>
+  <url><loc>https://luma-montenegro.vercel.app/places/1/nearby/stoliv</loc></url>
 </urlset>
