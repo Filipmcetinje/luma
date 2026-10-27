@@ -297,6 +297,30 @@ const places = [
       {
         slug: "njegusi",
         title: "Njeguši",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/njegusi.jpg",
+        description:
+          "Surrounded by the rocky slopes of Lovćen, Njeguši brings together mountain scenery, village traditions, and Montenegro’s history. This is the birthplace of Petar II Petrović Njegoš, the ruler and poet whose family home is now a museum. The village is also known for Njeguški pršut and local cheese. Stop for a traditional meal, explore the stone houses, and discover the landscape that shaped generations of Montenegrin life.",
+        accommodationOptions: [
+          {
+            name: "Ethno Village St George",
+            description:
+              "A village-style accommodation complex offering standard apartments and deluxe suites in Njeguši.",
+            url: "https://www.eng.etnoselosvetigeorgije.com/apartments/",
+          },
+          {
+            name: "Njeguši Oasis",
+            description:
+              "A one-bedroom apartment with a kitchen, terrace, mountain views, and private parking.",
+            url: "https://www.booking.com/hotel/me/njegusi-oasis-a-place-to-charge-your-batteries.en-gb.html",
+          },
+          {
+            name: "Kutak prirode",
+            description:
+              "An apartment in Njeguši with a terrace, private parking, and Wi-Fi.",
+            url: "https://www.booking.com/hotel/me/kutak-prirode.html",
+          },
+        ],
       },
       {
         slug: "lipa-cave",
