@@ -265,6 +265,44 @@ const places = [
     ],
     description:
       "Cetinje’s story is rooted in the struggle to preserve freedom. In 1482, as Ottoman expansion threatened his lands, Ivan Crnojević established his seat beneath Mount Lovćen, founding a monastery here in 1484. Cetinje became a centre of Montenegrin spiritual, political, and cultural life, shaped by mountain traditions and the defence of autonomy. Today, its monasteries, royal palaces, former embassies, and art museums reveal how this small city helped shape a country.",
+    nearbyPlaces: [
+      {
+        slug: "rijeka-crnojevica",
+        title: "Rijeka Crnojevića",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/rijeka-crnojevica.png",
+        description:
+          "Rijeka Crnojevića opens onto one of Montenegro’s most beautiful river landscapes, where winding water meets Lake Skadar among green hills. Explore by boat or kayak to experience the scenery from the water, or pause beside the town’s old stone bridge. Once an important trading port, this small riverside town brings together history, nature, and a slower pace of life.",
+        accommodationOptions: [
+          {
+            name: "Hotel S Family Jovićević",
+            description:
+              "A hotel with a restaurant, garden, and private parking.",
+            url: "https://www.booking.com/hotel/me/pansion-5.html",
+          },
+          {
+            name: "Apartment Jovićević",
+            description:
+              "A three-bedroom apartment with a fully equipped kitchen and a terrace overlooking the river.",
+            url: "https://www.booking.com/hotel/me/apartments-jovicevic.html",
+          },
+          {
+            name: "Apartment Vujović",
+            description:
+              "A one-bedroom apartment with a living room, terrace, garden, and private parking.",
+            url: "https://www.booking.com/hotel/me/rijeka-crnojevica-apartment-vujovic.html",
+          },
+        ],
+      },
+      {
+        slug: "njegusi",
+        title: "Njeguši",
+      },
+      {
+        slug: "lipa-cave",
+        title: "Lipa Cave",
+      },
+    ],
   },
   {
     id: 5,
