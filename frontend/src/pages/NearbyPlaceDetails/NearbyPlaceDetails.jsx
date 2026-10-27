@@ -36,6 +36,10 @@ function NearbyPlaceDetails() {
     <main className="place-details-page">
       <title>{`${nearbyPlace.title} | ${destination.title} | Luma`}</title>
 
+      {nearbyPlace.description && (
+        <meta name="description" content={nearbyPlace.description} />
+      )}
+
       <div className="place-details nearby-place-details">
         <Link
           className="nearby-place-details__back"
