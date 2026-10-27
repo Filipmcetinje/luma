@@ -107,6 +107,24 @@ function NearbyPlaceDetails() {
             {nearbyPlace.description}
           </p>
         )}
+
+        {nearbyPlace.websiteUrl && (
+          <a
+            className="place-details__map-link"
+            href={nearbyPlace.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {nearbyPlace.websiteLabel}
+          </a>
+        )}
+
+        {nearbyPlace.stayUrl && (
+          <Link className="place-details__map-link" to={nearbyPlace.stayUrl}>
+            {nearbyPlace.stayLabel}
+          </Link>
+        )}
+
         {nearbyPlace.stayAdvice && (
           <section className="place-details__trip-section">
             <h2 className="place-details__trip-title">

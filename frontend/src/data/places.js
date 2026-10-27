@@ -265,6 +265,26 @@ const places = [
     ],
     description:
       "Cetinje’s story is rooted in the struggle to preserve freedom. In 1482, as Ottoman expansion threatened his lands, Ivan Crnojević established his seat beneath Mount Lovćen, founding a monastery here in 1484. Cetinje became a centre of Montenegrin spiritual, political, and cultural life, shaped by mountain traditions and the defence of autonomy. Today, its monasteries, royal palaces, former embassies, and art museums reveal how this small city helped shape a country.",
+    accommodationOptions: [
+      {
+        name: "Hotel Gradska Cetinje",
+        description:
+          "A hotel in the historic centre, convenient for exploring Cetinje’s museums, palaces, and cafés.",
+        url: "https://www.gradska.me/",
+      },
+      {
+        name: "Hotel Dapčević",
+        description:
+          "A hotel in Cetinje for visitors looking for a town base while exploring the surrounding area.",
+        url: "https://www.booking.com/hotel/me/dapcevic.en-gb.html",
+      },
+      {
+        name: "La Vecchia Casa",
+        description:
+          "A guesthouse in a historic building in Cetinje, with a garden and terrace.",
+        url: "https://www.lavecchiacasa.com/",
+      },
+    ],
     nearbyPlaces: [
       {
         slug: "rijeka-crnojevica",
@@ -325,6 +345,14 @@ const places = [
       {
         slug: "lipa-cave",
         title: "Lipa Cave",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/lipa-cave.png",
+        description:
+          "Beneath the countryside near Cetinje, Lipa Cave reveals a different side of Montenegro: underground halls, stone columns, and formations shaped by water over millions of years. A guided visit takes you along a designated path through this hidden landscape, with a small tourist train connecting the parking area to the entrance. Bring a light jacket and closed shoes—the cave stays cool even in summer. Check the official website for tour times before travelling.",
+        websiteUrl: "https://lipa-cave.me/",
+        websiteLabel: "Check tour times and tickets",
+        stayUrl: "/places/4",
+        stayLabel: "Stay in Cetinje",
       },
     ],
   },
