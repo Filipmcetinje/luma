@@ -264,8 +264,7 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/cetinje-4.png",
     ],
     description:
-      "Montenegro’s historic royal capital, filled with museums, old embassies, quiet streets, and cultural inspiration for artists and photographers.",
-    bestTime: "Morning or late afternoon",
+      "Cetinje’s story is rooted in the struggle to preserve freedom. In 1482, as Ottoman expansion threatened his lands, Ivan Crnojević established his seat beneath Mount Lovćen, founding a monastery here in 1484. Cetinje became a centre of Montenegrin spiritual, political, and cultural life, shaped by mountain traditions and the defence of autonomy. Today, its monasteries, royal palaces, former embassies, and art museums reveal how this small city helped shape a country.",
   },
   {
     id: 5,
