@@ -28,6 +28,26 @@ const places = [
     ],
     description:
       "Inside Kotor’s medieval walls, narrow streets open into lively squares surrounded by churches and stone palaces. St. Tryphon’s Cathedral, consecrated in 1166, is a landmark of a town shaped by centuries of seafaring, trade, and artistic exchange. Explore its sacred art, maritime history, and varied architecture, then pause in a café or climb above the rooftops for views of the bay. Kotor brings history and everyday life together in a compact town full of contrasts.",
+    accommodationOptions: [
+      {
+        name: "Hotel Monte Cristo",
+        description:
+          "A boutique hotel in a restored historic building on the Maritime Museum square, inside Kotor’s Old Town.",
+        url: "https://www.hotelmontecristo.me/",
+      },
+      {
+        name: "Hotel Vardar",
+        description:
+          "A hotel on the Old Town’s main square, with Kotor’s historic streets and monuments close by.",
+        url: "https://hotelvardar.com/en/",
+      },
+      {
+        name: "Apartments Wine House Old Town",
+        description:
+          "Apartments in an old stone building inside the town walls, with kitchenettes for preparing your own meals.",
+        url: "https://wine-house.me/Home.html",
+      },
+    ],
 
     nearbyPlaces: [
       {

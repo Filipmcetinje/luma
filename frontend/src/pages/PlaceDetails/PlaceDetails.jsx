@@ -133,6 +133,28 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
           </section>
         )}
 
+        {place.accommodationOptions?.length > 0 && (
+          <section className="place-details__trip-section">
+            <h2 className="place-details__trip-title">Accommodation options</h2>
+
+            <ul className="place-details__accommodations">
+              {place.accommodationOptions.map((option) => (
+                <li key={option.url}>
+                  <a
+                    href={option.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <strong>{option.name}</strong>
+                    {option.description && <p>{option.description}</p>}
+                    <span>View property details →</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="place-details__trip-section">
           <h2 className="place-details__trip-title">Add to a trip</h2>
 
