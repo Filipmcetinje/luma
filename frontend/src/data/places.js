@@ -245,8 +245,35 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-cave.jpg",
     ],
     description:
-      "A mountain landscape with wide views, winding roads, and a powerful connection to Montenegrin history and culture.",
-    bestTime: "Late afternoon",
+      "Lovćen is more than a mountain—it is a symbol of Montenegro’s identity, freedom, and enduring spirit. Rising above the Adriatic, it connects the coastal world of Kotor, Tivat, and Budva with the historic heartland around Cetinje. From the sea, its rocky slopes form a dramatic mountain backdrop; from its heights, the landscape opens towards the bay, coast, and inland mountains. For many Montenegrins, Lovćen holds a place comparable to Olympus for the Greeks. On Jezerski Vrh, the mausoleum of the ruler and poet Petar II Petrović Njegoš brings that connection between mountain, history, and national identity into focus.",
+    accommodationOptions: [
+      {
+        name: "Hotel Monte Rosa",
+        description:
+          "A hotel at Ivanova Korita inside Lovćen National Park, with views of the surrounding mountains.",
+        url: "https://www.booking.com/hotel/me/monte-rosa.html",
+      },
+      {
+        name: "Hotel Ivanov Konak",
+        description:
+          "Rooms and studio apartments at Ivanova Korita, surrounded by beech forest, with a restaurant and nearby walking trails.",
+        url: "https://www.ivanovakorita.com/en/hotel-ivanov-konak/",
+      },
+    ],
+    nearbyPlaces: [
+      {
+        slug: "kotor-cable-car",
+        title: "Kotor–Lovćen Cable Car",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/lovcen-cable-car.png",
+        description:
+          "Travel between the Adriatic coast and Lovćen’s mountain landscape, with wide views over the Bay of Kotor. The cable car connects Dub, near Kotor, with Kuk on Lovćen, and the ride takes around 11 minutes. You can start from either station, making it possible to experience the journey from the coast or the mountain. Check the official website for operating times, weather updates, and ticket options before setting out.",
+        websiteUrl: "https://www.kotorcablecar.me/",
+        websiteLabel: "Check operating times and tickets",
+        stayUrl: "/places/1",
+        stayLabel: "Stay in Kotor",
+      },
+    ],
   },
   {
     id: 4,
