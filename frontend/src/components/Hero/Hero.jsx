@@ -21,8 +21,8 @@ function Hero() {
       <h1 className="hero__title">Discover the world through creativity.</h1>
 
       <p className="hero__text">
-        Explore inspiring places, plan meaningful journeys, and capture every
-        creative moment.
+        Find inspiring places, save your favorites, plan your trip, and capture
+        your memories in a travel journal.
       </p>
 
       <Link className="hero__button" to="/discover">

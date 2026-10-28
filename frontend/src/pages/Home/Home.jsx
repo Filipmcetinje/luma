@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import PhotographyShowcase from "../../components/PhotographyShowcase/PhotographyShowcase";
 import ArtworkShowcase from "../../components/ArtworkShowcase/ArtworkShowcase";
@@ -21,6 +22,21 @@ function Home() {
       <Hero />
 
       <div className="home__creative-background">
+        <section className="home__planning">
+          <h2 className="home__planning-title">
+            Places that inspire, stories worth discovering.
+          </h2>
+
+          <p className="home__planning-intro">
+            Hi, I’m Filip. I created Luma to introduce you to a part of the
+            world I love—where mountains meet the sea, old towns hold centuries
+            of stories, and art is woven into everyday life. Starting with
+            Montenegro, I want to share the landscapes, history, and culture
+            that inspire me, and help you find your own connection to these
+            places.
+          </p>
+        </section>
+
         <PhotographyShowcase />
         <ArtworkShowcase limit={4} />
 
@@ -43,9 +59,8 @@ function Home() {
               <h2 className="home__about-title">About the Artist</h2>
 
               <p className="home__about-text">
-                I’m Filip Milosevic, an artist and software developer. I created
-                Luma to connect travel in Montenegro with photography, painting,
-                and creative inspiration.
+                I’m Filip Milosevic, an artist and software developer, sharing
+                the places that inspire my artwork
               </p>
             </div>
           </div>
