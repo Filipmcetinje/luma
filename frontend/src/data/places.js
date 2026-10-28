@@ -226,8 +226,27 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-3.png",
     ],
     description:
-      "A peaceful coastal town with baroque architecture, calm water, islands, and strong inspiration for painters and photographers.",
-    bestTime: "Morning light",
+      "Perast’s stone palaces and waterfront churches tell the story of a small town shaped by seafaring. Generations of captains and merchants brought wealth and artistic influences home, leaving a remarkable collection of Baroque buildings along the bay. Walk beneath the bell tower of St. Nicholas, explore the town’s maritime past at the museum in Bujović Palace, or take a boat to Our Lady of the Rocks. With the islands of St. George and Our Lady of the Rocks facing its waterfront, Perast brings architecture, history, and the mountain-framed bay into one memorable view.",
+    accommodationOptions: [
+      {
+        name: "Hotel Conte",
+        description:
+          "Rooms and apartments in restored stone houses and palaces, with a waterfront restaurant in the heart of Perast.",
+        url: "https://hotelconte.me/",
+      },
+      {
+        name: "Heritage Grand Perast",
+        description:
+          "A luxury hotel in a restored 18th-century palace beside the Bay of Kotor.",
+        url: "https://hotelheritagegrandperast.com/",
+      },
+      {
+        name: "Hotel Leon Coronato",
+        description:
+          "A waterfront hotel in Perast, offering rooms beside the bay.",
+        url: "https://leoncoronato.com/rooms/",
+      },
+    ],
   },
   {
     id: 3,
