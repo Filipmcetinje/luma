@@ -519,6 +519,30 @@ const places = [
       {
         slug: "petrovac",
         title: "Petrovac",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/petrovac.png",
+        description:
+          "Petrovac sits between green hills and the open Adriatic, with a curved beach and a promenade made for unhurried walks beside the sea. Offshore, Katič and Sveta Neđelja—with its tiny church perched on rock—give the bay its distinctive silhouette. Once known as Lastva, the town preserves traces of Roman life in its mosaics and Venetian history around the 16th-century Kastio fortress above the harbour. Spend a morning swimming, explore the waterfront, or walk to nearby Lučice, a sheltered cove framed by pine and cypress trees. Petrovac invites you to enjoy beach days, coastal scenery, and history within one small seaside town.",
+        accommodationOptions: [
+          {
+            name: "Hotel Riva by Aycon",
+            description:
+              "A beachfront hotel on Petrovac’s promenade, with a restaurant terrace overlooking the beach.",
+            url: "https://ayconhotels.com/hotel-riva/",
+          },
+          {
+            name: "Hotel Palas",
+            description:
+              "A seafront hotel beside Petrovac’s town beach, convenient for walks along the promenade.",
+            url: "https://www.booking.com/hotel/me/palas.html",
+          },
+          {
+            name: "Vile Oliva Hotel & Resort",
+            description:
+              "A resort around 80 metres from Petrovac Beach, offering rooms, suites, and swimming pools.",
+            url: "https://www.vileoliva.com/en/",
+          },
+        ],
       },
       {
         slug: "jaz",
