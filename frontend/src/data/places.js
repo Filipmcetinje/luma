@@ -493,6 +493,28 @@ const places = [
         title: "Sveti Stefan",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/sveti-stefan.png",
+        description:
+          "Sveti Stefan brings together pink-toned pebble beaches, turquoise water, and a fortified village of stone houses and red roofs, joined to the mainland by a narrow causeway. Its history reaches back to the 15th century, long before it became a celebrated hotel retreat. Take in the island from the shore, enjoy the surrounding beaches, or explore the wooded coastline towards Miločer and Pržno. Here, historic architecture and Mediterranean scenery create one of Montenegro’s most recognisable coastal views.",
+        accommodationOptions: [
+          {
+            name: "Aman Sveti Stefan",
+            description:
+              "Stay within the historic island village, where restored stone houses, cobbled lanes, and courtyards overlook the Adriatic. Check the official website for seasonal availability.",
+            url: "https://www.aman.com/resorts/aman-sveti-stefan",
+          },
+          {
+            name: "Hotel California",
+            description:
+              "A beachfront hotel facing Sveti Stefan, with a dedicated beach area for guests. Welcomes adults and children over 12.",
+            url: "https://hotelcalifornia.me/en/",
+          },
+          {
+            name: "Hotel Azimut",
+            description:
+              "A hotel overlooking Sveti Stefan, with an indoor swimming pool, spa, and restaurant.",
+            url: "https://hotel-azimut.com/en/",
+          },
+        ],
       },
       {
         slug: "petrovac",
