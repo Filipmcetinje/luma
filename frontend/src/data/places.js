@@ -463,10 +463,36 @@ const places = [
       {
         slug: "przno",
         title: "Pržno",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/przno.png",
+        description:
+          "Pržno is the beginning of a remarkable stretch of coast, where a small fishing village, wooded headlands, and sheltered beaches lead towards Miločer and Sveti Stefan. Stone houses and seafood terraces gather around its bay, while nearby Miločer reveals a different landscape: former royal gardens, old olive trees, tall cedars, and coves framed by greenery. Explore the coastal paths towards King’s Beach and the views of Sveti Stefan, or stay in Pržno for a swim and a meal beside the fishing boats. Here, the pleasure is in taking your time and discovering each bay along the way.",
+        accommodationOptions: [
+          {
+            name: "Maestral Resort & Casino",
+            description:
+              "A beachfront resort in Pržno with rooms and suites, restaurants, and a spa.",
+            url: "https://www.maestral.me/en/luxury-resort-montenegro",
+          },
+          {
+            name: "Villa Katarina",
+            description:
+              "Rooms, studios, and apartments around 120 metres from Pržno Beach, with a seasonal outdoor pool and private parking.",
+            url: "https://villakatarina.me/",
+          },
+          {
+            name: "Springs Apartments & Rooms",
+            description:
+              "Family-run apartments and rooms near the entrance to Miločer Park, around 70 metres from Pržno Beach.",
+            url: "https://simo-przno.com/",
+          },
+        ],
       },
       {
         slug: "sveti-stefan",
         title: "Sveti Stefan",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/sveti-stefan.png",
       },
       {
         slug: "petrovac",

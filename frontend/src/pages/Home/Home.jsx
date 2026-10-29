@@ -58,8 +58,9 @@ function Home() {
               <h2 className="home__about-title">About the Artist</h2>
 
               <p className="home__about-text">
-                I’m Filip Milosevic, an artist and software developer, sharing
-                the places that inspire my artwork
+                I’m Filip Milosevic, an artist and software developer. Through
+                Luma, I share the beauty of Montenegro—the places, light, and
+                landscapes that inspire my artwork.
               </p>
             </div>
           </div>
