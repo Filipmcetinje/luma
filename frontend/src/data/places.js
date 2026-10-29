@@ -430,8 +430,53 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/red-beach2.png",
     ],
     description:
-      "A historic coastal town with stone walls, narrow streets, beaches, and dramatic views across the Adriatic Sea.",
-    bestTime: "Early morning or sunset",
+      "Budva and its Riviera offer some of the Mediterranean’s most beautiful coastal scenery, with clear water, sheltered coves, and beaches backed by mountains. Enjoy it your own way: spend a quiet day swimming, explore the coastline by boat, or experience lively waterfront restaurants and nightlife. At its heart, the walled Old Town holds more than 2,500 years of history, with origins linked in Greek legend to Cadmus and Harmonia. Wander its stone streets and small squares, discover churches and art, or simply settle beside the sea.",
+    nearbyPlaces: [
+      {
+        slug: "becici",
+        title: "Bečići",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/becici.png",
+        description:
+          "With mountains rising behind a long sweep of sand and small pebbles, Bečići is a place to enjoy the Adriatic at your own pace. Its beach received recognition as Europe’s most beautiful at a competition in Paris in 1935. Spend the day swimming and relaxing beside the sea, or follow the coastal promenade past cafés and waterfront restaurants. In one direction, Budva’s Old Town is around a 30–50 minute walk, depending on where you start. In the other, the path leads through Rafailovići and a pedestrian tunnel to Kamenovo Beach, inviting you to explore more of the coast.",
+        accommodationOptions: [
+          {
+            name: "Splendid Conference & Spa Resort",
+            description:
+              "A beachfront resort with direct beach access, a spa, and restaurants.",
+            url: "https://www.montenegrostars.com/en/splendid-home",
+          },
+          {
+            name: "Iberostar Waves Bellevue",
+            description:
+              "A beachfront hotel surrounded by spacious gardens on Bečići Bay.",
+            url: "https://www.iberostar.com/en/hotels/budva/iberostar-waves-bellevue/",
+          },
+          {
+            name: "Montenegro Beach Resort",
+            description:
+              "A seaside resort with a dedicated beach area and all-inclusive stay options.",
+            url: "https://www.montenegrostars.com/en/faq-hotel-montenegro",
+          },
+        ],
+      },
+      {
+        slug: "przno",
+        title: "Pržno",
+      },
+      {
+        slug: "sveti-stefan",
+        title: "Sveti Stefan",
+      },
+      {
+        slug: "petrovac",
+        title: "Petrovac",
+      },
+      {
+        slug: "jaz",
+        title: "Jaz Beach",
+      },
+    ],
   },
   {
     id: 7,
