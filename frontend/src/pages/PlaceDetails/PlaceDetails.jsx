@@ -125,6 +125,20 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
           <p className="place-details__description">{place.description}</p>
         </section>
 
+        {place.id === 1 && (
+          <section className="place-details__content">
+            <h2>Where to stay around Kotor</h2>
+
+            <p className="place-details__description">
+              Start with the places you want to explore and how you plan to get
+              around. Compare the Old Town properties below with accommodation
+              in Dobrota, Prčanj, Ljuta, Orahovac, and Stoliv through their
+              individual guides. Before booking, check the property’s exact
+              location, transport options, and parking if you’re driving.
+            </p>
+          </section>
+        )}
+
         {place.nearbyPlaces?.length > 0 && (
           <section className="place-details__nearby">
             <h2>Places around {place.title}</h2>
