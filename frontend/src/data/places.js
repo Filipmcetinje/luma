@@ -1,5 +1,5 @@
 const kotorFortressImage =
-  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/kotor-fortress.jpg";
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor_-panoramic.png";
 const perastImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-1.png";
 const lovcenImage =
@@ -9,14 +9,14 @@ const cetinjeImage =
 const tivatImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/tivat.jpg";
 const budvaImage =
-  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/budva.png";
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-oldtown.png";
 
 const places = [
   {
     id: 1,
     title: "Kotor",
     location: "Kotor",
-    category: "Mountain",
+    category: "Coast",
     image: kotorFortressImage,
     gallery: [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/kotor_-panoramic.png",
@@ -424,6 +424,7 @@ const places = [
     category: "Coast",
     image: budvaImage,
     gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-oldtown.png",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva.png",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-2.jpg",
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-3.jpg",
@@ -547,6 +548,30 @@ const places = [
       {
         slug: "jaz",
         title: "Jaz Beach",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/jaz-beach.png",
+        description:
+          "Jaz opens onto a broad Adriatic bay, where a long shore of pebbles and sand meets green hills and rocky headlands. The beach has two distinct sections, offering different settings along the same coastline. Spend the day swimming, walking beside the water, or stopping at a beach café for a leisurely meal. Just outside Budva, Jaz gives you room to enjoy the coastal landscape beyond the town’s waterfront. In 2015, Lonely Planet named it Europe’s best beach.",
+        accommodationOptions: [
+          {
+            name: "Hotel Poseidon",
+            description:
+              "A beachfront hotel at the eastern end of Jaz, with rooms, apartments, and a shaded restaurant terrace beside the sea.",
+            url: "https://poseidon-jaz.com/en/home",
+          },
+          {
+            name: "Galija Jaz Apartments",
+            description:
+              "Studio apartments directly on Jaz Beach, with kitchenettes, terraces, and parking.",
+            url: "https://www.galijajaz.com/",
+          },
+          {
+            name: "Palma Jaz",
+            description:
+              "Studios and apartments close to Jaz Beach, with a restaurant and beach bar.",
+            url: "https://palmajaz.com/?lang=en",
+          },
+        ],
       },
     ],
   },

@@ -1,10 +1,33 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+import places from "../../data/places";
 
 import Hero from "../../components/Hero/Hero";
 import PhotographyShowcase from "../../components/PhotographyShowcase/PhotographyShowcase";
 import ArtworkShowcase from "../../components/ArtworkShowcase/ArtworkShowcase";
 import selfPortrait from "../../assets/artwork/self-portrait.jpg";
 import "./Home.css";
+
+const featuredDestinations = [
+  {
+    id: 1,
+    summary: "Explore the Old Town, bay villages, and places to stay.",
+  },
+  {
+    id: 6,
+    summary: "Discover beaches, coastal towns, and seaside accommodation.",
+  },
+  {
+    id: 4,
+    summary: "Discover royal history, mountain villages, and nearby sights.",
+  },
+]
+  .map((destination) => {
+    const place = places.find((place) => place.id === destination.id);
+
+    return place ? { ...place, summary: destination.summary } : null;
+  })
+  .filter(Boolean);
 
 function Home() {
   const portraitDialogRef = useRef(null);
@@ -34,6 +57,38 @@ function Home() {
             share the landscapes, history, and culture that inspire me, and help
             you discover new places and plan your trip.
           </p>
+        </section>
+
+        <section
+          className="home__destinations"
+          aria-labelledby="home-destinations-title"
+        >
+          <h2 className="home__destinations-title" id="home-destinations-title">
+            Explore Montenegro
+          </h2>
+
+          <div className="home__destinations-grid">
+            {featuredDestinations.map((place) => (
+              <Link
+                className="home__destination"
+                to={`/places/${place.id}`}
+                key={place.id}
+              >
+                <img
+                  className="home__destination-image"
+                  src={place.image}
+                  alt={place.title}
+                  loading="lazy"
+                />
+
+                <div className="home__destination-content">
+                  <h3>{place.title}</h3>
+                  <p>{place.summary}</p>
+                  <span>Explore {place.title} →</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <PhotographyShowcase />
