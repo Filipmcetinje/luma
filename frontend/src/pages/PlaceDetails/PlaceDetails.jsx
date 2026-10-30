@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import places from "../../data/places";
 import "./PlaceDetails.css";
 
 function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const { placeId } = useParams();
+  const navigate = useNavigate();
   const [selectedTripId, setSelectedTripId] = useState("");
   const [addMessage, setAddMessage] = useState("");
   const [addMessageType, setAddMessageType] = useState("");
@@ -70,6 +71,13 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
       <meta name="description" content={place.description} />
 
       <div className="place-details">
+        <button
+          className="place-details__back"
+          type="button"
+          onClick={() => navigate(-1)}
+        >
+          ← Back
+        </button>
         <img
           className="place-details__image"
           src={selectedImage}
