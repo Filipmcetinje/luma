@@ -115,7 +115,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
   return (
     <main className="place-details-page">
-      <title>{`${place.title} | Luma`}</title>
+      <title>{`${place.title}, Montenegro: Travel Guide | Luma`}</title>
 
       <meta name="description" content={place.description} />
 

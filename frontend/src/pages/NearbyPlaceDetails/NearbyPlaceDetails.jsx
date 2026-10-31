@@ -34,7 +34,7 @@ function NearbyPlaceDetails() {
 
   return (
     <main className="place-details-page">
-      <title>{`${nearbyPlace.title} | ${destination.title} | Luma`}</title>
+      <title>{`${nearbyPlace.title}, ${destination.title}: Travel Guide | Luma`}</title>
 
       {nearbyPlace.description && (
         <meta name="description" content={nearbyPlace.description} />
