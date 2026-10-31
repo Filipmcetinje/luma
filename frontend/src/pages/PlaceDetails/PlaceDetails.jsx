@@ -12,6 +12,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const [addMessageType, setAddMessageType] = useState("");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isAdding, setIsAdding] = useState(false);
+  const [planningSelection, setPlanningSelection] = useState(null);
 
   const place = places.find((place) => place.id === Number(placeId));
 
@@ -62,6 +63,54 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
         <h1 className="place-details__title">Place not found</h1>
       </main>
     );
+  }
+
+  const transportAdvice =
+    place.transportAdvice ||
+    (place.id === 1
+      ? "For journeys around the bay, confirm your bus stop, route, and return service before travelling. Taking a taxi? Ask for the fare in advance. Driving? Check parking arrangements with your accommodation before arrival."
+      : "");
+
+  const planningTabs = [
+    ...(place.nearbyPlaces?.length
+      ? [{ id: "nearby", label: `Around ${place.title}` }]
+      : []),
+    ...(place.accommodationOptions?.length
+      ? [{ id: "accommodation", label: "Accommodation" }]
+      : []),
+    ...(transportAdvice ? [{ id: "transport", label: "Transport" }] : []),
+  ];
+
+  const activePlanningTab =
+    planningSelection?.placeId === place.id &&
+    planningTabs.some((tab) => tab.id === planningSelection.tabId)
+      ? planningSelection.tabId
+      : planningTabs[0]?.id;
+
+  function selectPlanningTab(tabId) {
+    setPlanningSelection({ placeId: place.id, tabId });
+  }
+
+  function handlePlanningKeyDown(event, index) {
+    let nextIndex;
+
+    if (event.key === "ArrowRight") {
+      nextIndex = (index + 1) % planningTabs.length;
+    } else if (event.key === "ArrowLeft") {
+      nextIndex = (index - 1 + planningTabs.length) % planningTabs.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = planningTabs.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+
+    const nextTab = planningTabs[nextIndex];
+    selectPlanningTab(nextTab.id);
+    document.getElementById(`planning-tab-${nextTab.id}`)?.focus();
   }
 
   return (
@@ -125,55 +174,128 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
           <p className="place-details__description">{place.description}</p>
         </section>
 
-        {place.id === 1 && (
-          <section className="place-details__content">
-            <h2>Where to stay around Kotor</h2>
+        {planningTabs.length > 0 && (
+          <section
+            className="place-details__planning"
+            aria-labelledby="planning-title"
+          >
+            <h2 id="planning-title">Plan your stay</h2>
 
-            <p className="place-details__description">
-              Start with the places you want to explore and how you plan to get
-              around. Compare the Old Town properties below with accommodation
-              in Dobrota, Prčanj, Ljuta, Orahovac, and Stoliv through their
-              individual guides. Before booking, check the property’s exact
-              location, transport options, and parking if you’re driving.
-            </p>
-          </section>
-        )}
-
-        {place.nearbyPlaces?.length > 0 && (
-          <section className="place-details__nearby">
-            <h2>Places around {place.title}</h2>
-
-            <ul>
-              {place.nearbyPlaces.map((nearbyPlace) => (
-                <li key={nearbyPlace.slug}>
-                  <Link to={`/places/${place.id}/nearby/${nearbyPlace.slug}`}>
-                    {nearbyPlace.title}
-                  </Link>
-                </li>
+            <div
+              className="place-details__tabs"
+              role="tablist"
+              aria-label={`Plan your stay in ${place.title}`}
+            >
+              {planningTabs.map((tab, index) => (
+                <button
+                  className="place-details__tab"
+                  key={tab.id}
+                  id={`planning-tab-${tab.id}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={activePlanningTab === tab.id}
+                  aria-controls={`planning-panel-${tab.id}`}
+                  tabIndex={activePlanningTab === tab.id ? 0 : -1}
+                  onClick={() => selectPlanningTab(tab.id)}
+                  onKeyDown={(event) => handlePlanningKeyDown(event, index)}
+                >
+                  {tab.label}
+                </button>
               ))}
-            </ul>
-          </section>
-        )}
+            </div>
 
-        {place.accommodationOptions?.length > 0 && (
-          <section className="place-details__trip-section">
-            <h2 className="place-details__trip-title">Accommodation options</h2>
+            {planningTabs.map((tab) => (
+              <div
+                className="place-details__planning-panel"
+                key={tab.id}
+                id={`planning-panel-${tab.id}`}
+                role="tabpanel"
+                aria-labelledby={`planning-tab-${tab.id}`}
+                hidden={activePlanningTab !== tab.id}
+                tabIndex={0}
+              >
+                {tab.id === "nearby" && (
+                  <ul className="place-details__area-list">
+                    {place.nearbyPlaces.map((nearbyPlace) => (
+                      <li key={nearbyPlace.slug}>
+                        <Link
+                          className="place-details__area-link"
+                          to={`/places/${place.id}/nearby/${nearbyPlace.slug}`}
+                        >
+                          {nearbyPlace.image && (
+                            <img
+                              src={nearbyPlace.image}
+                              alt=""
+                              loading="lazy"
+                            />
+                          )}
 
-            <ul className="place-details__accommodations">
-              {place.accommodationOptions.map((option) => (
-                <li key={option.url}>
-                  <a
-                    href={option.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <strong>{option.name}</strong>
-                    {option.description && <p>{option.description}</p>}
-                    <span>View property details →</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+                          <h3>{nearbyPlace.title}</h3>
+
+                          {nearbyPlace.summary && <p>{nearbyPlace.summary}</p>}
+
+                          <span>Explore {nearbyPlace.title} →</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {tab.id === "accommodation" && (
+                  <>
+                    {place.id === 1 && (
+                      <p className="place-details__planning-intro">
+                        Compare these Old Town properties with accommodation in
+                        the surrounding villages through the Around Kotor tab.
+                        Before booking, check the property’s exact location,
+                        transport options, and parking if you’re driving.
+                      </p>
+                    )}
+
+                    <ul className="place-details__property-list">
+                      {place.accommodationOptions.map((option) => (
+                        <li key={option.url}>
+                          <h3>{option.name}</h3>
+
+                          {option.description && <p>{option.description}</p>}
+
+                          <a
+                            href={option.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View property details ↗
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+                {tab.id === "transport" && (
+                  <>
+                    <h3>Before you set off</h3>
+                    <p>{transportAdvice}</p>
+
+                    {place.transportLinks?.length > 0 && (
+                      <ul className="place-details__transport-links">
+                        {place.transportLinks.map((link) => (
+                          <li key={link.url}>
+                            <a
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {link.label} ↗
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
           </section>
         )}
 

@@ -331,6 +331,14 @@ const places = [
         url: "https://www.lavecchiacasa.com/",
       },
     ],
+    transportAdvice:
+      "Arriving by bus? Check departures for your travel date through Cetinje’s bus-station information page, and confirm your return journey before setting off. For visits to Njeguši, Lipa Cave, or Rijeka Crnojevića, arrange transport separately and confirm both the pickup and return. If you use a taxi, agree on the fare and any waiting time in advance. If you’re driving, ask your accommodation about parking.",
+    transportLinks: [
+      {
+        label: "Cetinje bus station — information and departures",
+        url: "https://komunalnocetinje.me/en/information-about-services/bus-station/",
+      },
+    ],
     nearbyPlaces: [
       {
         slug: "rijeka-crnojevica",
@@ -432,6 +440,34 @@ const places = [
     ],
     description:
       "Budva and its Riviera offer some of the Mediterranean’s most beautiful coastal scenery, with clear water, sheltered coves, and beaches backed by mountains. Enjoy it your own way: spend a quiet day swimming, explore the coastline by boat, or experience lively waterfront restaurants and nightlife. At its heart, the walled Old Town holds more than 2,500 years of history, with origins linked in Greek legend to Cadmus and Harmonia. Wander its stone streets and small squares, discover churches and art, or simply settle beside the sea.",
+    accommodationOptions: [
+      {
+        name: "Avala Resort & Villas",
+        description:
+          "A seaside resort beside Budva’s Old Town walls, overlooking Ricardova Glava Beach.",
+        url: "https://avalaresort.com/",
+      },
+      {
+        name: "Hotel Astoria Budva",
+        description:
+          "Rooms and suites inside the Old Town, with its historic streets, restaurants, and cultural sights close by.",
+        url: "https://astoriamontenegro.com/astoria-budva/",
+      },
+      {
+        name: "Hotel Majestic",
+        description:
+          "A hotel near the Old Town and beaches, with rooms, suites, and the Hemingway Bar & Restaurant.",
+        url: "https://www.majestichotel.me/en/",
+      },
+    ],
+    transportAdvice:
+      "To explore the Riviera, check local bus services towards Sveti Stefan and Petrovac, or towards Jaz, Trsteno, and Ploče. Budva’s tourist organisation lists the central departure point on Mediteranska Street, opposite Perla café. Confirm the current timetable, your nearest stop, and the return service before travelling. For taxis, ask for the fare before departure. If you’re driving, check parking arrangements with your accommodation.",
+    transportLinks: [
+      {
+        label: "Local bus routes and timetables — Budva Tourism",
+        url: "https://budva.travel/transport",
+      },
+    ],
     nearbyPlaces: [
       {
         slug: "becici",
