@@ -1,0 +1,35 @@
+.photography-page {
+  min-height: calc(100vh - 180px);
+  padding: 32px 0;
+  background-color: #f4f2eb;
+  background-image:
+    linear-gradient(rgba(249, 247, 240, 0.93), rgba(249, 247, 240, 0.93)),
+    url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/red-beach.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.photography-page__navigation {
+  box-sizing: border-box;
+  max-width: 1148px;
+  margin: 0 auto 24px;
+  padding: 0 24px;
+}
+
+.photography-page__back {
+  display: inline-block;
+  padding: 10px 0;
+  color: #253c30;
+  text-decoration: none;
+}
+
+.photography-page__back:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.photography-page__back:focus-visible {
+  outline: 3px solid #5f7d63;
+  outline-offset: 4px;
+}

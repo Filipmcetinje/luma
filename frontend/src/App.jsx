@@ -13,8 +13,10 @@ import Favorites from "./pages/Favorites/Favorites";
 import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
 import Art from "./pages/Art/Art";
+import Photography from "./pages/Photography/Photography";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
+
 import {
   checkBackendHealth,
   getCurrentUser,
@@ -607,6 +609,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/art" element={<Art />} />
+        <Route path="/photography" element={<Photography />} />
         <Route
           path="/discover"
           element={

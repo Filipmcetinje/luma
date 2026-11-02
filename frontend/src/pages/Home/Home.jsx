@@ -1,25 +1,29 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import places from "../../data/places";
 
 import Hero from "../../components/Hero/Hero";
-import PhotographyShowcase from "../../components/PhotographyShowcase/PhotographyShowcase";
-import ArtworkShowcase from "../../components/ArtworkShowcase/ArtworkShowcase";
+import places from "../../data/places";
 import selfPortrait from "../../assets/artwork/self-portrait.jpg";
 import "./Home.css";
+
+const landscapeImage =
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/montenegro-landscape.jpg";
+
+const artworkImage =
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_900/grass.jpg";
 
 const featuredDestinations = [
   {
     id: 1,
-    summary: "Explore the Old Town, bay villages, and places to stay.",
+    summary: "Old Town stories, waterfront villages, and life around the bay.",
   },
   {
     id: 6,
-    summary: "Discover beaches, coastal towns, and seaside accommodation.",
+    summary: "Beaches, coastal walks, and places to stay along the Riviera.",
   },
   {
     id: 4,
-    summary: "Discover royal history, mountain villages, and nearby sights.",
+    summary: "Royal history, art, and journeys into the surrounding landscape.",
   },
 ]
   .map((destination) => {
@@ -30,115 +34,230 @@ const featuredDestinations = [
   .filter(Boolean);
 
 function Home() {
-  const portraitDialogRef = useRef(null);
+  const imageDialogRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  function openPortrait() {
-    portraitDialogRef.current.showModal();
+  function openImage(image) {
+    setSelectedImage(image);
+    imageDialogRef.current.showModal();
   }
 
-  function closePortrait() {
-    portraitDialogRef.current.close();
+  function closeImage() {
+    imageDialogRef.current.close();
+  }
+
+  function openLandscape() {
+    openImage({
+      src: landscapeImage,
+      alt: "Montenegro landscape photographed by Filip Milosevic",
+      caption: "Montenegro · Through my lens",
+    });
   }
 
   return (
-    <main>
+    <main className="home">
       <Hero />
 
       <div className="home__creative-background">
-        <section className="home__planning">
-          <h2 className="home__planning-title">
-            Places that inspire, stories worth discovering.
-          </h2>
+        <div className="home__container">
+          <section className="home__intro" aria-labelledby="home-intro-title">
+            <div>
+              <p className="home__eyebrow">A personal invitation</p>
 
-          <p className="home__planning-intro">
-            Hi, I’m Filip. I created Luma to introduce you to places where
-            mountains meet the sea, old towns hold centuries of stories, and art
-            is woven into everyday life. Starting with Montenegro, I want to
-            share the landscapes, history, and culture that inspire me, and help
-            you discover new places and plan your trip.
-          </p>
-        </section>
+              <h2 className="home__heading" id="home-intro-title">
+                Places that inspire.
+                <br />
+                Stories worth discovering.
+              </h2>
+            </div>
 
-        <section
-          className="home__destinations"
-          aria-labelledby="home-destinations-title"
-        >
-          <h2 className="home__destinations-title" id="home-destinations-title">
-            Explore Montenegro
-          </h2>
+            <div>
+              <p className="home__text">
+                Hi, I’m Filip. I created Luma to share places where mountains
+                meet the sea, old towns hold centuries of stories, and art is
+                part of everyday life. Starting with Montenegro, I’m bringing
+                together local guides, photography, and practical details to
+                help you plan your trip.
+              </p>
 
-          <div className="home__destinations-grid">
-            {featuredDestinations.map((place) => (
-              <Link
-                className="home__destination"
-                to={`/places/${place.id}`}
-                key={place.id}
-              >
-                <img
-                  className="home__destination-image"
-                  src={place.image}
-                  alt={place.title}
-                  loading="lazy"
-                />
+              <p className="home__signature">Filip Milosevic</p>
+            </div>
+          </section>
 
-                <div className="home__destination-content">
+          <section
+            className="home__destinations"
+            aria-labelledby="home-destinations-title"
+          >
+            <div className="home__section-header">
+              <div>
+                <p className="home__eyebrow">Start with Montenegro</p>
+
+                <h2 className="home__heading" id="home-destinations-title">
+                  Find your kind of journey.
+                </h2>
+
+                <p className="home__section-description">
+                  Explore the places, then plan your stay.
+                </p>
+              </div>
+
+              <Link className="home__text-link" to="/discover">
+                All destinations ↗
+              </Link>
+            </div>
+
+            <div className="home__destinations-grid">
+              {featuredDestinations.map((place) => (
+                <Link
+                  className="home__destination"
+                  to={`/places/${place.id}`}
+                  key={place.id}
+                >
+                  <img
+                    className="home__destination-image"
+                    src={place.image}
+                    alt={place.title}
+                    loading="lazy"
+                  />
+
                   <h3>{place.title}</h3>
                   <p>{place.summary}</p>
                   <span>Explore {place.title} →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+                </Link>
+              ))}
+            </div>
+          </section>
 
-        <PhotographyShowcase />
-        <ArtworkShowcase limit={4} />
+          <section className="home__tools" aria-label="Your travel tools">
+            <Link className="home__tool" to="/favorites">
+              <h3>Keep what inspires you</h3>
+              <p>Save the places you want to explore.</p>
+            </Link>
 
-        <section className="home__about-section">
-          <div className="home__about">
+            <Link className="home__tool" to="/trips">
+              <h3>Bring your trip together</h3>
+              <p>Organize your dates and places in one trip.</p>
+            </Link>
+
+            <Link className="home__tool" to="/journal">
+              <h3>Remember your journey</h3>
+              <p>Keep your notes and photos in a travel journal.</p>
+            </Link>
+          </section>
+
+          <section
+            className="home__photography"
+            aria-labelledby="home-photography-title"
+          >
             <button
-              className="home__about-image-button"
+              className="home__image-button"
               type="button"
-              onClick={openPortrait}
-              aria-label="View self-portrait larger"
+              onClick={openLandscape}
+              aria-label="View Montenegro landscape larger"
             >
               <img
-                className="home__about-image"
-                src={selfPortrait}
-                alt="Self-portrait artwork by Filip Milosevic"
+                className="home__landscape-image"
+                src={landscapeImage}
+                alt="Mountain landscape overlooking the water in Montenegro"
+                loading="lazy"
               />
             </button>
 
-            <div className="home__about-content">
-              <h2 className="home__about-title">About the Artist</h2>
+            <div>
+              <p className="home__eyebrow">Through my lens</p>
 
-              <p className="home__about-text">
-                I’m Filip Milosevic, an artist and software developer. Through
-                Luma, I share the beauty of Montenegro—the places, light, and
-                landscapes that inspire my artwork.
+              <h2 className="home__heading" id="home-photography-title">
+                A different way of seeing a place.
+              </h2>
+
+              <p className="home__text">
+                Light on the water, a mountain path, a moment beside the sea. My
+                photographs share the details that make me stop and look.
               </p>
+
+              <Link className="home__text-link" to="/photography">
+                Explore my photography ↗
+              </Link>
             </div>
-          </div>
-        </section>
+          </section>
+
+          <section className="home__artist" aria-labelledby="home-artist-title">
+            <div>
+              <p className="home__eyebrow">Art &amp; the artist</p>
+
+              <h2 className="home__heading" id="home-artist-title">
+                Inspired by what surrounds us.
+              </h2>
+
+              <p className="home__text">
+                I’m Filip Milosevic, an artist and software developer. Luma
+                brings together my paintings, photographs, and the places that
+                inspire them.
+              </p>
+
+              <div className="home__artist-links">
+                <Link className="home__text-link" to="/art">
+                  Explore my artwork ↗
+                </Link>
+
+                <button
+                  className="home__text-link"
+                  type="button"
+                  onClick={() =>
+                    openImage({
+                      src: selfPortrait,
+                      alt: "Self-portrait artwork by Filip Milosevic",
+                      caption: "Self-portrait · Filip Milosevic",
+                    })
+                  }
+                >
+                  View self-portrait ↗
+                </button>
+              </div>
+            </div>
+
+            <button
+              className="home__image-button"
+              type="button"
+              onClick={() =>
+                openImage({
+                  src: artworkImage,
+                  alt: "Grass, a painting by Filip Milosevic",
+                  caption: "Grass · Filip Milosevic",
+                })
+              }
+              aria-label="View Grass painting larger"
+            >
+              <img
+                className="home__artwork-image"
+                src={artworkImage}
+                alt="Grass, a painting by Filip Milosevic"
+                loading="lazy"
+              />
+            </button>
+          </section>
+        </div>
       </div>
 
       <dialog
-        className="home__portrait-dialog"
-        ref={portraitDialogRef}
-        aria-label="Self-portrait viewer"
+        className="home__image-dialog"
+        ref={imageDialogRef}
+        aria-label={selectedImage?.caption || "Image viewer"}
       >
         <button
-          className="home__portrait-close"
+          className="home__dialog-close"
           type="button"
-          onClick={closePortrait}
-          aria-label="Close self-portrait viewer"
+          onClick={closeImage}
         >
-          ×
+          Close ×
         </button>
-        <img
-          src={selfPortrait}
-          alt="Self-portrait artwork by Filip Milosevic"
-        />
+
+        {selectedImage && (
+          <figure className="home__dialog-figure">
+            <img src={selectedImage.src} alt={selectedImage.alt} />
+            <figcaption>{selectedImage.caption}</figcaption>
+          </figure>
+        )}
       </dialog>
     </main>
   );

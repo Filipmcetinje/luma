@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import "./Hero.css";
 
 const heroImage =
-  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/lighthouse-hero-background.png";
-
-const lighthouseImage =
-  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_900/lighthouse-cutout.png";
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/ligt-house.jpg";
 
 function Hero() {
   return (
@@ -13,28 +10,30 @@ function Hero() {
       className="hero"
       style={{
         backgroundImage: `linear-gradient(
-          rgba(0, 0, 0, 0.20),
-          rgba(0, 0, 0, 0.20)
+          90deg,
+          rgba(20, 44, 60, 0.72),
+          rgba(20, 44, 60, 0.10)
         ), url(${heroImage})`,
       }}
     >
-      <h1 className="hero__title">Discover the world through creativity.</h1>
+      <div className="hero__inner">
+        <div className="hero__content">
+          <p className="hero__eyebrow">Travel · Art · Inspiration</p>
 
-      <p className="hero__text">
-        Find inspiring places, save your favorites, plan your trip, and capture
-        your memories in a travel journal.
-      </p>
+          <h1 className="hero__title">
+            Discover the world through creativity.
+          </h1>
 
-      <Link className="hero__button" to="/discover">
-        Start Exploring
-      </Link>
+          <p className="hero__text">
+            Find places that inspire you, choose where to stay, and bring your
+            next journey together.
+          </p>
 
-      <img
-        className="hero__lighthouse"
-        src={lighthouseImage}
-        alt=""
-        aria-hidden="true"
-      />
+          <Link className="hero__button" to="/discover">
+            Start exploring →
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }

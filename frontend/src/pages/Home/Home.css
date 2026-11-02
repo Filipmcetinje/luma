@@ -1,243 +1,106 @@
-.home__about {
-  display: flex;
-  align-items: center;
-  gap: 56px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.home__about-section {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 72px 24px;
-  background: transparent;
+.home {
+  color: #253c30;
 }
 
 .home__creative-background {
+  background-color: #f4f2eb;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.62)),
+    linear-gradient(rgba(249, 247, 240, 0.93), rgba(249, 247, 240, 0.93)),
     url("https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/red-beach.jpg");
-
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.home__about-image-button {
-  display: block;
-  width: 45%;
-  max-width: 480px;
-  flex-shrink: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 16px;
-  background: none;
-  cursor: zoom-in;
-}
-
-.home__about-image {
-  display: block;
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-.home__about-content {
-  flex: 1;
-}
-
-.home__about-title {
-  margin: 0 0 16px;
-  font-size: 36px;
-}
-
-.home__about-text {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.home__artwork {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 14px 24px 0;
-  text-align: center;
-}
-
-.home__artwork h2 {
-  margin: 0 0 28px;
-  font-size: 36px;
-}
-
-.home__artwork-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: center;
-  gap: 24px;
-}
-
-.home__artwork figure {
-  max-width: 676px;
-  margin: 0 auto;
-  padding: 16px;
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.home__artwork img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.home__artwork figcaption {
-  margin-top: 12px;
-  font-size: 18px;
-}
-
-.home__about-image-button:focus-visible,
-.home__portrait-close:focus-visible {
-  outline: 3px solid #4f6c53;
-  outline-offset: 6px;
-}
-
-.home__portrait-dialog {
-  max-width: min(1100px, calc(100vw - 32px));
-  max-height: 90vh;
-  padding: 16px;
-  border: 0;
-  border-radius: 16px;
-  background: #fff;
+.home__container {
   box-sizing: border-box;
-  position: fixed;
-  inset: 0;
-  margin: auto;
-}
-
-.home__portrait-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.home__portrait-dialog img {
-  display: block;
-  max-width: 100%;
-  max-height: calc(90vh - 32px);
-  object-fit: contain;
+  max-width: 1148px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
-.home__portrait-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border: 0;
-  border-radius: 50%;
-  background: #fff;
-  color: #222;
-  font-size: 28px;
-  cursor: pointer;
+.home__eyebrow {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.home__planning {
-  position: relative;
-  padding: 64px 24px 48px;
-  background: transparent;
-  color: #29402e;
-  text-align: center;
-}
-
-.home__planning-title {
-  max-width: 760px;
-  margin: 0 auto 24px;
-  font-size: clamp(28px, 3.5vw, 40px);
-  line-height: 1.25;
+.home__heading {
+  margin: 0 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
   text-wrap: balance;
 }
 
-.home__planning-intro {
-  max-width: 760px;
-  margin: 0 auto;
-  color: #303b33;
-  font-size: 19px;
-  line-height: 1.8;
-  text-wrap: pretty;
+.home__text {
+  margin: 0;
+  color: #566458;
+  font-size: 17px;
+  line-height: 1.85;
 }
 
-.home__planning-title,
-.home__planning-intro {
-  position: relative;
-  z-index: 2;
-}
-
-.home__planning-steps {
+.home__intro {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  counter-reset: planning-step;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: start;
+  gap: 48px;
+  padding: 66px 0 48px;
 }
 
-.home__planning-steps li {
+.home__intro > *,
+.home__photography > *,
+.home__artist > * {
   min-width: 0;
-  counter-increment: planning-step;
 }
 
-.home__planning-steps a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.home__planning-steps a:hover {
-  color: #49634a;
-}
-
-.home__planning-steps a:hover strong {
-  text-decoration: underline;
-}
-
-.home__planning-steps a:focus-visible {
-  outline: 3px solid #49634a;
-  outline-offset: 4px;
-}
-
-.home__planning-steps strong {
+.home__signature {
+  margin: 16px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 18px;
-}
-
-.home__planning-steps span {
-  color: #4b554d;
-  line-height: 1.5;
-}
-
-.home__planning-example {
-  max-width: 720px;
-  margin: 28px auto 0;
-  line-height: 1.7;
+  font-style: italic;
 }
 
 .home__destinations {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 16px 24px 56px;
+  padding: 20px 0 52px;
 }
 
-.home__destinations-title {
-  margin: 0 0 28px;
-  color: #29402e;
-  font-size: clamp(28px, 3.5vw, 40px);
-  text-align: center;
+.home__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.home__section-description {
+  margin: 0;
+  color: #566458;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.home__text-link {
+  display: inline-block;
+  width: fit-content;
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 1px solid #94a28d;
+  background: transparent;
+  color: #253c30;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.home__section-header > .home__text-link {
+  flex-shrink: 0;
 }
 
 .home__destinations-grid {
@@ -248,86 +111,232 @@
 
 .home__destination {
   min-width: 0;
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.88);
-  color: #29402e;
+  color: inherit;
   text-decoration: none;
 }
 
 .home__destination-image {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
   object-fit: cover;
 }
 
-.home__destination-content {
-  padding: 20px;
+.home__destination h3 {
+  margin: 16px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 400;
 }
 
-.home__destination-content h3 {
-  margin: 0 0 10px;
-  font-size: 24px;
+.home__destination p {
+  margin: 0 0 12px;
+  color: #566458;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-.home__destination-content p {
-  margin: 0 0 18px;
-  color: #303b33;
-  font-size: 17px;
-  line-height: 1.6;
-}
-
-.home__destination-content span {
+.home__destination span {
+  font-size: 15px;
   font-weight: 600;
 }
 
-.home__destination:hover span {
+.home__tools {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-bottom: 56px;
+  padding: 28px 0;
+  border-top: 1px solid #ccd1c2;
+  border-bottom: 1px solid #ccd1c2;
+}
+
+.home__tool {
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.home__tool h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.home__tool p {
+  margin: 0;
+  color: #566458;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.home__photography {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 40px;
+  padding-bottom: 64px;
+}
+
+.home__photography .home__text,
+.home__artist .home__text {
+  margin-bottom: 20px;
+}
+
+.home__image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.home__landscape-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.home__artist {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: 48px;
+  padding-bottom: 64px;
+}
+
+.home__artwork-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.home__artist-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+
+.home__destination:hover span,
+.home__tool:hover h3,
+.home__text-link:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-.home__destination:focus-visible {
-  outline: 3px solid #29402e;
-  outline-offset: 4px;
+.home a:focus-visible,
+.home button:focus-visible {
+  outline: 3px solid #5f7d63;
+  outline-offset: 5px;
+}
+
+.home__image-dialog {
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  width: fit-content;
+  max-width: min(1100px, calc(100vw - 32px));
+  max-height: 90vh;
+  margin: auto;
+  padding: 16px;
+  overflow: auto;
+  border: 0;
+  border-radius: 12px;
+  background: #f7f6ef;
+  color: #253c30;
+}
+
+.home__image-dialog::backdrop {
+  background: rgba(20, 37, 28, 0.85);
+}
+
+.home__dialog-close {
+  display: block;
+  margin: 0 0 12px auto;
+  padding: 8px 14px;
+  border: 1px solid #a1ac9c;
+  border-radius: 6px;
+  background: #f7f6ef;
+  color: #253c30;
+  font: inherit;
+  cursor: pointer;
+}
+
+.home__dialog-figure {
+  margin: 0;
+}
+
+.home__dialog-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.home__dialog-figure figcaption {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 @media screen and (max-width: 700px) {
-  .home__about {
-    flex-direction: column;
-    align-items: stretch;
+  .home__container {
+    padding: 0 24px;
   }
 
-  .home__about-image-button {
-    width: 100%;
-    max-width: none;
-  }
-
-  .home__about-image {
-    height: 280px;
-  }
-  .home__artwork-gallery {
+  .home__intro {
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 48px 0 36px;
   }
 
-  .home__planning {
-    padding: 48px 20px 36px;
+  .home__text {
+    font-size: 16px;
   }
 
-  .home__planning-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+  .home__section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .home__planning-steps a {
-    padding: 20px 12px;
-  }
   .home__destinations {
-    padding: 16px 20px 40px;
+    padding: 16px 0 40px;
   }
 
   .home__destinations-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 32px;
+  }
+
+  .home__destination-image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .home__tools {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding: 24px 0;
+  }
+
+  .home__photography,
+  .home__artist {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-bottom: 48px;
+  }
+
+  .home__artwork-image {
+    max-height: 280px;
   }
 }
