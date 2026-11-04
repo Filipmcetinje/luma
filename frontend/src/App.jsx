@@ -18,7 +18,6 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 
 import {
-  checkBackendHealth,
   getCurrentUser,
   getFavorites,
   addFavorite,
@@ -93,16 +92,6 @@ function App() {
     return () => {
       cancelled = true;
     };
-  }, []);
-
-  useEffect(() => {
-    checkBackendHealth()
-      .then((data) => {
-        console.log("Luma backend connected:", data);
-      })
-      .catch((error) => {
-        console.error("Luma backend connection failed:", error);
-      });
   }, []);
 
   useEffect(() => {
