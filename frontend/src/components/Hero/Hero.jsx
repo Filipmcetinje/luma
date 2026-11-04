@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
+import { preload } from "react-dom";
 import "./Hero.css";
 
 const heroImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/ligt-house.jpg";
 
 function Hero() {
+  preload(heroImage, {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   return (
     <section
       className="hero"

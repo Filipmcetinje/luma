@@ -12,6 +12,10 @@ const landscapeImage =
 const artworkImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_900/grass.jpg";
 
+function getCardImageUrl(url, width) {
+  return url.replace(/w_\d+/, `w_${width}`);
+}
+
 const featuredDestinations = [
   {
     id: 1,
@@ -121,7 +125,15 @@ function Home() {
                 >
                   <img
                     className="home__destination-image"
-                    src={place.image}
+                    src={getCardImageUrl(place.image, 800)}
+                    srcSet={`
+    ${getCardImageUrl(place.image, 400)} 400w,
+    ${getCardImageUrl(place.image, 800)} 800w,
+    ${getCardImageUrl(place.image, 1200)} 1200w
+  `}
+                    sizes="(max-width: 700px) calc(100vw - 48px),
+         (max-width: 1148px) calc((100vw - 96px) / 3),
+         350px"
                     alt={place.title}
                     loading="lazy"
                   />
