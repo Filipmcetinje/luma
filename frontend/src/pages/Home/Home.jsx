@@ -13,7 +13,10 @@ const artworkImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_900/grass.jpg";
 
 function getCardImageUrl(url, width) {
-  return url.replace("f_auto", "f_webp").replace(/w_\d+/, `w_${width}`);
+  return url
+    .replace("f_auto", "f_webp")
+    .replace("q_auto", "q_70")
+    .replace(/w_\d+/, `w_${width}`);
 }
 
 const featuredDestinations = [
