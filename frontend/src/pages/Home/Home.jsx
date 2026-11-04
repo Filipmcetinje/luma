@@ -56,6 +56,12 @@ function Home() {
 
   return (
     <main className="home">
+      <title>Luma | Travel, Art &amp; Inspiration</title>
+
+      <meta
+        name="description"
+        content="Discover Montenegro through local travel guides, photography, and art. Explore places to stay, transport options, and tools to organize your trip."
+      />
       <Hero />
 
       <div className="home__creative-background">

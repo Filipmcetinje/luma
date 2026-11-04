@@ -34,6 +34,12 @@ function Discover({ favoritePlaceIds, onToggleFavorite }) {
 
   return (
     <main className="discover">
+      <title>Explore Montenegro: Places to Visit | Luma</title>
+
+      <meta
+        name="description"
+        content="Explore destinations across Montenegro, from Kotor and Budva to Cetinje and Lovćen. Find nearby places, accommodation, and practical travel information."
+      />
       <section className="discover__hero">
         <div className="discover__hero-content">
           <div className="discover__intro">
