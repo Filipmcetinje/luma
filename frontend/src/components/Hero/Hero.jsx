@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Hero.css";
 
 const heroImage =
-  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_2000/ligt-house.jpg";
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_webp,q_70,w_1600/ligt-house.jpg";
 
 function Hero() {
   return (
