@@ -416,6 +416,19 @@
   outline: 3px solid #5f7d63;
   outline-offset: 4px;
 }
+.place-details__planning-intro ul {
+  margin: 20px 0;
+  padding-left: 24px;
+}
+
+.place-details__planning-intro li {
+  padding-left: 4px;
+  line-height: 1.65;
+}
+
+.place-details__planning-intro li + li {
+  margin-top: 12px;
+}
 
 @media screen and (max-width: 700px) {
   .place-details {
