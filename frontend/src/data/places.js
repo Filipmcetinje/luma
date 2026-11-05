@@ -28,6 +28,15 @@ const places = [
     ],
     description:
       "Inside Kotor’s medieval walls, narrow streets open into lively squares surrounded by churches and stone palaces. St. Tryphon’s Cathedral, consecrated in 1166, is a landmark of a town shaped by centuries of seafaring, trade, and artistic exchange. Explore its sacred art, maritime history, and varied architecture, then pause in a café or climb above the rooftops for views of the bay. Kotor brings history and everyday life together in a compact town full of contrasts.",
+    transportAdvice:
+      "For local bus journeys around the bay, use Kotor Municipality’s public transport page to find published Blue Line timetables. Check the document’s date and confirm your nearest stop, direction, and return service with the operator or your accommodation before travelling. For taxis, agree on the fare before departure. If driving, confirm parking arrangements with your accommodation before arrival.",
+
+    transportLinks: [
+      {
+        label: "Local bus timetables — Kotor Municipality",
+        url: "https://www.kotor.me/me/javni-prevoz/",
+      },
+    ],
     accommodationOptions: [
       {
         name: "Hotel Monte Cristo",

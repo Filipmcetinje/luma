@@ -65,11 +65,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
     );
   }
 
-  const transportAdvice =
-    place.transportAdvice ||
-    (place.id === 1
-      ? "For journeys around the bay, confirm your bus stop, route, and return service before travelling. Taking a taxi? Ask for the fare in advance. Driving? Check parking arrangements with your accommodation before arrival."
-      : "");
+  const transportAdvice = place.transportAdvice || "";
 
   const planningTabs = [
     ...(place.nearbyPlaces?.length
