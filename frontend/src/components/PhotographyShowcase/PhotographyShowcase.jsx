@@ -16,13 +16,16 @@ const photos = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/montenegro-landscape2.jpg",
   },
   {
-    title: "My Pool",
+    title: "Adriatic Sea from Platamuni",
+    visitNote: "A view of the Adriatic coastline from  pool in Platamuni.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/mypool.jpg",
   },
 
   {
-    title: "Bay Entrance",
+    title: "Mamula Island from Arza",
+    visitNote:
+      "Looking across the entrance to the Bay of Kotor from Arza, with Mamula Island in view.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/bay-enter.jpg",
   },
@@ -68,12 +71,16 @@ const photos = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-national-park.jpg",
   },
   {
-    title: "budva sunset",
+    title: "Sunset over Budva from Crvena Glavica",
+    visitNote:
+      "Photographed from Crvena Glavica, looking toward Budva at sunset.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-2.jpg",
   },
   {
-    title: "Rijeka Crnojevica",
+    title: "Rijeka Crnojevića from Pavlova Strana",
+    visitNote:
+      "From the Pavlova Strana viewpoint, the Crnojevića River curves below on its way to Lake Skadar.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/rijeka-crnijevica-3.png",
   },
