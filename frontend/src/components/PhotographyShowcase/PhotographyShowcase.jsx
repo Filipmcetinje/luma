@@ -44,7 +44,8 @@ const photos = [
     image: heroImage,
   },
   {
-    title: "Bay Panorama",
+    title: "Bay of Kotor (Boka Bay) from Lovćen",
+    visitNote: "Photographed from Lovćen, looking out over the Bay of Kotor.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/bay.png",
   },
@@ -54,12 +55,15 @@ const photos = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/landscape.jpg",
   },
   {
-    title: "Sunset View",
+    title: "Adriatic Sunset from Lovćen",
+    visitNote: "Looking out over the Adriatic Sea at sunset from Lovćen.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/view.png",
   },
   {
-    title: "Lovcen National Park",
+    title: "Štirovnik from Jezerski Vrh",
+    visitNote:
+      "Lovćen’s highest peak (1,749 m), photographed from the Njegoš Mausoleum on Jezerski Vrh.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-national-park.jpg",
   },
