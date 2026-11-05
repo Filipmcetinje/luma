@@ -9,7 +9,9 @@ const photos = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/montenegro-landscape.jpg",
   },
   {
-    title: "Montenegro Landscape II",
+    title: "Coastal view from Platamuni",
+    visitNote:
+      "Platamuni is a protected stretch of Montenegro’s Adriatic coast near Ploče Beach (Plaža Ploče).",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/montenegro-landscape2.jpg",
   },
@@ -36,7 +38,9 @@ const photos = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake.jpg",
   },
   {
-    title: "Montenegro",
+    title: "Lighthouse seen from Platamuni",
+    visitNote:
+      "Photographed from Platamuni, a protected stretch of Montenegro’s Adriatic coast near Ploče Beach (Plaža Ploče).",
     image: heroImage,
   },
   {
@@ -63,6 +67,11 @@ const photos = [
     title: "budva sunset",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/budva-2.jpg",
+  },
+  {
+    title: "Rijeka Crnojevica",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/rijeka-crnijevica-3.png",
   },
 ];
 
@@ -100,7 +109,10 @@ function PhotographyShowcase() {
                 loading="lazy"
               />
             </button>
-            <figcaption>{photo.title}</figcaption>
+            <figcaption>
+              {photo.title}
+              {photo.visitNote && <p>{photo.visitNote}</p>}
+            </figcaption>
           </figure>
         ))}
       </div>
