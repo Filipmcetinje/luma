@@ -22,16 +22,17 @@ function Hero() {
           <p className="hero__eyebrow">Travel · Art · Inspiration</p>
 
           <h1 className="hero__title">
-            Discover the world through creativity.
+            Discover Montenegro through a local lens.
           </h1>
 
           <p className="hero__text">
-            Find places that inspire you, choose where to stay, and bring your
-            next journey together.
+            Explore Montenegro through my photographs and travel guides. Find
+            out where to stay and how to get around, then save the places you
+            want to visit to your trip.
           </p>
 
           <Link className="hero__button" to="/discover">
-            Start exploring →
+            Explore Montenegro →
           </Link>
         </div>
       </div>
