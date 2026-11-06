@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import heroImage from "../../assets/hero/montenegro-hero.jpg";
 import "./PhotographyShowcase.css";
+import { Link } from "react-router-dom";
 
 const photos = [
   {
@@ -69,6 +70,8 @@ const photos = [
     title: "Štirovnik from Jezerski Vrh",
     visitNote:
       "Lovćen’s highest peak (1,749 m), photographed from the Njegoš Mausoleum on Jezerski Vrh.",
+    guidePath: "/places/3",
+    guideLabel: "Explore Lovćen National Park",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lovcen-national-park.jpg",
   },
@@ -139,6 +142,9 @@ function PhotographyShowcase() {
             <figcaption>
               {photo.title}
               {photo.visitNote && <p>{photo.visitNote}</p>}
+              {photo.guidePath && (
+                <Link to={photo.guidePath}>{photo.guideLabel}</Link>
+              )}
             </figcaption>
           </figure>
         ))}

@@ -291,6 +291,39 @@ const places = [
     ],
     nearbyPlaces: [
       {
+        slug: "njegos-mausoleum",
+        title: "Njegoš Mausoleum",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/mausoleum.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/mausoleum.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/mausoleum-caryatid.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/njegos-sculpture.jpg",
+        ],
+        description:
+          "Atop Jezerski Vrh on Mount Lovćen stands the mausoleum of Petar II Petrović Njegoš, Montenegro’s prince-bishop and one of the best-known poets in South Slavic literature. Designed by the renowned sculptor Ivan Meštrović, the monument honors the author of The Mountain Wreath (Gorski vijenac). Two stone caryatids depicting women in traditional Montenegrin dress frame the entrance, and inside, Njegoš sits beneath an eagle with outspread wings. After climbing the 461 steps, take time to enjoy the spectacular panorama. On a clear day, Montenegro seems to unfold beneath you, from the Adriatic coast to the mountains of the interior, with Štirovnik, Lovćen’s highest peak, rising nearby.",
+        stayAdvice:
+          "For a stay in the mountains, base yourself in Ivanova Korita inside Lovćen National Park. Spend time walking through the surrounding woods and meadows, then head to Jezerski Vrh and climb the 461 steps to the Njegoš Mausoleum. If you prefer to stay in town, base yourself in Cetinje and visit Lovćen as a day trip. If you’re travelling without a car, ask your accommodation about transport to the mausoleum and arrange your return ride in advance.",
+        accommodationOptions: [
+          {
+            name: "Ivanova Korita accommodation",
+            description:
+              "Explore lodging at the Ivanova Korita recreation complex inside Lovćen National Park.",
+            url: "https://www.ivanovakorita.com/en/",
+          },
+        ],
+        transportAdvice:
+          "You can reach the mausoleum by car or taxi from Cetinje or Kotor. A narrow mountain road leads to the foot of Jezerski Vrh, where the final climb is 461 steps. If you take a taxi, arrange your return ride in advance. The mausoleum closes seasonally, so check the museum’s opening hours and ticket prices before you go.",
+
+        transportLinks: [
+          {
+            label:
+              "Mausoleum opening hours and tickets — National Museum of Montenegro",
+            url: "https://en.narodnimuzej.me/posjeta-njegosev-mauzolej/",
+          },
+        ],
+      },
+      {
         slug: "kotor-cable-car",
         title: "Kotor–Lovćen Cable Car",
         image:
