@@ -262,7 +262,7 @@ function App() {
   async function handleCreateTrip(newTrip) {
     if (!accountToken) {
       setLocalTrips((currentTrips) => [...currentTrips, newTrip]);
-      return;
+      return newTrip;
     }
 
     if (accountTrips?.token !== accountToken || accountTrips.error) {
@@ -283,6 +283,8 @@ function App() {
           ? { ...current, trips: [trip, ...current.trips] }
           : current,
       );
+
+      return trip;
     } catch (error) {
       if (
         error.status === 401 &&

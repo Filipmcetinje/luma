@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 
 import places from "../../data/places";
 import "./PlaceDetails.css";
@@ -7,7 +7,10 @@ import "./PlaceDetails.css";
 function PlaceDetails({ trips, onAddPlaceToTrip }) {
   const { placeId } = useParams();
   const navigate = useNavigate();
-  const [selectedTripId, setSelectedTripId] = useState("");
+  const location = useLocation();
+  const [selectedTripId, setSelectedTripId] = useState(() =>
+    String(location.state?.newTripId ?? ""),
+  );
   const [addMessage, setAddMessage] = useState("");
   const [addMessageType, setAddMessageType] = useState("");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);

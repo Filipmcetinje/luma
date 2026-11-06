@@ -86,7 +86,7 @@ function Trips({
     setIsCreating(true);
 
     try {
-      await onCreateTrip({
+      const savedTrip = await onCreateTrip({
         id: Date.now(),
         name: trimmedName,
         startDate,
@@ -100,7 +100,10 @@ function Trips({
       setEndDate("");
       setTripNotes("");
       if (returnTo) {
-        navigate(returnTo, { replace: true });
+        navigate(returnTo, {
+          replace: true,
+          state: { newTripId: savedTrip.id },
+        });
       }
     } catch (error) {
       setFormError(error.message || "Unable to create your trip.");
