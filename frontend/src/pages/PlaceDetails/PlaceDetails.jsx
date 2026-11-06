@@ -336,7 +336,11 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
         <section className="place-details__trip-section">
           <h2 className="place-details__trip-title">Add to a trip</h2>
 
-          <Link className="place-details__map-link" to="/trips">
+          <Link
+            className="place-details__map-link"
+            to="/trips"
+            state={{ returnTo: `/places/${place.id}` }}
+          >
             {trips.length === 0 ? "Create a trip →" : "Create another trip →"}
           </Link>
 

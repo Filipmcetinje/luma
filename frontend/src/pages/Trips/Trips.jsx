@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Trips.css";
 import places from "../../data/places";
 import getTripStatus from "../../utils/getTripStatus";
@@ -52,6 +52,10 @@ function Trips({
     setTripNotes(event.target.value);
   }
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const returnTo = location.state?.returnTo;
+
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -95,6 +99,9 @@ function Trips({
       setStartDate("");
       setEndDate("");
       setTripNotes("");
+      if (returnTo) {
+        navigate(returnTo, { replace: true });
+      }
     } catch (error) {
       setFormError(error.message || "Unable to create your trip.");
     } finally {
