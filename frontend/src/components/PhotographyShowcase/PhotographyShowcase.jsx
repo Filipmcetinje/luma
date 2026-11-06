@@ -36,7 +36,9 @@ const photos = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/plant.jpg",
   },
   {
-    title: "Scadar Lake",
+    title: "Lake Skadar from the Virpazar–Rijeka Crnojevića Road",
+    visitNote:
+      "Photographed along the road from Virpazar to Rijeka Crnojevića, looking out over Lake Skadar.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/scadar-lake.jpg",
   },
@@ -83,6 +85,20 @@ const photos = [
       "From the Pavlova Strana viewpoint, the Crnojevića River curves below on its way to Lake Skadar.",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/rijeka-crnijevica-3.png",
+  },
+  {
+    title: "Bay of Kotor Panorama",
+    visitNote:
+      "A wide view over Boka Bay, photographed from the road between Cetinje and Kotor.",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/bay-from-lovcen.png",
+  },
+  {
+    title: "Perast and Its Islands from Kamenari",
+    visitNote:
+      "Photographed from Kamenari, looking across the bay toward Perast, Our Lady of the Rocks (Gospa od Škrpjela), and St. George Island (Sveti Đorđe).",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/perast-4.png",
   },
 ];
 
