@@ -37,6 +37,40 @@ const places = [
         url: "https://www.kotor.me/me/javni-prevoz/",
       },
     ],
+    accommodationGuide: {
+  title: "Choose your base around Kotor",
+  intro:
+    "Start with how you want to spend your days: exploring historic streets, relaxing beside the water, or travelling around the bay.",
+  areas: [
+    {
+      name: "Old Town",
+      description:
+        "Stay among Kotor’s historic streets and squares. The properties below are inside the town walls.",
+    },
+    {
+      name: "Dobrota",
+      description:
+        "Explore waterfront accommodation beside Kotor. Check each property’s walking route to the Old Town, as locations vary.",
+    },
+    {
+      name: "Ljuta and Orahovac",
+      description:
+        "Consider these villages for a quieter stay beside the bay.",
+    },
+    {
+      name: "Prčanj",
+      description:
+        "Explore maritime architecture and waterfront walks across the bay from Dobrota.",
+    },
+    {
+      name: "Stoliv",
+      description:
+        "Choose between time beside the water in Donji Stoliv and exploring the uphill route to Gornji Stoliv.",
+    },
+  ],
+  advice:
+    "Open the Around Kotor tab for each village’s guide and accommodation options. Before booking, confirm the exact address, transport connections, and parking if you’re driving. If travelling without a car, check the return journey as well as the outward route.",
+},
     accommodationOptions: [
       {
         name: "Hotel Monte Cristo",

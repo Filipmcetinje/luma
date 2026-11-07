@@ -246,50 +246,21 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
                 {tab.id === "accommodation" && (
                   <>
-                    {place.id === 1 && (
+                    {place.accommodationGuide && (
                       <div className="place-details__planning-intro">
-                        <h3>Choose your base around Kotor</h3>
+                        <h3>{place.accommodationGuide.title}</h3>
 
-                        <p>
-                          Start with how you want to spend your days: exploring
-                          historic streets, relaxing beside the water, or
-                          travelling around the bay.
-                        </p>
+                        <p>{place.accommodationGuide.intro}</p>
 
                         <ul>
-                          <li>
-                            <strong>Old Town:</strong> Stay among Kotor’s
-                            historic streets and squares. The properties below
-                            are inside the town walls.
-                          </li>
-                          <li>
-                            <strong>Dobrota:</strong> Explore waterfront
-                            accommodation beside Kotor. Check each property’s
-                            walking route to the Old Town, as locations vary.
-                          </li>
-                          <li>
-                            <strong>Ljuta and Orahovac:</strong> Consider these
-                            villages for a quieter stay beside the bay.
-                          </li>
-                          <li>
-                            <strong>Prčanj:</strong> Explore maritime
-                            architecture and waterfront walks across the bay
-                            from Dobrota.
-                          </li>
-                          <li>
-                            <strong>Stoliv:</strong> Choose between time beside
-                            the water in Donji Stoliv and exploring the uphill
-                            route to Gornji Stoliv.
-                          </li>
+                          {place.accommodationGuide.areas.map((area) => (
+                            <li key={area.name}>
+                              <strong>{area.name}:</strong> {area.description}
+                            </li>
+                          ))}
                         </ul>
 
-                        <p>
-                          Open the Around Kotor tab for each village’s guide and
-                          accommodation options. Before booking, confirm the
-                          exact address, transport connections, and parking if
-                          you’re driving. If travelling without a car, check the
-                          return journey as well as the outward route.
-                        </p>
+                        <p>{place.accommodationGuide.advice}</p>
                       </div>
                     )}
 
