@@ -12,7 +12,9 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
     String(location.state?.newTripId ?? ""),
   );
   const [addMessage, setAddMessage] = useState("");
+
   const [addMessageType, setAddMessageType] = useState("");
+  const [addedTripId, setAddedTripId] = useState("");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isAdding, setIsAdding] = useState(false);
   const [planningSelection, setPlanningSelection] = useState(null);
@@ -28,6 +30,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
 
     setAddMessage("");
     setAddMessageType("");
+    setAddedTripId("");
 
     const selectedTrip = trips.find(
       (trip) => String(trip.id) === selectedTripId,
@@ -50,6 +53,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
     try {
       await onAddPlaceToTrip(selectedTripId, place.id);
 
+      setAddedTripId(selectedTripId);
       setAddMessage(`${place.title} was added to your trip.`);
       setAddMessageType("success");
     } catch (error) {
@@ -383,8 +387,15 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
               {addMessage && (
                 <p
                   className={`place-details__add-message place-details__add-message--${addMessageType}`}
+                  role="status"
                 >
                   {addMessage}
+                  {addMessageType === "success" && addedTripId && (
+                    <>
+                      {" "}
+                      <Link to={`/trips/${addedTripId}`}>View trip →</Link>
+                    </>
+                  )}
                 </p>
               )}
             </>
