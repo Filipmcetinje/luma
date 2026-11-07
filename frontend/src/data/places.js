@@ -390,6 +390,30 @@ const places = [
     ],
     description:
       "Cetinje’s story is rooted in the struggle to preserve freedom. In 1482, as Ottoman expansion threatened his lands, Ivan Crnojević established his seat beneath Mount Lovćen, founding a monastery here in 1484. Cetinje became a centre of Montenegrin spiritual, political, and cultural life, shaped by mountain traditions and the defence of autonomy. Today, its monasteries, royal palaces, former embassies, and art museums reveal how this small city helped shape a country.",
+    accommodationGuide: {
+      title: "Choose your base around Cetinje",
+      intro:
+        "Stay in Cetinje for museums and historic streets, or compare accommodation in Rijeka Crnojevića and Njeguši for a riverside or mountain-village setting.",
+      areas: [
+        {
+          name: "Cetinje",
+          description:
+            "Choose a town base for exploring museums, royal palaces, cafés, and former embassies. The properties below are in Cetinje. Check each address against the sights you want to reach on foot.",
+        },
+        {
+          name: "Rijeka Crnojevića",
+          description:
+            "Consider a riverside stay for scenery, photography, and time on the water. Arrange transport separately if you plan to visit Cetinje or Lovćen.",
+        },
+        {
+          name: "Njeguši",
+          description:
+            "Choose a village setting among the slopes of Lovćen, with traditional food and Njegoš’s birthplace nearby. Check transport arrangements before booking.",
+        },
+      ],
+      advice:
+        "Open the Around Cetinje tab for individual guides and accommodation options. Lipa Cave can be visited from a base in Cetinje; check its tour times before planning your day. If travelling without a car, confirm transport to nearby sights and your return journey. If driving, ask your accommodation about parking.",
+    },
     accommodationOptions: [
       {
         name: "Hotel Gradska Cetinje",
