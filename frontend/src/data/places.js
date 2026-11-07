@@ -38,39 +38,39 @@ const places = [
       },
     ],
     accommodationGuide: {
-  title: "Choose your base around Kotor",
-  intro:
-    "Start with how you want to spend your days: exploring historic streets, relaxing beside the water, or travelling around the bay.",
-  areas: [
-    {
-      name: "Old Town",
-      description:
-        "Stay among Kotor’s historic streets and squares. The properties below are inside the town walls.",
+      title: "Choose your base around Kotor",
+      intro:
+        "Start with how you want to spend your days: exploring historic streets, relaxing beside the water, or travelling around the bay.",
+      areas: [
+        {
+          name: "Old Town",
+          description:
+            "Stay among Kotor’s historic streets and squares. The properties below are inside the town walls.",
+        },
+        {
+          name: "Dobrota",
+          description:
+            "Explore waterfront accommodation beside Kotor. Check each property’s walking route to the Old Town, as locations vary.",
+        },
+        {
+          name: "Ljuta and Orahovac",
+          description:
+            "Consider these villages for a quieter stay beside the bay.",
+        },
+        {
+          name: "Prčanj",
+          description:
+            "Explore maritime architecture and waterfront walks across the bay from Dobrota.",
+        },
+        {
+          name: "Stoliv",
+          description:
+            "Choose between time beside the water in Donji Stoliv and exploring the uphill route to Gornji Stoliv.",
+        },
+      ],
+      advice:
+        "Open the Around Kotor tab for each village’s guide and accommodation options. Before booking, confirm the exact address, transport connections, and parking if you’re driving. If travelling without a car, check the return journey as well as the outward route.",
     },
-    {
-      name: "Dobrota",
-      description:
-        "Explore waterfront accommodation beside Kotor. Check each property’s walking route to the Old Town, as locations vary.",
-    },
-    {
-      name: "Ljuta and Orahovac",
-      description:
-        "Consider these villages for a quieter stay beside the bay.",
-    },
-    {
-      name: "Prčanj",
-      description:
-        "Explore maritime architecture and waterfront walks across the bay from Dobrota.",
-    },
-    {
-      name: "Stoliv",
-      description:
-        "Choose between time beside the water in Donji Stoliv and exploring the uphill route to Gornji Stoliv.",
-    },
-  ],
-  advice:
-    "Open the Around Kotor tab for each village’s guide and accommodation options. Before booking, confirm the exact address, transport connections, and parking if you’re driving. If travelling without a car, check the return journey as well as the outward route.",
-},
     accommodationOptions: [
       {
         name: "Hotel Monte Cristo",
@@ -519,6 +519,45 @@ const places = [
     ],
     description:
       "Budva and its Riviera offer some of the Mediterranean’s most beautiful coastal scenery, with clear water, sheltered coves, and beaches backed by mountains. Enjoy it your own way: spend a quiet day swimming, explore the coastline by boat, or experience lively waterfront restaurants and nightlife. At its heart, the walled Old Town holds more than 2,500 years of history, with origins linked in Greek legend to Cadmus and Harmonia. Wander its stone streets and small squares, discover churches and art, or simply settle beside the sea.",
+    accommodationGuide: {
+      title: "Choose your base on the Budva Riviera",
+      intro:
+        "Think about what you want within walking distance: historic streets, a long beach, or a smaller seaside village. Then compare the property’s exact location and transport options.",
+      areas: [
+        {
+          name: "Budva Old Town and surroundings",
+          description:
+            "Stay close to historic streets, restaurants, and the waterfront. The properties below are in or near the Old Town.",
+        },
+        {
+          name: "Bečići",
+          description:
+            "Consider Bečići for beach days and waterfront hotels. Check the walking route to Budva if you plan to visit the Old Town regularly.",
+        },
+        {
+          name: "Pržno",
+          description:
+            "Choose a small bay setting with waterfront restaurants and access to the coastal scenery around Miločer.",
+        },
+        {
+          name: "Sveti Stefan",
+          description:
+            "Look at mainland accommodation for views of the island and time beside the sea. Check the route from each property to the beach, including steps and uphill sections.",
+        },
+        {
+          name: "Petrovac",
+          description:
+            "Consider Petrovac for a seaside town with its own beach and promenade. Plan transport separately if you want to visit Budva.",
+        },
+        {
+          name: "Jaz Beach",
+          description:
+            "Compare accommodation near the beach if swimming is your priority. Check how you will reach Budva and return to your property.",
+        },
+      ],
+      advice:
+        "Open the Around Budva tab for individual guides and accommodation options. Before booking, confirm the exact address, parking, and any extra charges. If travelling without a car, check nearby bus stops and return services for your dates.",
+    },
     accommodationOptions: [
       {
         name: "Avala Resort & Villas",
