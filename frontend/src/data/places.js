@@ -455,6 +455,7 @@ const places = [
         gallery: [
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/rijeka-crnojevica.png",
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/rijeka-crnijevica-3.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/cetinje-rijeka.jpg",
         ],
         description:
           "Rijeka Crnojevića opens onto one of Montenegro’s most beautiful river landscapes, where winding water meets Lake Skadar among green hills. Explore by boat or kayak to experience the scenery from the water, or pause beside the town’s old stone bridge. Once an important trading port, this small riverside town brings together history, nature, and a slower pace of life.",
