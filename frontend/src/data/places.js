@@ -309,6 +309,25 @@ const places = [
     ],
     description:
       "Lovćen is more than a mountain—it is a symbol of Montenegro’s identity, freedom, and enduring spirit. Rising above the Adriatic, it connects the coastal world of Kotor, Tivat, and Budva with the historic heartland around Cetinje. From the sea, its rocky slopes form a dramatic mountain backdrop; from its heights, the landscape opens towards the bay, coast, and inland mountains. For many Montenegrins, Lovćen holds a place comparable to Olympus for the Greeks. On Jezerski Vrh, the mausoleum of the ruler and poet Petar II Petrović Njegoš brings that connection between mountain, history, and national identity into focus.",
+    accommodationGuide: {
+      title: "Stay in the mountains or in Cetinje",
+      intro:
+        "Choose your base around how you want to experience Lovćen: spending more time outdoors or combining a mountain visit with Cetinje’s museums, palaces, and cafés.",
+      areas: [
+        {
+          name: "Ivanova Korita",
+          description:
+            "Stay inside Lovćen National Park, close to woods, meadows, and walking trails. The properties below are in this area. Ask your accommodation about suitable walks and how to reach the Njegoš Mausoleum.",
+        },
+        {
+          name: "Cetinje",
+          description:
+            "Stay in town and visit Lovćen as a day trip. This gives you time to explore Cetinje’s cultural sights alongside the mountain landscape.",
+        },
+      ],
+      advice:
+        "Staying in the park gives you more time for walking, but reaching the mausoleum still requires planning your route and the final climb of 461 steps. If travelling without a car, confirm transport with your accommodation and arrange the return journey before setting off.",
+    },
     accommodationOptions: [
       {
         name: "Hotel Monte Rosa",
