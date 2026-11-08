@@ -448,8 +448,14 @@ const places = [
         title: "Rijeka Crnojevića",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/rijeka-crnojevica.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/rijeka-crnojevica.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/rijeka-crnijevica-3.png",
+        ],
         description:
           "Rijeka Crnojevića opens onto one of Montenegro’s most beautiful river landscapes, where winding water meets Lake Skadar among green hills. Explore by boat or kayak to experience the scenery from the water, or pause beside the town’s old stone bridge. Once an important trading port, this small riverside town brings together history, nature, and a slower pace of life.",
+        transportAdvice:
+          "Visit Rijeka Crnojevića by rental car or taxi, arranging your return journey in advance. For fit, experienced walkers, the old trail from Cetinje offers a different way to experience the landscape and the historic paths that connected local communities. Expect uneven, rocky ground and demanding climbs and descents. Go with a local guide who knows the route and its current condition. Cycling is another option for experienced riders on suitable roads, but the walking trail should not be assumed suitable for bicycles.",
         accommodationOptions: [
           {
             name: "Hotel S Family Jovićević",
