@@ -342,6 +342,8 @@ const places = [
         url: "https://www.ivanovakorita.com/en/hotel-ivanov-konak/",
       },
     ],
+    transportAdvice:
+      "Plan how you will travel between your accommodation and the places you want to visit in Lovćen. If taking a taxi, agree on the fare, any waiting time, and the return pickup before departure. If driving, check road and weather conditions before setting off. For walking routes, ask locally about the terrain and current trail conditions. Check the separate mausoleum and cable car guides below for visitor information specific to each attraction.",
     nearbyPlaces: [
       {
         slug: "njegos-mausoleum",
