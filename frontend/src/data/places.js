@@ -793,8 +793,8 @@ const places = [
   },
   {
     id: 7,
-    title: "Scadar Lake",
-    location: "Scadar Lake",
+    title: "Skadar Lake",
+    location: "Skadar Lake",
     category: "Nature",
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/scadar-lake.jpg",
@@ -806,8 +806,7 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/landscape3.png",
     ],
     description:
-      "A wide lake landscape with mountain views, green wetlands, and winding waterways that invite photography and quiet exploration.",
-    bestTime: "Early morning or late afternoon",
+      "Skadar Lake opens onto a landscape of mountains, reed beds, water lilies, and winding waterways. Shared by Montenegro and Albania, it is the largest lake in the Balkans and an important home for birdlife, including Dalmatian pelicans. Explore by boat or kayak, photograph the changing light, or discover the villages and viewpoints around its shores. Virpazar offers a starting point for exploring the lake, while Rijeka Crnojevića brings together river scenery and an old stone bridge. Fishing villages such as Karuč reveal another side of life beside the water. Island monasteries, historic fortresses, local fish dishes, and the vineyards of the surrounding countryside connect the landscape with centuries of culture. Come for the views, but leave time to explore beyond a single viewpoint.",
   },
 ];
 
