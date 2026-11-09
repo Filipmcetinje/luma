@@ -810,6 +810,32 @@ const places = [
     bestTime: "Early morning or late afternoon",
     transportAdvice:
       "Choose which part of Skadar Lake you want to explore before arranging transport. Confirm the exact departure point for any boat or kayaking outing, as different operators use different locations. If taking a taxi, agree on the fare and return pickup in advance. If driving, ask your accommodation or activity provider about access and parking. Before booking a boat trip, confirm its duration, route, and whether the national park entrance fee is included.",
+    nearbyPlaces: [
+      {
+        slug: "virpazar",
+        title: "Virpazar",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/Virpazar_Bridge_Between_Village_and_Hotel.png",
+        description:
+          "Virpazar is a small settlement and a starting point for exploring Skadar Lake. From here, boat trips lead into a landscape of waterways, water lilies, and mountain views, while kayaking and birdwatching offer other ways to experience the area. Spend time exploring the village, discover nearby historic sites, or explore the surrounding countryside and its wine traditions.",
+        accommodationOptions: [
+          {
+            name: "Hotel De’Andros",
+            description:
+              "A hotel in Virpazar offering rooms and apartments, including options with lake views.",
+            url: "https://hoteldeandros.me/",
+          },
+          {
+            name: "Hotel Pelikan",
+            description:
+              "A family hotel in Virpazar with traditionally styled accommodation and a restaurant serving local dishes.",
+            url: "https://pelikan-zec.com/hotel/",
+          },
+        ],
+        transportAdvice:
+          "If you have booked a boat or kayaking outing, confirm the exact meeting point in Virpazar before travelling. Ask about parking if driving, or arrange your return pickup if arriving by taxi. Before booking, check the route, duration, weather arrangements, and whether the national park entrance fee is included.",
+      },
+    ],
   },
 ];
 
