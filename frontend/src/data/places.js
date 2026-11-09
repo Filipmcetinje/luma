@@ -816,8 +816,12 @@ const places = [
         title: "Virpazar",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/Virpazar_Bridge_Between_Village_and_Hotel.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/Virpazar_Bridge_Between_Village_and_Hotel.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/virpazar-monument.png",
+        ],
         description:
-          "Virpazar is a small settlement and a starting point for exploring Skadar Lake. From here, boat trips lead into a landscape of waterways, water lilies, and mountain views, while kayaking and birdwatching offer other ways to experience the area. Spend time exploring the village, discover nearby historic sites, or explore the surrounding countryside and its wine traditions.",
+          "Virpazar is a small settlement and a starting point for exploring Skadar Lake, where bridges, waterside houses, and fishing boats give the village its character. In the centre, a striking bronze monument rises above a rocky outcrop, commemorating the 13 July 1941 uprising against Italian occupation and the people of Crmnica who died during the Second World War. This distinctive landmark connects the village’s peaceful setting with Montenegro’s history of resistance. From Virpazar, boat trips lead into a landscape of waterways, water lilies, and mountain views, while kayaking and birdwatching offer other ways to experience the lake. Leave time to explore the village and discover the surrounding countryside and its wine traditions.",
         accommodationOptions: [
           {
             name: "Hotel De’Andros",
@@ -834,6 +838,85 @@ const places = [
         ],
         transportAdvice:
           "If you have booked a boat or kayaking outing, confirm the exact meeting point in Virpazar before travelling. Ask about parking if driving, or arrange your return pickup if arriving by taxi. Before booking, check the route, duration, weather arrangements, and whether the national park entrance fee is included.",
+      },
+      {
+        slug: "karuc",
+        title: "Karuč",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/karuc.png",
+        description:
+          "Karuč is a small fishing village on Skadar Lake, where stone houses and surrounding hills frame views across the water. Its setting invites a slower visit: spend time beside the shore, photograph the landscape, or arrange a boat outing to explore beyond the village. Karuč offers another perspective on the lake, shaped by fishing traditions and everyday life beside the water.",
+        accommodationOptions: [
+          {
+            name: "Karuc Apartments",
+            description:
+              "Apartments in Karuč with kitchen facilities and terrace or balcony options.",
+            url: "https://www.booking.com/hotel/me/karuc-apartment.html",
+          },
+          {
+            name: "Feel the Karuch",
+            description:
+              "A one-bedroom holiday home in Karuč with a living room, kitchenette, and terrace.",
+            url: "https://www.booking.com/hotel/me/feel-the-karuch.html",
+          },
+        ],
+        transportAdvice:
+          "Confirm your arrival point and access arrangements before travelling to Karuč. If driving, check parking with your host or boat operator. If arriving by taxi, arrange the return pickup in advance. For a boat outing, confirm the departure point, route, duration, and whether the national park entrance fee is included.",
+      },
+      {
+        slug: "dodosi",
+        title: "Dodoši",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/dodosi.png",
+        description:
+          "Dodoši is an old fishing village in the Skadar Lake landscape, where houses gather beside the water beneath the surrounding hills. Explore the village, photograph fishing boats and reflections, or spend time discovering the nearby waterways. A walk towards Žabljak Crnojevića connects this lakeside setting with Montenegro’s medieval history. The ruined fortified town was once a seat of the Crnojević dynasty, which ruled Zeta before Ottoman expansion forced its rulers to move their centre elsewhere. Its elevated position offers another perspective on the surrounding lake landscape.",
+        accommodationOptions: [
+          {
+            name: "Apartments Pristan",
+            description:
+              "Apartments in Dodoši with kitchen facilities, a terrace, and parking.",
+            url: "https://booking-montenegro.me/en/accommodation/apartmani-pristan/",
+          },
+          {
+            name: "Stone House Kana–Skadar Lake",
+            description:
+              "A one-bedroom holiday home in Dodoši with a kitchen, terrace, and private parking.",
+            url: "https://www.booking.com/hotel/me/stone-house-kana-skadar-lake.html",
+          },
+          {
+            name: "Lake View Apartment Dodosi",
+            description:
+              "A two-bedroom apartment in Dodoši with a kitchen, terrace, lake views, and private parking.",
+            url: "https://www.booking.com/hotel/me/vila-studenac.en-gb.html",
+          },
+        ],
+        transportAdvice:
+          "Before travelling to Dodoši, confirm your arrival point with your accommodation or activity provider. If driving, ask about access and parking. If taking a taxi, agree on the fare and return pickup in advance. For boat or kayaking outings, confirm the meeting point, route, duration, and weather arrangements before setting off. For a walk towards Žabljak Crnojevića, ask locally about the route and current access, as the surrounding wetlands and water levels can affect conditions.",
+      },
+      {
+        slug: "murici",
+        title: "Murići",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/murici.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/murici.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/murici-beach.png",
+        ],
+
+        description:
+          "Murići offers a different perspective on Skadar Lake: a pebble beach on its southwestern shore, with broad views across the water towards islands and mountains. Spend time beside the lake, photograph the shoreline, or arrange a boat outing to explore the nearby island monasteries. Beška is among the historic monasteries in this part of the lake, connecting the landscape with centuries of religious and cultural life. Confirm visiting arrangements with your boat operator before setting off.",
+        transportAdvice:
+          "Plan your journey to Donji Murići in advance. The approach includes narrow, winding roads and a steep descent towards the beach, so allow time and check access with your host or activity provider. If taking a taxi, agree on the fare and return pickup before departure. For boat outings, confirm the departure point, route, weather arrangements, and whether monastery visits and national park entrance fees are included.",
+        stayAdvice:
+          "For an overnight stay in Murići, check directly with local hosts about camping or bungalow accommodation, opening dates, and available facilities. Confirm meals, drinking water, parking, and arrival arrangements before travelling.",
+        accommodationOptions: [
+          {
+            name: "Konoba Murići — bungalows and camping",
+            description:
+              "A lakeside property listed with wooden bungalows and camping. Contact the host to confirm opening dates, availability, and facilities.",
+            url: "https://www.moja-djelatnost.me/najbolje-izletiste-bar-crna-gora/konoba-murici/MM19MIB0",
+          },
+        ],
       },
     ],
   },
