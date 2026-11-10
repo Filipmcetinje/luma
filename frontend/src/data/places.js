@@ -807,7 +807,35 @@ const places = [
     ],
     description:
       "Skadar Lake opens onto a landscape of mountains, reed beds, water lilies, and winding waterways. Shared by Montenegro and Albania, it is the largest lake in the Balkans and an important home for birdlife, including Dalmatian pelicans. Explore by boat or kayak, photograph the changing light, or discover the villages and viewpoints around its shores. Virpazar offers a starting point for exploring the lake, while Rijeka Crnojevića brings together river scenery and an old stone bridge. Fishing villages such as Karuč reveal another side of life beside the water. Island monasteries, historic fortresses, local fish dishes, and the vineyards of the surrounding countryside connect the landscape with centuries of culture. Come for the views, but leave time to explore beyond a single viewpoint.",
-    bestTime: "Early morning or late afternoon",
+    accommodationGuide: {
+      title: "Choose your base around Skadar Lake",
+      intro:
+        "Choose where to stay around the part of the lake you want to explore. Consider your transport, planned activities, and the facilities you need.",
+      areas: [
+        {
+          name: "Virpazar",
+          description:
+            "Consider this village if boat trips and exploring the surrounding wine country are central to your visit. Confirm how far your property is from your activity’s meeting point.",
+        },
+        {
+          name: "Karuč",
+          description:
+            "Choose a small fishing-village setting for time beside the water and photography. Confirm access, meals, and transport arrangements with your host.",
+        },
+        {
+          name: "Dodoši",
+          description:
+            "Stay in a waterside village with options for exploring the surrounding landscape and visiting Žabljak Crnojevića. Ask locally about current walking conditions before setting off.",
+        },
+        {
+          name: "Murići",
+          description:
+            "Consider the southwestern shore for its beach and open lake views. Confirm camping or bungalow availability, facilities, and arrival arrangements directly with the host.",
+        },
+      ],
+      advice:
+        "Open the Around Skadar Lake tab for each village’s guide and accommodation links. Before booking, confirm the exact location, access, parking, and meal options. If travelling without a car, arrange transport and your return journey in advance.",
+    },
     transportAdvice:
       "Choose which part of Skadar Lake you want to explore before arranging transport. Confirm the exact departure point for any boat or kayaking outing, as different operators use different locations. If taking a taxi, agree on the fare and return pickup in advance. If driving, ask your accommodation or activity provider about access and parking. Before booking a boat trip, confirm its duration, route, and whether the national park entrance fee is included.",
     nearbyPlaces: [

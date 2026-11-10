@@ -78,7 +78,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
     ...(place.nearbyPlaces?.length
       ? [{ id: "nearby", label: `Around ${place.title}` }]
       : []),
-    ...(place.accommodationOptions?.length
+    ...(place.accommodationGuide || place.accommodationOptions?.length
       ? [{ id: "accommodation", label: "Accommodation" }]
       : []),
     ...(transportAdvice ? [{ id: "transport", label: "Transport" }] : []),
@@ -265,7 +265,7 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
                     )}
 
                     <ul className="place-details__property-list">
-                      {place.accommodationOptions.map((option) => (
+                      {place.accommodationOptions?.map((option) => (
                         <li key={option.url}>
                           <h3>{option.name}</h3>
 
