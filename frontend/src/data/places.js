@@ -290,6 +290,8 @@ const places = [
         url: "https://leoncoronato.com/rooms/",
       },
     ],
+    transportAdvice:
+      "Before arriving in Perast, ask your accommodation where to park or be dropped off and how to bring in your luggage. If travelling by local bus, confirm the stop, timetable, and return service for your travel date. For taxis, agree on the fare before departure. If visiting Our Lady of the Rocks by boat, confirm the departure point, return crossing, weather arrangements, and whether church or museum admission is included.",
   },
   {
     id: 3,
