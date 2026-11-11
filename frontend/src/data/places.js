@@ -566,6 +566,48 @@ const places = [
     ],
     description:
       "Tivat brings together the Bay of Kotor’s maritime heritage and a modern waterfront. Walk along the Pine promenade and through Porto Montenegro, where yachts and waterfront cafés sit against a backdrop of mountains. Beyond the marina, the Buća–Luković summer residence and its museum and gallery reveal an older cultural landscape, while the Maritime Heritage Collection recalls the town’s naval past. For a different perspective, explore Gornja Lastva above Tivat, a stone village with olive-growing traditions and views across the bay towards Luštica. Between its waterfront, cultural sights, and hillside villages, Tivat offers opportunities for photography, sketching, and discovering the bay at your own pace.",
+    accommodationOptions: [
+      {
+        name: "Hotel Pine",
+        description:
+          "A hotel on the Pine waterfront in central Tivat, convenient for exploring the town on foot.",
+        url: "https://www.htpmimoza.me/en/pine.html",
+      },
+      {
+        name: "Regent Porto Montenegro",
+        description:
+          "A luxury hotel within Porto Montenegro’s marina village, beside waterfront restaurants and shops.",
+        url: "https://www.ihg.com/regent/hotels/gb/en/porto-montenegro/tivpm/hoteldetail",
+      },
+      {
+        name: "Hotel Carrubba",
+        description:
+          "A waterfront hotel in a restored 19th-century stone building in Donja Lastva, with views across the bay.",
+        url: "https://www.septemberhotels.com/carruba-tivat/",
+      },
+    ],
+    nearbyPlaces: [
+      {
+        slug: "lepetane",
+        title: "Lepetane",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lepetane.png",
+        description:
+          "Lepetane sits on the eastern side of the Verige Strait, where the Bay of Kotor narrows between steep hills. Houses rise from the waterfront towards greenery and olive groves, while ferries cross to Kamenari on the opposite shore. Beyond its role as a transport connection, the village offers a setting for discovering the bay’s coastal character and photographing the changing light, passing boats, and mountain-framed water.",
+        transportAdvice:
+          "Lepetane is connected with Kamenari by ferry and with Tivat by road. Check the ferry operator’s current timetable and fares before travelling, especially for late departures. If continuing by bus, confirm your stop and onward service separately. If staying in the village, ask your host about parking, luggage drop-off, and the property’s location relative to the ferry terminal.",
+        transportLinks: [
+          {
+            label: "Kamenari–Lepetane ferry — official information",
+            url: "https://trajekt.me/",
+          },
+          {
+            label: "Local bus information — Tivat Tourism Organisation",
+            url: "https://tivat.travel/en/city-info/bus/",
+          },
+        ],
+      },
+    ],
   },
   {
     id: 6,
