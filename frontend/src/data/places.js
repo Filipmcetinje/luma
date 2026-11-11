@@ -594,6 +594,26 @@ const places = [
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lepetane.png",
         description:
           "Lepetane sits on the eastern side of the Verige Strait, where the Bay of Kotor narrows between steep hills. Houses rise from the waterfront towards greenery and olive groves, while ferries cross to Kamenari on the opposite shore. Beyond its role as a transport connection, the village offers a setting for discovering the bay’s coastal character and photographing the changing light, passing boats, and mountain-framed water.",
+        accommodationOptions: [
+          {
+            name: "Apartments Villa Serventi",
+            description:
+              "Apartments in a historic waterfront building in Lepetane, with kitchenettes, sea views, and private parking.",
+            url: "https://www.booking.com/hotel/me/villa-serventi.html",
+          },
+          {
+            name: "Apartments Okuka",
+            description:
+              "Self-catering apartments in Lepetane with kitchenettes, balconies with sea views, and private parking.",
+            url: "https://www.booking.com/hotel/me/apartments-okuka-tivat.html",
+          },
+          {
+            name: "Apartman Lepetane",
+            description:
+              "A studio apartment in Lepetane with a kitchenette, a balcony overlooking the sea, and private parking.",
+            url: "https://www.booking.com/hotel/me/apartman-lepetane.html",
+          },
+        ],
         transportAdvice:
           "Lepetane is connected with Kamenari by ferry and with Tivat by road. Check the ferry operator’s current timetable and fares before travelling, especially for late departures. If continuing by bus, confirm your stop and onward service separately. If staying in the village, ask your host about parking, luggage drop-off, and the property’s location relative to the ferry terminal.",
         transportLinks: [
