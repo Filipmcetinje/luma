@@ -668,21 +668,40 @@ const places = [
         websiteLabel: "Explore Luštica Bay — official website",
       },
       {
-  slug: "krasici",
-  title: "Krašići",
-  image:
-    "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/krasici.png",
-  description:
-    "Krašići is a fishing village on the bay-facing side of the Luštica peninsula, across the water from Tivat. In Donji Krašići, old stone houses stand alongside summer homes near the shore, while Gornji Krašići lies uphill. The waterfront is mostly rocky, with concrete platforms along parts of the shore. Come for views across the bay, a meal by the water, or to photograph the village from the shoreline.",
-  transportAdvice:
-    "If travelling by bus from Tivat, confirm the stop and return service for your travel date. If driving or taking a taxi, check whether your destination is on the waterfront or uphill, and ask your host about parking or drop-off.",
-  transportLinks: [
-    {
-      label: "Local bus information — Tivat Tourism Organisation",
-      url: "https://tivat.travel/en/city-info/bus/",
-    },
-  ],
-},
+        slug: "krasici",
+        title: "Krašići",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/krasici.png",
+        description:
+          "Krašići is a fishing village on the bay-facing side of the Luštica peninsula, across the water from Tivat. In Donji Krašići, old stone houses stand alongside summer homes near the shore, while Gornji Krašići lies uphill. The waterfront is mostly rocky, with concrete platforms along parts of the shore. Come for views across the bay, a meal by the water, or to photograph the village from the shoreline.",
+        accommodationOptions: [
+          {
+            name: "Hotel Anderba",
+            description:
+              "A hotel in Krašići with rooms overlooking the bay, a restaurant, and a sun terrace.",
+            url: "https://www.booking.com/hotel/me/anderba.html",
+          },
+          {
+            name: "Villa Mare Apartments",
+            description: "Holiday apartments in Krašići with an outdoor pool.",
+            url: "https://www.booking.com/hotel/me/vila-mare.html",
+          },
+          {
+            name: "Rosemary Terrace Krasici",
+            description:
+              "A private apartment in Krašići with a sea-view balcony and on-site parking.",
+            url: "https://www.booking.com/hotel/me/rosemary-terrace-krasici.html",
+          },
+        ],
+        transportAdvice:
+          "If travelling by bus from Tivat, confirm the stop and return service for your travel date. If driving or taking a taxi, check whether your destination is on the waterfront or uphill, and ask your host about parking or drop-off.",
+        transportLinks: [
+          {
+            label: "Local bus information — Tivat Tourism Organisation",
+            url: "https://tivat.travel/en/city-info/bus/",
+          },
+        ],
+      },
     ],
   },
   {
