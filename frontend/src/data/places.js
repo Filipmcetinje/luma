@@ -579,7 +579,7 @@ const places = [
         {
           name: "Donja Lastva",
           description:
-            "Choose a village waterfront setting. Hotel Carrubba is listed below. Check the walking route to central Tivat if you plan to go into town often.",
+            "Choose Donja Lastva for a village setting by the water. Hotel Carrubba is listed below, and the Donja Lastva guide under Around Tivat has two more options. If you plan to go into town often, check the walking route from your accommodation.",
         },
         {
           name: "Lepetane",
