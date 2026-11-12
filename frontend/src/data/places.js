@@ -566,40 +566,40 @@ const places = [
     ],
     description:
       "Tivat brings together the Bay of Kotor’s maritime heritage and a modern waterfront. Walk along the Pine promenade and through Porto Montenegro, where yachts and waterfront cafés sit against a backdrop of mountains. Beyond the marina, the Buća–Luković summer residence and its museum and gallery reveal an older cultural landscape, while the Maritime Heritage Collection recalls the town’s naval past. For a different perspective, explore Gornja Lastva above Tivat, a stone village with olive-growing traditions and views across the bay towards Luštica. Between its waterfront, cultural sights, and hillside villages, Tivat offers opportunities for photography, sketching, and discovering the bay at your own pace.",
-      accommodationGuide: {
-  title: "Where to stay around Tivat",
-  intro:
-    "Choose your base by deciding where you want to spend most of your time: in town, near the ferry, or on the Luštica peninsula.",
-  areas: [
-    {
-      name: "Central Tivat and Porto Montenegro",
-      description:
-        "Stay here if you want the Pine promenade, marina, and waterfront dining within walking distance. Hotel Pine and Regent Porto Montenegro are listed below.",
+    accommodationGuide: {
+      title: "Where to stay around Tivat",
+      intro:
+        "Choose your base by deciding where you want to spend most of your time: in town, near the ferry, or on the Luštica peninsula.",
+      areas: [
+        {
+          name: "Central Tivat and Porto Montenegro",
+          description:
+            "Stay here if you want the Pine promenade, marina, and waterfront dining within walking distance. Hotel Pine and Regent Porto Montenegro are listed below.",
+        },
+        {
+          name: "Donja Lastva",
+          description:
+            "Choose a village waterfront setting. Hotel Carrubba is listed below. Check the walking route to central Tivat if you plan to go into town often.",
+        },
+        {
+          name: "Lepetane",
+          description:
+            "Consider staying near the ferry if you plan to cross to Kamenari. Check how far your apartment is from the terminal and how you’ll get to central Tivat.",
+        },
+        {
+          name: "Luštica Bay",
+          description:
+            "Choose Marina Village for a stay by the marina or compare rentals in Centrale. Confirm the exact neighbourhood and which facilities will be available during your stay.",
+        },
+        {
+          name: "Krašići",
+          description:
+            "Choose a village on the bay-facing side of Luštica. Check whether your accommodation is by the water or uphill, especially if you’re travelling without a car.",
+        },
+      ],
+      advice:
+        "Open Around Tivat for the Lepetane, Luštica Bay, and Krašići guides and their accommodation links. Before booking, check the property’s exact location, parking or drop-off arrangements, and transport for the trips you plan to make.",
     },
-    {
-      name: "Donja Lastva",
-      description:
-        "Choose a village waterfront setting. Hotel Carrubba is listed below. Check the walking route to central Tivat if you plan to go into town often.",
-    },
-    {
-      name: "Lepetane",
-      description:
-        "Consider staying near the ferry if you plan to cross to Kamenari. Check how far your apartment is from the terminal and how you’ll get to central Tivat.",
-    },
-    {
-      name: "Luštica Bay",
-      description:
-        "Choose Marina Village for a stay by the marina or compare rentals in Centrale. Confirm the exact neighbourhood and which facilities will be available during your stay.",
-    },
-    {
-      name: "Krašići",
-      description:
-        "Choose a village on the bay-facing side of Luštica. Check whether your accommodation is by the water or uphill, especially if you’re travelling without a car.",
-    },
-  ],
-  advice:
-    "Open Around Tivat for the Lepetane, Luštica Bay, and Krašići guides and their accommodation links. Before booking, check the property’s exact location, parking or drop-off arrangements, and transport for the trips you plan to make.",
-},
     accommodationOptions: [
       {
         name: "Hotel Pine",
@@ -733,6 +733,36 @@ const places = [
           {
             label: "Local bus information — Tivat Tourism Organisation",
             url: "https://tivat.travel/en/city-info/bus/",
+          },
+        ],
+      },
+      {
+        slug: "donja-lastva",
+        title: "Donja Lastva",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/donja-lastva.png",
+        description:
+          "Donja Lastva is a waterfront village near Tivat, where old stone houses face the Bay of Kotor. The Church of St. Roch (Sveti Roko) stands right beside the water and is a landmark of the village. From the church, you can look across the bay to the mountains. A visit to Donja Lastva pairs well with a walk through Porto Montenegro and central Tivat.",
+        transportAdvice:
+          "If you plan to walk between Donja Lastva and central Tivat, check the route from your accommodation. If arriving by car or taxi, ask your host where to park or be dropped off.",
+        accommodationOptions: [
+          {
+            name: "Hotel Carrubba",
+            description:
+              "A waterfront hotel in a restored 19th-century stone building in Donja Lastva, with views across the bay.",
+            url: "https://www.septemberhotels.com/carruba-tivat/",
+          },
+          {
+            name: "Ollie’s Hotel by the Sea",
+            description:
+              "A boutique hotel on the Donja Lastva waterfront with a terrace and a restaurant.",
+            url: "https://www.ollieshoteltivat.com/en",
+          },
+          {
+            name: "Zebra",
+            description:
+              "Accommodation in Donja Lastva with double rooms and one-bedroom suites.",
+            url: "https://www.booking.com/hotel/me/zebra-tivat.html",
           },
         ],
       },
