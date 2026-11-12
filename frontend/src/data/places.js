@@ -586,6 +586,18 @@ const places = [
         url: "https://www.septemberhotels.com/carruba-tivat/",
       },
     ],
+    transportAdvice:
+      "Plan your arrival around your accommodation’s exact location. If arriving at Tivat Airport, ask your host about transfers or agree on a taxi fare before departure. For bus journeys, confirm the departure point, timetable, and return service for your travel date. If your route includes the Lepetane–Kamenari ferry, check the operator’s current information and allow time for boarding. If driving, confirm parking arrangements with your accommodation before arrival.",
+    transportLinks: [
+      {
+        label: "Bus information — Tivat Tourism Organisation",
+        url: "https://tivat.travel/en/city-info/bus/",
+      },
+      {
+        label: "Kamenari–Lepetane ferry — official information",
+        url: "https://trajekt.me/",
+      },
+    ],
     nearbyPlaces: [
       {
         slug: "lepetane",
@@ -627,6 +639,50 @@ const places = [
           },
         ],
       },
+      {
+        slug: "lustica-bay",
+        title: "Luštica Bay",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lustica-bay.png",
+        description:
+          "Luštica Bay is a new coastal town taking shape on the Luštica peninsula, overlooking the open Adriatic. In Marina Village, a waterfront promenade connects the marina with restaurants, cafés, and residences whose architecture draws on Montenegro’s coastal traditions. Further inland, Centrale is developing as the town’s residential and community centre. Visit for sea views, waterfront dining, and photography, while remembering that the wider destination is still being built and different neighbourhoods offer different experiences.",
+        transportAdvice:
+          "Confirm whether your destination is in Marina Village, Centrale, or another part of Luštica Bay before arranging transport. Ask your accommodation or venue about parking, drop-off points, and any available transfers. If taking a taxi, agree on the fare and return arrangements in advance. Check current access and opening information for beaches, restaurants, and activities before travelling.",
+        stayAdvice:
+          "Before booking, check the property’s exact neighbourhood, its distance from the waterfront, and how you will get around. As development continues, ask whether construction near the property could affect your stay and which facilities will be available on your dates.",
+        accommodationOptions: [
+          {
+            name: "The Chedi Luštica Bay",
+            description:
+              "A luxury waterfront hotel in Marina Village, offering rooms and suites beside the Adriatic.",
+            url: "https://www.chedilusticabay.com/",
+          },
+          {
+            name: "Luštica Bay Vacation Homes",
+            description:
+              "Holiday accommodation across Luštica Bay, including Marina Village and Centrale. Check the individual property’s location and included facilities before booking.",
+            url: "https://lusticabay.com/lustica-bay-vacation-homes/",
+          },
+        ],
+        websiteUrl: "https://lusticabay.com/",
+        websiteLabel: "Explore Luštica Bay — official website",
+      },
+      {
+  slug: "krasici",
+  title: "Krašići",
+  image:
+    "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/krasici.png",
+  description:
+    "Krašići is a fishing village on the bay-facing side of the Luštica peninsula, across the water from Tivat. In Donji Krašići, old stone houses stand alongside summer homes near the shore, while Gornji Krašići lies uphill. The waterfront is mostly rocky, with concrete platforms along parts of the shore. Come for views across the bay, a meal by the water, or to photograph the village from the shoreline.",
+  transportAdvice:
+    "If travelling by bus from Tivat, confirm the stop and return service for your travel date. If driving or taking a taxi, check whether your destination is on the waterfront or uphill, and ask your host about parking or drop-off.",
+  transportLinks: [
+    {
+      label: "Local bus information — Tivat Tourism Organisation",
+      url: "https://tivat.travel/en/city-info/bus/",
+    },
+  ],
+},
     ],
   },
   {
