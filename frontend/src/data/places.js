@@ -566,6 +566,40 @@ const places = [
     ],
     description:
       "Tivat brings together the Bay of Kotor’s maritime heritage and a modern waterfront. Walk along the Pine promenade and through Porto Montenegro, where yachts and waterfront cafés sit against a backdrop of mountains. Beyond the marina, the Buća–Luković summer residence and its museum and gallery reveal an older cultural landscape, while the Maritime Heritage Collection recalls the town’s naval past. For a different perspective, explore Gornja Lastva above Tivat, a stone village with olive-growing traditions and views across the bay towards Luštica. Between its waterfront, cultural sights, and hillside villages, Tivat offers opportunities for photography, sketching, and discovering the bay at your own pace.",
+      accommodationGuide: {
+  title: "Where to stay around Tivat",
+  intro:
+    "Choose your base by deciding where you want to spend most of your time: in town, near the ferry, or on the Luštica peninsula.",
+  areas: [
+    {
+      name: "Central Tivat and Porto Montenegro",
+      description:
+        "Stay here if you want the Pine promenade, marina, and waterfront dining within walking distance. Hotel Pine and Regent Porto Montenegro are listed below.",
+    },
+    {
+      name: "Donja Lastva",
+      description:
+        "Choose a village waterfront setting. Hotel Carrubba is listed below. Check the walking route to central Tivat if you plan to go into town often.",
+    },
+    {
+      name: "Lepetane",
+      description:
+        "Consider staying near the ferry if you plan to cross to Kamenari. Check how far your apartment is from the terminal and how you’ll get to central Tivat.",
+    },
+    {
+      name: "Luštica Bay",
+      description:
+        "Choose Marina Village for a stay by the marina or compare rentals in Centrale. Confirm the exact neighbourhood and which facilities will be available during your stay.",
+    },
+    {
+      name: "Krašići",
+      description:
+        "Choose a village on the bay-facing side of Luštica. Check whether your accommodation is by the water or uphill, especially if you’re travelling without a car.",
+    },
+  ],
+  advice:
+    "Open Around Tivat for the Lepetane, Luštica Bay, and Krašići guides and their accommodation links. Before booking, check the property’s exact location, parking or drop-off arrangements, and transport for the trips you plan to make.",
+},
     accommodationOptions: [
       {
         name: "Hotel Pine",
