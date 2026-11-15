@@ -292,6 +292,22 @@ const places = [
     ],
     transportAdvice:
       "Before arriving in Perast, ask your accommodation where to park or be dropped off and how to bring in your luggage. If travelling by local bus, confirm the stop, timetable, and return service for your travel date. For taxis, agree on the fare before departure. If visiting Our Lady of the Rocks by boat, confirm the departure point, return crossing, weather arrangements, and whether church or museum admission is included.",
+    nearbyPlaces: [
+      {
+        slug: "risan",
+        title: "Risan",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/risan.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/risan.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/risan-mosaic.png",
+        ],
+        description:
+          "Just beyond Perast, Risan sits where steep mountains meet the Bay of Kotor. Known in antiquity as Rhizon, it was an Illyrian stronghold associated with Queen Teuta. Visit the remains of a second-century Roman villa to see its patterned mosaic floors, including one depicting Hypnos, the god of sleep. Then follow the stone paving of old Gabela Street, look for the bell tower of the Church of Saints Peter and Paul, and finish with a walk along the waterfront.",
+        websiteUrl: "https://muzejikotor.me/en/home/roman-mosaics/",
+        websiteLabel: "Visit the Roman Mosaics — Kotor Museums",
+      },
+    ],
   },
   {
     id: 3,
