@@ -306,6 +306,26 @@ const places = [
           "Just beyond Perast, Risan sits where steep mountains meet the Bay of Kotor. Known in antiquity as Rhizon, it was an Illyrian stronghold associated with Queen Teuta. Visit the remains of a second-century Roman villa to see its patterned mosaic floors, including one depicting Hypnos, the god of sleep. Then follow the stone paving of old Gabela Street, look for the bell tower of the Church of Saints Peter and Paul, and finish with a walk along the waterfront.",
         websiteUrl: "https://muzejikotor.me/en/home/roman-mosaics/",
         websiteLabel: "Visit the Roman Mosaics — Kotor Museums",
+        accommodationOptions: [
+          {
+            name: "Mövenpick Hotel & Residences Teuta Kotor Bay",
+            description:
+              "A beachfront hotel in Risan with rooms, suites, and residences overlooking the Bay of Kotor.",
+            url: "https://all.accor.com/hotel/B990/index.en.shtml",
+          },
+          {
+            name: "Risan Bay",
+            description:
+              "One- and two-bedroom apartments steps from Pomodna Beach, with sea-view and garden-view options.",
+            url: "https://www.booking.com/hotel/me/risan-bay.html",
+          },
+          {
+            name: "Villa Risan Apartments",
+            description:
+              "A family-run villa with studios and suites, a shared garden, and options with terraces or views of the bay.",
+            url: "https://villarisanapartments.com/",
+          },
+        ],
       },
     ],
   },
