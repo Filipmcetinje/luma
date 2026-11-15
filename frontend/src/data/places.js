@@ -335,6 +335,17 @@ const places = [
         description:
           "Just off Perast’s waterfront, Our Lady of the Rocks (Gospa od Škrpjela) stands on an island built by hand. According to local tradition, sailors began laying stones here after finding an icon of the Virgin Mary on a rock in the bay. Inside the church, take time to look at the walls and ceiling: they are decorated with 68 paintings by Tripo Kokolja, a Baroque painter from Perast. His work is a highlight of the visit. Take a boat from Perast and ask before boarding when it returns and whether admission to the church and museum is included.",
       },
+      {
+        slug: "perast-museum",
+        title: "Perast Museum",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-museum.png",
+        description:
+          "Step inside Bujović Palace to see how seafaring shaped Perast. In the Captain’s Salon, look for Tripo Kokolja’s portrait of Vicko Bujović, a sea captain and merchant who once owned the palace. Nearby is a model of the Santa Croce, the ship he commanded. If you’ve seen Kokolja’s paintings at Our Lady of the Rocks, the portrait is a chance to see a different side of his work.",
+        websiteUrl:
+          "https://muzejikotor.me/en/museum-collections/captains-salon/",
+        websiteLabel: "Explore the Captain’s Salon — Kotor Museums",
+      },
     ],
   },
   {
