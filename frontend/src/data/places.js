@@ -327,6 +327,14 @@ const places = [
           },
         ],
       },
+      {
+        slug: "our-lady-of-the-rocks",
+        title: "Our Lady of the Rocks",
+        image:
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/lady-of-rock.png",
+        description:
+          "Just off Perast’s waterfront, Our Lady of the Rocks (Gospa od Škrpjela) stands on an island built by hand. According to local tradition, sailors began laying stones here after finding an icon of the Virgin Mary on a rock in the bay. Inside the church, take time to look at the walls and ceiling: they are decorated with 68 paintings by Tripo Kokolja, a Baroque painter from Perast. His work is a highlight of the visit. Take a boat from Perast and ask before boarding when it returns and whether admission to the church and museum is included.",
+      },
     ],
   },
   {
