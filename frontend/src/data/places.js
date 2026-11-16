@@ -340,6 +340,10 @@ const places = [
         title: "Perast Museum",
         image:
           "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-museum.png",
+        gallery: [
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/perast-museum.png",
+          "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/vicko-bujovic-ship.png",
+        ],
         description:
           "Step inside Bujović Palace to see how seafaring shaped Perast. In the Captain’s Salon, look for Tripo Kokolja’s portrait of Vicko Bujović, a sea captain and merchant who once owned the palace. Nearby is a model of the Santa Croce, the ship he commanded. If you’ve seen Kokolja’s paintings at Our Lady of the Rocks, the portrait is a chance to see a different side of his work.",
         websiteUrl:
