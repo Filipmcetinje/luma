@@ -1220,7 +1220,7 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/herceg-novi.png",
     ],
     description:
-      "Explore the stone stairways of Herceg Novi’s old town, then head down to the waterfront for a walk along the bay.",
+      "Herceg Novi sits where the Bay of Kotor opens to the Adriatic. Stone steps wind through the Old Town, and the walls of Forte Mare rise above the boats in Škver harbor. Down by the water, the Pet Danica promenade is a place to slow down, stop for a coffee, and watch the boats cross the bay.",
   },
 ];
 
