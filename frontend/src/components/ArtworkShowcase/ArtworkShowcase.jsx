@@ -50,6 +50,7 @@ const artworks = [
     description:
       "An abstract painting with curved gray, white, and blue forms and a yellow-green accent, by Filip Milosevic.",
   },
+
   {
     title: "Leaves",
     image:
@@ -70,6 +71,27 @@ const artworks = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/composition.jpg",
     description:
       "An abstract composition with flowing red, yellow, blue, and purple forms against a dark background, by Filip Milosevic.",
+  },
+  {
+    title: "Figure I",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto/figure-1.png",
+    description:
+      "A tall carved wooden figure with visible wood grain, by Filip Milosevic.",
+  },
+  {
+    title: "Figure I — Side View",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto/figure-2.png",
+    description:
+      "Side view of Figure I, a carved wooden sculpture by Filip Milosevic.",
+  },
+  {
+    title: "figure-3",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto/figure-3.png",
+    description:
+      "A curved wooden sculpture with red markings, by Filip Milosevic.",
   },
 ];
 
