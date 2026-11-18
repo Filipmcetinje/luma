@@ -1209,6 +1209,19 @@ const places = [
       },
     ],
   },
+  {
+    id: 8,
+    title: "Herceg Novi",
+    location: "Bay of Kotor",
+    category: "Coast",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/herceg-novi.png",
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/herceg-novi.png",
+    ],
+    description:
+      "Explore the stone stairways of Herceg Novi’s old town, then head down to the waterfront for a walk along the bay.",
+  },
 ];
 
 export default places;
