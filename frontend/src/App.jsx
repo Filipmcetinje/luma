@@ -14,6 +14,7 @@ import places from "./data/places";
 import TripDetails from "./pages/TripDetails/TripDetails";
 import Art from "./pages/Art/Art";
 import Photography from "./pages/Photography/Photography";
+import Blog from "./pages/Blog/Blog";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 
@@ -601,6 +602,7 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/art" element={<Art />} />
         <Route path="/photography" element={<Photography />} />
+        <Route path="/blog" element={<Blog />} />
         <Route
           path="/discover"
           element={

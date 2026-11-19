@@ -53,6 +53,10 @@ function Header({ favoriteCount, currentUser, onLogout }) {
           Art
         </Link>
 
+        <Link className="header__link" to="/blog">
+          Blog
+        </Link>
+
         <Link className="header__link" to="/favorites">
           Favorites ({favoriteCount})
         </Link>
