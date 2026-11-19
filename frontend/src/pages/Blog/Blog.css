@@ -48,6 +48,11 @@
   line-height: 1.2;
 }
 
+.blog__card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .blog__excerpt {
   margin: 0;
   font-size: 17px;
