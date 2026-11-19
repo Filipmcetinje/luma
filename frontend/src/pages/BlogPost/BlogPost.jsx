@@ -31,6 +31,14 @@ function BlogPost() {
       <h1 className="blog-post__title">{post.title}</h1>
       <p className="blog-post__date">{post.date}</p>
       <p className="blog-post__intro">{post.excerpt}</p>
+
+      <div className="blog-post__content">
+        {post.content.map((paragraph) => (
+          <p className="blog-post__paragraph" key={paragraph}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
     </main>
   );
 }

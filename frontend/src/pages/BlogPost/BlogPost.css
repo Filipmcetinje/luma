@@ -45,6 +45,17 @@
   line-height: 1.7;
 }
 
+.blog-post__content {
+  max-width: 720px;
+  margin-top: 48px;
+}
+
+.blog-post__paragraph {
+  margin: 0 0 28px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
 @media screen and (max-width: 600px) {
   .blog-post {
     padding: 48px 20px;
