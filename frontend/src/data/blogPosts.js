@@ -10,6 +10,7 @@ const blogPosts = [
     image:
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/life-in-rocks.jpg",
     imageAlt: "Life among the rocks",
+    imageCaption: "Life among the rocks.",
     content: [
       "Montenegro is a small country, but every part of it feels different. In a short journey, you can move from the coast and old stone towns to quiet lakes, forests, and high mountains.",
       "Life here feels closer to the landscape. The sea, mountains, architecture, and history are not separated from everyday life. They shape the way each place looks and feels.",
