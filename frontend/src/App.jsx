@@ -16,6 +16,7 @@ import Art from "./pages/Art/Art";
 import Photography from "./pages/Photography/Photography";
 import Blog from "./pages/Blog/Blog";
 import BlogPost from "./pages/BlogPost/BlogPost";
+import Inspiration from "./pages/Inspiration/Inspiration";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 
@@ -605,6 +606,7 @@ function App() {
         <Route path="/photography" element={<Photography />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/inspiration" element={<Inspiration />} />
         <Route
           path="/discover"
           element={
