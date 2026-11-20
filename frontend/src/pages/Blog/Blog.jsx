@@ -22,6 +22,11 @@ function Blog() {
             key={post.id}
           >
             <article className="blog__card">
+              <img
+                className="blog__card-image"
+                src={post.image}
+                alt={post.imageAlt}
+              />
               <p className="blog__category">{post.category}</p>
               <h2 className="blog__card-title">{post.title}</h2>
               <p className="blog__excerpt">{post.excerpt}</p>

@@ -32,6 +32,15 @@
   border-radius: 12px;
 }
 
+.blog__card-image {
+  display: block;
+  width: 100%;
+  height: 260px;
+  margin-bottom: 28px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 .blog__category {
   margin: 0 0 16px;
   font-size: 13px;
@@ -77,5 +86,9 @@
 
   .blog__card {
     padding: 24px;
+  }
+
+  .blog__card-image {
+    height: 220px;
   }
 }

@@ -30,6 +30,9 @@ function BlogPost() {
       <p className="blog-post__category">{post.category}</p>
       <h1 className="blog-post__title">{post.title}</h1>
       <p className="blog-post__date">{post.date}</p>
+
+      <img className="blog-post__image" src={post.image} alt={post.imageAlt} />
+
       <p className="blog-post__intro">{post.excerpt}</p>
 
       <div className="blog-post__content">
