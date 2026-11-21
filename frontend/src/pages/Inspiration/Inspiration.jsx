@@ -12,14 +12,26 @@ function Inspiration() {
         <header className="inspiration__header">
           <p className="inspiration__eyebrow">Montenegro Through Other Eyes</p>
 
-          <h1 className="inspiration__title">
-            A country seen by artists and writers.
-          </h1>
+          <h1 className="inspiration__title">The land shapes the people.</h1>
 
           <p className="inspiration__intro">
-            Explore historical artwork and words inspired by Montenegro.
+            Montenegro has inspired artists and writers for centuries. Some
+            captured its mountains and sea. Others portrayed the strength and
+            independence of the people who lived among them.
           </p>
         </header>
+
+        <div className="inspiration__section-heading">
+          <p className="inspiration__section-number">01</p>
+
+          <div>
+            <p className="inspiration__section-label">The Land</p>
+
+            <h2 className="inspiration__section-title">
+              Where mountains meet the sea.
+            </h2>
+          </div>
+        </div>
 
         <section
           className="inspiration__collection"
