@@ -111,6 +111,16 @@
   line-height: 1.05;
 }
 
+.inspiration__work-title {
+  max-width: 760px;
+  margin: 18px 0 28px;
+  color: #193b2c;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
 @media screen and (max-width: 650px) {
   .inspiration {
     width: calc(100% - 32px);

@@ -4,6 +4,39 @@ import inspirationItems from "../../data/inspirationItems";
 import "./Inspiration.css";
 
 function Inspiration() {
+  const landItems = inspirationItems.filter((item) => item.section === "land");
+
+  const peopleItems = inspirationItems.filter(
+    (item) => item.section === "people",
+  );
+
+  function renderItem(item) {
+    return (
+      <article className="inspiration__quote-card" key={item.id}>
+        <p className="inspiration__type">{item.type}</p>
+
+        {item.title && (
+          <h3 className="inspiration__work-title">{item.title}</h3>
+        )}
+
+        <blockquote className="inspiration__quote">“{item.quote}”</blockquote>
+
+        <p className="inspiration__attribution">— {item.attribution}</p>
+
+        <p className="inspiration__description">{item.description}</p>
+
+        <a
+          className="inspiration__source"
+          href={item.sourceUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {item.sourceLabel} ↗
+        </a>
+      </article>
+    );
+  }
+
   return (
     <>
       <StoryNavigation />
@@ -35,30 +68,28 @@ function Inspiration() {
 
         <section
           className="inspiration__collection"
-          aria-label="Words inspired by Montenegro"
+          aria-label="Words about Montenegro's landscape"
         >
-          {inspirationItems.map((item) => (
-            <article className="inspiration__quote-card" key={item.id}>
-              <p className="inspiration__type">{item.type}</p>
+          {landItems.map(renderItem)}
+        </section>
 
-              <blockquote className="inspiration__quote">
-                “{item.quote}”
-              </blockquote>
+        <div className="inspiration__section-heading">
+          <p className="inspiration__section-number">02</p>
 
-              <p className="inspiration__attribution">— {item.attribution}</p>
+          <div>
+            <p className="inspiration__section-label">The People</p>
 
-              <p className="inspiration__description">{item.description}</p>
+            <h2 className="inspiration__section-title">
+              Shaped by the mountains.
+            </h2>
+          </div>
+        </div>
 
-              <a
-                className="inspiration__source"
-                href={item.sourceUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {item.sourceLabel} ↗
-              </a>
-            </article>
-          ))}
+        <section
+          className="inspiration__collection"
+          aria-label="Words about the people of Montenegro"
+        >
+          {peopleItems.map(renderItem)}
         </section>
       </main>
     </>
