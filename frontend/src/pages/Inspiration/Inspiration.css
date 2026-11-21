@@ -15,7 +15,7 @@
 }
 
 .inspiration__title {
-  max-width: 820px;
+  max-width: 900px;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(48px, 7vw, 88px);
@@ -28,6 +28,59 @@
   margin: 32px 0 0;
   font-size: 22px;
   line-height: 1.6;
+}
+
+.inspiration__collection {
+  margin-top: 80px;
+}
+
+.inspiration__quote-card {
+  max-width: 900px;
+  padding: 56px 0;
+  border-top: 1px solid rgba(35, 67, 52, 0.25);
+  border-bottom: 1px solid rgba(35, 67, 52, 0.25);
+}
+
+.inspiration__type {
+  margin: 0 0 28px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.inspiration__quote {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-style: italic;
+  line-height: 1.15;
+}
+
+.inspiration__attribution {
+  margin: 28px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.inspiration__description {
+  max-width: 700px;
+  margin: 32px 0 0;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.inspiration__source {
+  display: inline-block;
+  margin-top: 24px;
+  padding-bottom: 4px;
+  color: #234334;
+  text-decoration: none;
+  border-bottom: 1px solid #234334;
+}
+
+.inspiration__source:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 650px) {
@@ -43,5 +96,17 @@
   .inspiration__intro {
     margin-top: 24px;
     font-size: 18px;
+  }
+
+  .inspiration__collection {
+    margin-top: 56px;
+  }
+
+  .inspiration__quote-card {
+    padding: 40px 0;
+  }
+
+  .inspiration__quote {
+    font-size: 34px;
   }
 }
