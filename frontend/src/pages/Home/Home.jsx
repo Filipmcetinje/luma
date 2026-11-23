@@ -12,6 +12,9 @@ const landscapeImage =
 const artworkImage =
   "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_900/grass.jpg";
 
+const storyImage =
+  "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/life-in-rocks.jpg";
+
 function getCardImageUrl(url, width) {
   return url
     .replace("f_auto", "f_webp")
@@ -256,6 +259,66 @@ function Home() {
                 loading="lazy"
               />
             </button>
+          </section>
+
+          <section
+            className="home__stories"
+            aria-labelledby="home-stories-title"
+          >
+            <div className="home__section-header">
+              <div>
+                <p className="home__eyebrow">Continue exploring</p>
+
+                <h2 className="home__heading" id="home-stories-title">
+                  Stories behind the landscape.
+                </h2>
+
+                <p className="home__section-description">
+                  Go deeper into Montenegro through local stories, history, art,
+                  and literature.
+                </p>
+              </div>
+
+              <Link className="home__text-link" to="/blog">
+                All stories ↗
+              </Link>
+            </div>
+
+            <div className="home__stories-grid">
+              <Link
+                className="home__story-card home__story-card_featured"
+                to="/blog/why-montenegro-feels-different"
+              >
+                <img
+                  className="home__story-image"
+                  src={storyImage}
+                  alt="Life among the rocks in Montenegro"
+                  loading="lazy"
+                />
+
+                <div className="home__story-content">
+                  <p className="home__eyebrow">Culture &amp; Travel</p>
+                  <h3>Life Among the Rocks</h3>
+                  <p>
+                    Experience how Montenegro’s landscape, food, and character
+                    can change within a short journey.
+                  </p>
+                  <span>Read the story →</span>
+                </div>
+              </Link>
+
+              <Link className="home__story-card" to="/inspiration">
+                <div className="home__story-content">
+                  <p className="home__eyebrow">Art &amp; Literature</p>
+                  <h3>Montenegro Through Other Eyes</h3>
+                  <p>
+                    Discover how artists and writers portrayed the land and its
+                    people.
+                  </p>
+                  <span>Explore inspiration →</span>
+                </div>
+              </Link>
+            </div>
           </section>
         </div>
       </div>
