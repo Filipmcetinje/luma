@@ -41,6 +41,10 @@
   border-bottom: 1px solid rgba(35, 67, 52, 0.25);
 }
 
+.inspiration__quote-card + .inspiration__quote-card {
+  border-top: 0;
+}
+
 .inspiration__type {
   margin: 0 0 28px;
   font-size: 13px;
