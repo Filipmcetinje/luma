@@ -26,6 +26,20 @@ const inspirationItems = [
       "https://rvb.ru/pushkin/01text/01versus/0423_36/1834/0594-09.htm",
     sourceLabel: "Read the original poem in Russian",
   },
+  {
+    id: 3,
+    section: "people",
+    type: "Poetry",
+    title: "Montenegro",
+    quote:
+      "They rose to where their sovran eagle sails, they kept their faith, their freedom, on the height.",
+    attribution: "Alfred, Lord Tennyson, 1877",
+    description:
+      "Tennyson’s sonnet honors Montenegro as a small nation whose people preserved their freedom from their mountain strongholds. He connects their character and endurance directly to the country’s rocky landscape.",
+    sourceUrl:
+      "https://dvpp.uvic.ca/poems/nineteenthcentury/1877/pom_7850_montenegro.html",
+    sourceLabel: "Read the complete sonnet",
+  },
 ];
 
 export default inspirationItems;
