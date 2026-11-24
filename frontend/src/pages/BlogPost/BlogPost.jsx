@@ -15,7 +15,7 @@ function BlogPost() {
         <h1>Story not found</h1>
 
         <Link className="blog-post__back-link" to="/blog">
-          Back to stories
+          ← Back to stories
         </Link>
       </main>
     );
@@ -23,8 +23,8 @@ function BlogPost() {
 
   return (
     <main className="blog-post">
-      <Link className="blog-post__back-link" to="/blog">
-        ← Back to stories
+      <Link className="blog-post__back-link" to="/">
+        ← Back to Home
       </Link>
 
       <p className="blog-post__category">{post.category}</p>

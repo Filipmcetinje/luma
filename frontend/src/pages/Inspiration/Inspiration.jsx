@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import StoryNavigation from "../../components/StoryNavigation/StoryNavigation";
 import inspirationItems from "../../data/inspirationItems";
 
@@ -42,6 +43,12 @@ function Inspiration() {
       <StoryNavigation />
 
       <main className="inspiration">
+        <div className="inspiration__navigation">
+          <Link className="inspiration__back" to="/">
+            ← Back to Home
+          </Link>
+        </div>
+
         <header className="inspiration__header">
           <p className="inspiration__eyebrow">Montenegro Through Other Eyes</p>
 

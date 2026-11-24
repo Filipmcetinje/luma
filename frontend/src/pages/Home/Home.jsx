@@ -287,7 +287,7 @@ function Home() {
             <div className="home__stories-grid">
               <Link
                 className="home__story-card home__story-card_featured"
-                to="/blog/why-montenegro-feels-different"
+                to="/blog/life-among-the-rocks"
               >
                 <img
                   className="home__story-image"
