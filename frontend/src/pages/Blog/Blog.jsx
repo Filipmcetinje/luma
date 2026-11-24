@@ -11,6 +11,12 @@ function Blog() {
       <StoryNavigation />
 
       <main className="blog">
+        <div className="blog__navigation">
+          <Link className="blog__back" to="/">
+            ← Back to Home
+          </Link>
+        </div>
+
         <h1 className="blog__title">Stories from Montenegro</h1>
 
         <p className="blog__intro">
