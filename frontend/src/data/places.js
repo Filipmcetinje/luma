@@ -1232,9 +1232,10 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/durmitor.png",
     gallery: [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/durmitor.png",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/tara-canyon.png",
     ],
     description:
-      "Discover Durmitor through its mountain landscapes, with time to pause, take photographs, and enjoy another side of Montenegro.",
+      "Durmitor’s landscape stretches from limestone peaks and glacial lakes to the deep canyon carved by the Tara River. Flowing through the national park, the Tara runs far below steep, forested slopes, connecting the mountain landscape with Europe's deepest gorge. Near Žabljak, Black Lake offers another view of Durmitor, with mountain peaks rising above its wooded shores. Together, the mountains, lakes, and river canyon give this part of Montenegro its remarkable character.",
   },
 ];
 
