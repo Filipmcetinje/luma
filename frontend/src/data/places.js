@@ -1222,6 +1222,20 @@ const places = [
     description:
       "Herceg Novi sits where the Bay of Kotor opens to the Adriatic. Stone steps wind through the Old Town, and the walls of Forte Mare rise above the boats in Škver harbor. Down by the water, the Pet Danica promenade is a place to slow down, stop for a coffee, and watch the boats cross the bay.",
   },
+
+  {
+    id: 9,
+    title: "Durmitor",
+    location: "Northern Montenegro",
+    category: "Mountain",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/durmitor.png",
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/durmitor.png",
+    ],
+    description:
+      "Discover Durmitor through its mountain landscapes, with time to pause, take photographs, and enjoy another side of Montenegro.",
+  },
 ];
 
 export default places;
