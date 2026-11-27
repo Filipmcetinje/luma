@@ -1237,6 +1237,20 @@ const places = [
     description:
       "Durmitor’s landscape stretches from limestone peaks and glacial lakes to the deep canyon carved by the Tara River. Flowing through the national park, the Tara runs far below steep, forested slopes, connecting the mountain landscape with Europe's deepest gorge. Near Žabljak, Black Lake offers another view of Durmitor, with mountain peaks rising above its wooded shores. Together, the mountains, lakes, and river canyon give this part of Montenegro its remarkable character.",
   },
+
+  {
+    id: 10,
+    title: "Biogradska Gora",
+    location: "Northern Montenegro",
+    category: "Nature",
+    image:
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/biogradsko-jezero.png",
+    gallery: [
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/biogradsko-jezero.png",
+    ],
+    description:
+      "Explore Biogradska Gora through the scenery of Biogradsko Lake, with time to slow down, take photographs, and enjoy the landscape.",
+  },
 ];
 
 export default places;
