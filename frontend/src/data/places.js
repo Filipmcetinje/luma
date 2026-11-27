@@ -1247,9 +1247,11 @@ const places = [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1200/biogradsko-jezero.png",
     gallery: [
       "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/biogradsko-jezero.png",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/biogradska-gora.png",
+      "https://res.cloudinary.com/kneu7ajr/image/upload/f_auto,q_auto,w_1600/biogradska-gora-2.png",
     ],
     description:
-      "Explore Biogradska Gora through the scenery of Biogradsko Lake, with time to slow down, take photographs, and enjoy the landscape.",
+      "Biogradska Gora protects one of Europe's last remaining primeval forests, with centuries-old trees surrounding the green waters of Biogradsko Lake. Shaded paths lead through the woods and along the lakeshore, offering peaceful walks beneath the trees and views of the forest reflected in the water. Above the forest, the Bjelasica mountains open into pastures, glacial lakes, and traditional shepherd settlements known as katuns.",
   },
 ];
 
