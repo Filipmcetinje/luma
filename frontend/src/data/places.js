@@ -82,7 +82,9 @@ const places = [
         name: "Hotel Vardar",
         description:
           "A hotel on the Old Town’s main square, with Kotor’s historic streets and monuments close by.",
-        url: "https://hotelvardar.com/en/",
+        url: "https://www.dpbolvw.net/click-101911682-17370148?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fme%2Fvardar.html",
+        linkLabel: "View on Booking.com",
+        isAffiliate: true,
       },
       {
         name: "Apartments Wine House Old Town",

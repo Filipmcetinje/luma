@@ -264,6 +264,15 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
                       </div>
                     )}
 
+                    {place.accommodationOptions?.some(
+                      (option) => option.isAffiliate,
+                    ) && (
+                      <p className="place-details__affiliate-disclosure">
+                        Luma earns a commission when you book through affiliate
+                        links below.
+                      </p>
+                    )}
+
                     <ul className="place-details__property-list">
                       {place.accommodationOptions?.map((option) => (
                         <li key={option.url}>
@@ -274,9 +283,13 @@ function PlaceDetails({ trips, onAddPlaceToTrip }) {
                           <a
                             href={option.url}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel={
+                              option.isAffiliate
+                                ? "sponsored noopener noreferrer"
+                                : "noopener noreferrer"
+                            }
                           >
-                            View property details ↗
+                            {option.linkLabel || "View property details"} ↗
                           </a>
                         </li>
                       ))}
